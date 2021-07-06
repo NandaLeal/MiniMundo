@@ -1,2 +1,2 @@
 # MiniMundo
-Realização do projeto de um Estacionamneto
+Realização do projeto de um Estacionamento
