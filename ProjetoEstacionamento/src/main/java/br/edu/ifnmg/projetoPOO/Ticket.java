@@ -5,11 +5,15 @@
  */
 package br.edu.ifnmg.projetoPOO;
 
+import java.util.Date;
+
 /**
  *
  * @author Filipi
  * @version 1.0
  */
-public class Login {
+public class Ticket {
     
+    private Date entrada;
+    private Date saida;
 }
