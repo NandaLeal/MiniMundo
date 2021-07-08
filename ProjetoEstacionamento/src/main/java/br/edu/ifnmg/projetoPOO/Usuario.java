@@ -10,6 +10,7 @@ package br.edu.ifnmg.projetoPOO;
  * @author Filipi
  * @version 1.0
  */
-public class Login {
+public class Usuario {
     
+    private String nome;
 }

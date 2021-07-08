@@ -7,9 +7,8 @@ package br.edu.ifnmg.projetoPOO;
 
 /**
  *
- * @author Filipi
- * @version 1.0
+ * @author Filip
  */
-public class Login {
+public class Veiculo {
     
 }

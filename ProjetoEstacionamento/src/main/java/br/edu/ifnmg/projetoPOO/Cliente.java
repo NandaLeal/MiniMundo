@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifnmg.projetoPOO;
 
 /**
  *
- * @author Filip
+ * @author Filipi
+ * @version 1.0
  */
 
 
@@ -15,4 +11,12 @@ package br.edu.ifnmg.projetoPOO;
 public class Cliente {
     
     private String nome;
+    private String endereco;
+    private String email;
+    private int ddd = 0;
+    private int fone = 0;
+    private long cpf = 0;
+    private boolean mensalista = false;
+    
+    
 }
