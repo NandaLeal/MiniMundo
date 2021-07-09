@@ -1,19 +1,52 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.edu.ifnmg.projetoPOO;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 /**
  *
  * @author Filipi
- * @version 1.0
+ * @version 1.1
  */
 public class Ticket {
     
     private Date entrada;
     private Date saida;
+    private DecimalFormat valor;
+    private String observacao;
+
+    public Date getEntrada() {
+        return entrada;
+    }
+
+    public Date getSaida() {
+        return saida;
+    }
+
+    public DecimalFormat getValor() {
+        return valor;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setEntrada(Date entrada) {
+        this.entrada = entrada;
+    }
+
+    public void setSaida(Date saida) {
+        this.saida = saida;
+    }
+
+    public void setValor(DecimalFormat valor) {
+        this.valor = valor;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+    
+    
 }
