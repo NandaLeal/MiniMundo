@@ -19,5 +19,4 @@ public class Pagamento {
     public void setData(Date data) {
         this.data = data;
     }
-    
 }

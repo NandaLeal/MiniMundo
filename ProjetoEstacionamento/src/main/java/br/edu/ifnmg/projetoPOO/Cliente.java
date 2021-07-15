@@ -6,8 +6,6 @@ package br.edu.ifnmg.projetoPOO;
  * @version 1.1
  */
 
-
-
 public class Cliente {
     
     private String nome;
@@ -17,6 +15,7 @@ public class Cliente {
     private int fone;
     private long cpf;
     private boolean mensalista = false;
+    private boolean inadimplente = true;
 
     public String getNome() {
         return nome;
@@ -40,6 +39,10 @@ public class Cliente {
 
     public long getCpf() {
         return cpf;
+    }
+
+    public boolean isInadimplente() {
+        return inadimplente;
     }
 
     public boolean isMensalista() {
@@ -72,6 +75,10 @@ public class Cliente {
 
     public void setMensalista(boolean mensalista) {
         this.mensalista = mensalista;
+    }
+
+    public void setInadimplente(boolean inadimplente) {
+        this.inadimplente = inadimplente;
     }
     
     
