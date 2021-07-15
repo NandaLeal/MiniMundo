@@ -6,6 +6,7 @@ package br.edu.ifnmg.projetoPOO;
  * @author Filipi
  * @version 1.1
  */
+
 public class Usuario {
     
     private String nome;

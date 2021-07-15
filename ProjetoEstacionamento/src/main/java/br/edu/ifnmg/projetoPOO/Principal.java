@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class Principal {
     
     public static Usuario user1 = new Usuario();
+    public static BancoDeDados bd = new BancoDeDados();
     
     public static void main(String[] args) {
         
@@ -39,6 +40,9 @@ public class Principal {
         System.out.println(user1.getFone());
         System.out.println(user1.getDdd());
         System.out.println(user1.getEmail());
+        
+        System.out.println(bd.getTabela());
+        System.out.println(bd.GetInadimplentes());
         
     
     }
