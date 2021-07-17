@@ -43,6 +43,8 @@ public class Principal {
         
         System.out.println(bd.getTabela());
         System.out.println(bd.GetInadimplentes());
+        System.out.println(bd.GetInadimplentes());
+        
         
     
     }
