@@ -16,6 +16,8 @@ public class Cliente {
     private long cpf;
     private boolean mensalista = false;
     private boolean inadimplente = true;
+    private long id;
+
 
     public String getNome() {
         return nome;
@@ -81,5 +83,13 @@ public class Cliente {
         this.inadimplente = inadimplente;
     }
     
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     
 }
