@@ -17,6 +17,7 @@ public class Principal {
         cliente.setNome("Filipi");
         cliente.setId(22);
         
+        
         ClienteDao clienteDao = new ClienteDao();
 //        clienteDao.salvar(cliente);
 //        clienteDao.localizarPorId(2L);
