@@ -12,9 +12,18 @@ import java.util.Date;
 public class Ticket {
     
     private Date entrada;
-    private Date saida;
-    private DecimalFormat valor;
+//    private Date saida;
+//    private DecimalFormat valor;
     private String observacao;
+    private String placa;
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
 
     public Date getEntrada() {
         return entrada;
