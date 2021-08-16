@@ -32,10 +32,8 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnAutenticar" pref="114" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="txtUsuario" max="32767" attributes="0"/>
-                      <Component id="txtSenha" pref="114" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="txtUsuario" max="32767" attributes="0"/>
+                  <Component id="pwdSenha" pref="114" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="68" max="32767" attributes="0"/>
           </Group>
@@ -52,7 +50,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblSenha" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtSenha" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="pwdSenha" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnAutenticar" min="-2" max="-2" attributes="0"/>
@@ -74,15 +72,15 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtUsuario">
     </Component>
-    <Component class="javax.swing.JPasswordField" name="txtSenha">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-      </Properties>
+    <Component class="javax.swing.JPasswordField" name="pwdSenha">
     </Component>
     <Component class="javax.swing.JButton" name="btnAutenticar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Autenticar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAutenticarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -16,6 +16,8 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        // Centralização da janela
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -30,7 +32,7 @@ public class Login extends javax.swing.JFrame {
         lblUsuario = new javax.swing.JLabel();
         lblSenha = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        txtSenha = new javax.swing.JPasswordField();
+        pwdSenha = new javax.swing.JPasswordField();
         btnAutenticar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -39,9 +41,12 @@ public class Login extends javax.swing.JFrame {
 
         lblSenha.setText("Senha:");
 
-        txtSenha.setText("jPasswordField1");
-
         btnAutenticar.setText("Autenticar");
+        btnAutenticar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAutenticarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,9 +60,8 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnAutenticar, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtUsuario)
-                        .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)))
+                    .addComponent(txtUsuario)
+                    .addComponent(pwdSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -70,7 +74,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSenha)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pwdSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnAutenticar)
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -78,6 +82,17 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAutenticarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutenticarActionPerformed
+        
+        // Crio um novo usuário, que vai pegar o e-mail e senha
+        
+        // Crio um usuárioDao, que vai autenticar o usuário no bd
+        
+        // Se o usuário foi autenticado, então apresento a sua respectiva tela
+        // Se não, apresenta mensagem de erro
+        
+    }//GEN-LAST:event_btnAutenticarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,7 +133,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton btnAutenticar;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblUsuario;
-    private javax.swing.JPasswordField txtSenha;
+    private javax.swing.JPasswordField pwdSenha;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
