@@ -1,6 +1,7 @@
 
 package br.edu.ifnmg.projetoPOO;
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -16,19 +17,17 @@ public class Fatura {
     
     private LocalDate dataEmissao;
     private int dataVencimento;
-    private long valor; // Como representar valor monetário?
-    private long cpfCliente;
-    
+    private String valor;
+    private Cliente cliente;
 
-    
-    public long getCpfCliente() {
-        return cpfCliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setCpfCliente(long cpfCliente) {
-        this.cpfCliente = cpfCliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
-
+    
     public LocalDate getDataEmissao() {
         return dataEmissao;
     }
@@ -37,24 +36,21 @@ public class Fatura {
         this.dataEmissao = dataEmissao;
     }
 
-    public int getDataVencimento() {
+    public int getDiaVencimento() {
         return dataVencimento;
     }
 
-    public void setDataVencimento(int dataVencimento) {
+    public void setDiaVencimento(int dataVencimento) {
         this.dataVencimento = dataVencimento;
     }
 
-    public Long getValor() {
+    public String getValor() {
         return valor;
     }
 
-    public void setValor(Long valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
-
-    
-    
 
 
 }

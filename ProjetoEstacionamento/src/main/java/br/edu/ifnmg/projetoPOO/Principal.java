@@ -15,11 +15,11 @@ public class Principal {
        
         Cliente cliente = new Cliente();
         cliente.setNome("Filipi");
-        cliente.setId(22);
+        cliente.setCpf(22);
         
         
         ClienteDao clienteDao = new ClienteDao();
-//        clienteDao.salvar(cliente);
+        clienteDao.salvar(cliente);
 //        clienteDao.localizarPorId(2L);
 //        clienteDao.localizarTodos();
 //        clienteDao.excluir(cliente);

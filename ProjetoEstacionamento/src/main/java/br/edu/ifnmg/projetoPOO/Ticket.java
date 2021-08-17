@@ -1,21 +1,28 @@
 
 package br.edu.ifnmg.projetoPOO;
 
-import java.text.DecimalFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  *
  * @author Filipi
- * @version 1.1
+ * @version 1.2
  */
 public class Ticket {
     
-    private Date entrada;
-//    private Date saida;
-//    private DecimalFormat valor;
-    private String observacao;
+    private int id;
+    private LocalDate entrada;
     private String placa;
+    private String descricaoVeiculo;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getPlaca() {
         return placa;
@@ -25,36 +32,20 @@ public class Ticket {
         this.placa = placa;
     }
 
-    public Date getEntrada() {
+    public LocalDate getEntrada() {
         return entrada;
     }
 
-    public Date getSaida() {
-        return saida;
-    }
-
-    public DecimalFormat getValor() {
-        return valor;
-    }
-
-    public String getObservacao() {
-        return observacao;
-    }
-
-    public void setEntrada(Date entrada) {
+    public void setEntrada(LocalDate entrada) {
         this.entrada = entrada;
     }
-
-    public void setSaida(Date saida) {
-        this.saida = saida;
+    
+    public String getDescricaoVeiculo() {
+        return descricaoVeiculo;
     }
 
-    public void setValor(DecimalFormat valor) {
-        this.valor = valor;
-    }
-
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
+    public void setDescricaoVeiculo(String observacao) {
+        this.descricaoVeiculo = observacao;
     }
     
     

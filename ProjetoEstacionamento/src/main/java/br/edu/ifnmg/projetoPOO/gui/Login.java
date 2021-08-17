@@ -90,7 +90,8 @@ public class Login extends javax.swing.JFrame {
         // Crio um usuárioDao, que vai autenticar o usuário no bd
         
         // Se o usuário foi autenticado, então apresento a sua respectiva tela
-        // Se não, apresenta mensagem de erro
+        // Se não, apresenta mensagem de erro.
+        
         
     }//GEN-LAST:event_btnAutenticarActionPerformed
 
