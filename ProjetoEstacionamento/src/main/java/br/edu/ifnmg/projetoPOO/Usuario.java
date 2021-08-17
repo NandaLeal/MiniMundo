@@ -12,8 +12,6 @@ public class Usuario {
     private String nome;
     private String senha;
     private String email;
-    private int ddd;
-    private int fone;
     private boolean admin;
 
     public String getNome() {
@@ -26,14 +24,6 @@ public class Usuario {
 
     public String getEmail() {
         return email;
-    }
-
-    public int getDdd() {
-        return ddd;
-    }
-
-    public int getFone() {
-        return fone;
     }
 
     public boolean isAdmin() {
@@ -50,14 +40,6 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setDdd(int ddd) {
-        this.ddd = ddd;
-    }
-
-    public void setFone(int fone) {
-        this.fone = fone;
     }
 
     public void setAdmin(boolean admin) {

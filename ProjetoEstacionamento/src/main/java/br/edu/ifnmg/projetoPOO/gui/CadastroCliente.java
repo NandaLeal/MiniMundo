@@ -10,6 +10,7 @@ import br.edu.ifnmg.projetoPOO.Fatura;
 import br.edu.ifnmg.projetoPOO.Veiculo;
 import br.edu.ifnmg.projetoPOO.dao.ClienteDao;
 import br.edu.ifnmg.projetoPOO.dao.FaturaDao;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -102,7 +103,7 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         lblCpf.setText("CPF:");
 
-        lblData.setText("Dia vencimento:");
+        lblData.setText("Dia vencimento fatura:");
 
         try {
             fmtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -129,50 +130,53 @@ public class CadastroCliente extends javax.swing.JFrame {
             .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
                 .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(lblNome))
-                    .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(lblCpf)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(fmtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(jLabel1))
-                    .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlPainelCadastroClienteLayout.createSequentialGroup()
-                            .addGap(26, 26, 26)
-                            .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
-                                    .addComponent(lblEmail)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
+                                .addComponent(fmtDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                .addComponent(btnCancelar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCadastrar))
+                            .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
+                                .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblData)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(fmtDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnCancelar)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(btnCadastrar))))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlPainelCadastroClienteLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlPainelCadastroClienteLayout.createSequentialGroup()
-                                    .addComponent(lblEndereco)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
+                                        .addComponent(lblEmail)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(lblDdd)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(fmtDdd, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(lblFone)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fmtFone, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(lblCpf)
+                                .addGap(18, 18, 18)
+                                .addComponent(fmtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lblEndereco)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addComponent(lblDdd)
+                                .addGap(18, 18, 18)
+                                .addComponent(fmtDdd, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblFone)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fmtFone, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
+                                .addGap(86, 86, 86)
+                                .addComponent(jLabel1))
+                            .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(lblNome)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         pnlPainelCadastroClienteLayout.setVerticalGroup(
             pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,14 +205,14 @@ public class CadastroCliente extends javax.swing.JFrame {
                     .addComponent(fmtDdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFone)
                     .addComponent(fmtFone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(lblData)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnCadastrar)
                         .addComponent(btnCancelar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblData)
-                        .addComponent(fmtDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(fmtDia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -216,13 +220,13 @@ public class CadastroCliente extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlPainelCadastroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlPainelCadastroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlPainelCadastroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 7, Short.MAX_VALUE))
+            .addComponent(pnlPainelCadastroCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -240,29 +244,62 @@ public class CadastroCliente extends javax.swing.JFrame {
         cliente.setFone(Long.parseLong(fmtFone.getValue().toString().replaceAll("[-]", "")));
         cliente.setCpf(Long.parseLong(fmtCpf.getValue().toString().replaceAll("[-.]", "")));
         
-        fatura.setDataVencimento(fmtDia.getDay());
+        fatura.setDiaVencimento(fmtDia.getDay());
         fatura.setDataEmissao(LocalDate.now());
-        fatura.setValor(0L);
+        fatura.setValor(CalculaValorFatura(cliente));
         
         // Estabeleço as ligações
         cliente.setFatura(fatura);
         fatura.setCliente(cliente);
+        /** cliente.setVeiculo(veiculo);  como cadastrar os veículos do cliente 
+        *   estando eles em outra tela?
+        */
         
         // Salvo no BD
         ClienteDao clienteDao = new ClienteDao();
         clienteDao.salvar(cliente);
+        clienteDao.localizarPorId(cliente.getCpf());
+        clienteDao.localizarTodos();
+        clienteDao.excluir(cliente);
         
         FaturaDao faturaDao = new FaturaDao();
-        faturaDao.salvar(fatura);
-               
+        faturaDao.salvar(fatura);              
+        faturaDao.localizarPorId(fatura.getCliente().getCpf());
+        faturaDao.localizarTodos();
+        faturaDao.excluir(fatura);
         
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+
+    // Método para calcular o valor total da fatura em função da quantidade de veículos.
+    private String CalculaValorFatura(Cliente c){        
+        /*  Preciso acessar todos os veículos que um cliente possui
+         *  para poder calcular o valor da sua fatura
+         */
+        BigDecimal valorFatura = new BigDecimal("100.00");
+        BigDecimal valorCarro = new BigDecimal("20.59");
+        BigDecimal valorMoto = new BigDecimal("10.00");
+        
+                
+        /*  Aqui provavelmente será um loop que percorre todos os objetos do tipo
+         *  Veículo, de modo que vou saber o tipo de cada veículo para calcular
+         *  corretamente o valor total da fatura
+         */
+        
+//        if(c.getVeiculo().getTipo() == "Carro"){
+//            valorFatura = valorFatura.add(valorCarro);
+//        }
+//        else{
+//            valorFatura = valorFatura.add(valorMoto);            
+//        }
      
-    private Long CalculaValorFatura(){
-        /** Método para descobrir quantos carros o cliente possui
-         *  e calcular o valor da fatura em cima disso.         */
-        return 0L;
+     /*  Talvez seja interessante o método retornar o resultado como string
+      *  pois a documentação recomenda usar String no BigDecimal para passar
+      *  os valores, logo, ficaria mais fácil de trabalhar com retornos
+      */
+        valorFatura = valorFatura.add(valorCarro);
+        
+        return valorFatura.toString();
     }
     
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

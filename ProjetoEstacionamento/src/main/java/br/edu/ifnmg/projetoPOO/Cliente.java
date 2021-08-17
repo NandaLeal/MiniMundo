@@ -1,9 +1,16 @@
 package br.edu.ifnmg.projetoPOO;
 
+import com.toedter.calendar.JCalendar;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  *
  * @author Filipi
- * @version 1.1
+ * @version 1.2
  */
 
 public class Cliente {
@@ -12,13 +19,27 @@ public class Cliente {
     private String endereco;
     private String email;
     private int ddd;
-    private int fone;
-    private long cpf;
-    private boolean mensalista = false;
-    private boolean inadimplente = true;
-    private long id;
+    private long fone;
+    private long cpf = 0;
+    private Fatura fatura;
+    private Veiculo veiculo;
 
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
 
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
+    
+    public Fatura getFatura() {
+        return fatura;
+    }
+
+    public void setFatura(Fatura fatura) {
+        this.fatura = fatura;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -35,20 +56,12 @@ public class Cliente {
         return ddd;
     }
 
-    public int getFone() {
+    public long getFone() {
         return fone;
     }
 
     public long getCpf() {
         return cpf;
-    }
-
-    public boolean isInadimplente() {
-        return inadimplente;
-    }
-
-    public boolean isMensalista() {
-        return mensalista;
     }
 
     public void setNome(String nome) {
@@ -67,28 +80,12 @@ public class Cliente {
         this.ddd = ddd;
     }
 
-    public void setFone(int fone) {
+    public void setFone(long fone) {
         this.fone = fone;
     }
 
     public void setCpf(long cpf) {
         this.cpf = cpf;
-    }
-
-    public void setMensalista(boolean mensalista) {
-        this.mensalista = mensalista;
-    }
-
-    public void setInadimplente(boolean inadimplente) {
-        this.inadimplente = inadimplente;
-    }
-    
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     

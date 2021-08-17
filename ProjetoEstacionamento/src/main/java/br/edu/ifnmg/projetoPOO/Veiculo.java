@@ -6,11 +6,20 @@ package br.edu.ifnmg.projetoPOO;
  * @author Filipi
  * @version 1.1
  */
-public class Veiculo {
+public class Veiculo{
     
     private String modelo;
     private String cor;
     private String placa;
+    private String tipo;
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
     public String getModelo() {
         return modelo;
@@ -35,5 +44,6 @@ public class Veiculo {
     public void setPlaca(String placa) {
         this.placa = placa;
     }
-    
+
+   
 }

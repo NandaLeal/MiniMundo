@@ -11,24 +11,22 @@ import br.edu.ifnmg.projetoPOO.gui.CadastroCliente;
 
 /**
  *
- * @author Filip
+ * @author Filipi
+ * @version 1.2
  */
 public class ClienteDao implements IDao<Cliente, Long>{
 
     @Override
     public Long salvar(Cliente o) {
-        
-        if(o.getId() == 0){
-            System.out.println("insert into cliente (nome) values ('"+ o.getNome() +"');");
-        }else{
-            System.out.println("update cliente set nome = '"+ o.getNome() +"' where id = "+ o.getId() +";");
-        }
+        System.out.println("insert into cliente (nome, email, endereco, cpf, ddd, fone) values "
+                + "('"+o.getNome()+"', '"+o.getEmail()+"', '"+o.getEndereco()+"', '"+o.getCpf()+"', "
+                 + "'"+o.getDdd()+"', '"+o.getFone()+"');");
         return 0L;           
     }
 
-    @Override
-    public Cliente localizarPorId(Long id) {
-        System.out.println("select * from cliente where id = "+ id +";");        
+    @Override //id do cliente é o cpf
+    public Cliente localizarPorId(Long cpf) { 
+        System.out.println("select * from cliente where cpf = '"+ cpf +"';");       
         return null;
     }
 
@@ -40,9 +38,9 @@ public class ClienteDao implements IDao<Cliente, Long>{
 
     @Override
     public void excluir(Cliente o) {
-        // delete from cliente where id = 2;
-        System.out.println("select * from cliente where id = "+ o.getId() +";");        
+        System.out.println("select * from cliente where cpf = '"+ o.getCpf() +"';");
         
     }
+
     
 }

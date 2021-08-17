@@ -18,13 +18,13 @@ public class VeiculoDao implements IDao<Veiculo, Long>{
     @Override
     public Long salvar(Veiculo o){
         
-        System.out.println("insert into veiculo (modelo, cor, placa) values "
-        + "('"+o.getModelo()+"', '"+o.getCor()+"', '"+o.getPlaca()+"');");
+        System.out.println("insert into veiculo (tipo, modelo, cor, placa) values "
+        + "('"+o.getTipo()+"', '"+o.getModelo()+"', '"+o.getCor()+"', '"+o.getPlaca()+"');");
         return 0L;
     }
 
     public Veiculo localizarPorPlaca(String placa){
-        System.out.println("select * from veiculo where placa = "+ placa +";");
+        System.out.println("select * from veiculo where placa = '"+ placa +"';");
         return null;
     }
 
@@ -36,7 +36,7 @@ public class VeiculoDao implements IDao<Veiculo, Long>{
 
     @Override
     public void excluir(Veiculo o) {
-        System.out.println("select from veiculo where placa = "+o.getPlaca()+";");
+        System.out.println("select from veiculo where placa = '"+o.getPlaca()+"';");
     }
 
     @Override   // O veiculo não possui um id do tipo Long. Metodo não será usado.
