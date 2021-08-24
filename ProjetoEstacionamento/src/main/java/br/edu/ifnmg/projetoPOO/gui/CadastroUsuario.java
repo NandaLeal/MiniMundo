@@ -41,6 +41,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
         boxAdmin = new javax.swing.JCheckBox();
         btnCancelar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
+        lblCadUsuTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,6 +75,9 @@ public class CadastroUsuario extends javax.swing.JFrame {
             }
         });
 
+        lblCadUsuTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblCadUsuTitulo.setText("CADASTRO USUÁRIO");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,11 +106,17 @@ public class CadastroUsuario extends javax.swing.JFrame {
                             .addComponent(pswSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 105, Short.MAX_VALUE)))
                 .addGap(43, 43, 43))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(134, 134, 134)
+                .addComponent(lblCadUsuTitulo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblCadUsuTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -127,7 +137,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnCadastrar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -209,6 +219,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
     private javax.swing.JCheckBox boxAdmin;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JLabel lblCadUsuTitulo;
     private javax.swing.JLabel lblConfirmacaoSenha;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblNome;
