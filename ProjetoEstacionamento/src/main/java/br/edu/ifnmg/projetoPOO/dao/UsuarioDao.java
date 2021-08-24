@@ -29,12 +29,13 @@ public class UsuarioDao implements IDao<Usuario, Long>{
 
     @Override
     public void excluir(Usuario o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("select from usuario where email = '"+o.getEmail()+"' and senha = '"+o.getSenha()+"';");
     }
 
     @Override
     public List<Usuario> localizarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("select * from usuario;");
+        return null;
     }
     
 }

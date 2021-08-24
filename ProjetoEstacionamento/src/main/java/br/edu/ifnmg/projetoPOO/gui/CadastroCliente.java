@@ -303,7 +303,7 @@ public class CadastroCliente extends javax.swing.JFrame {
     }
     
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        System.out.println("Operacao cancelada.");
+        dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**

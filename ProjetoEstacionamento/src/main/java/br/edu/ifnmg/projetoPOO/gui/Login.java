@@ -5,6 +5,9 @@
  */
 package br.edu.ifnmg.projetoPOO.gui;
 
+import br.edu.ifnmg.projetoPOO.Usuario;
+import br.edu.ifnmg.projetoPOO.dao.UsuarioDao;
+
 /**
  *
  * @author Filip
@@ -85,12 +88,11 @@ public class Login extends javax.swing.JFrame {
 
     private void btnAutenticarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutenticarActionPerformed
         
-        // Crio um novo usuário, que vai pegar o e-mail e senha
-        
-        // Crio um usuárioDao, que vai autenticar o usuário no bd
-        
-        // Se o usuário foi autenticado, então apresento a sua respectiva tela
-        // Se não, apresenta mensagem de erro.
+        Usuario usuario = new Usuario();
+        usuario.setEmail(txtUsuario.getText());
+        usuario.setSenha(String.valueOf(pwdSenha.getPassword()));
+
+        // Faço alguma autenticação do usuário com o bd
         
         
     }//GEN-LAST:event_btnAutenticarActionPerformed
