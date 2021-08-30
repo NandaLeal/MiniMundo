@@ -9,7 +9,9 @@ import br.edu.ifnmg.projetoPOO.Usuario;
 import br.edu.ifnmg.projetoPOO.dao.UsuarioDao;
 
 /**
- *
+ *CadastroUsuario cadastroUsuario = new CadastroUsuario();
+        cadastroUsuario.setVisible(true);
+        dskPrincipal.add(cadastroUsuario);
  * @author Filip
  */
 public class Login extends javax.swing.JFrame {
@@ -92,7 +94,19 @@ public class Login extends javax.swing.JFrame {
         usuario.setEmail(txtUsuario.getText());
         usuario.setSenha(String.valueOf(pwdSenha.getPassword()));
 
-        // Faço alguma autenticação do usuário com o bd
+        Usuario usuarioAutenticado = new UsuarioDao().autenticar(usuario);
+        
+        if (usuarioAutenticado != null) {
+            System.out.println(">> Autenticado: " + usuarioAutenticado);
+            new JanelaPrincipal(usuarioAutenticado).setVisible(true);
+            dispose();
+        } else {
+            System.out.println(">> Não autenticado.");
+        }
+
+        pwdSenha.setText(null);
+        txtUsuario.requestFocus();
+        txtUsuario.selectAll();
         
         
     }//GEN-LAST:event_btnAutenticarActionPerformed

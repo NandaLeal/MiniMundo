@@ -25,7 +25,6 @@ public class CadastroVeiculo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         btnCadastrarVeiculo = new javax.swing.JButton();
         btnCancelarVeiculo = new javax.swing.JButton();
         lblModelo = new javax.swing.JLabel();
@@ -38,9 +37,6 @@ public class CadastroVeiculo extends javax.swing.JFrame {
         boxCor = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("CADASTRO VEÍCULO");
 
         btnCadastrarVeiculo.setText("Cadastrar");
         btnCadastrarVeiculo.addActionListener(new java.awt.event.ActionListener() {
@@ -109,19 +105,13 @@ public class CadastroVeiculo extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(boxCor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 207, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(jLabel1)
-                .addContainerGap(118, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boxTipoVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTipo))
@@ -206,7 +196,6 @@ public class CadastroVeiculo extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrarVeiculo;
     private javax.swing.JButton btnCancelarVeiculo;
     private javax.swing.JFormattedTextField fmtPlaca;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCor;
     private javax.swing.JLabel lblModelo;
     private javax.swing.JLabel lblPlaca;
