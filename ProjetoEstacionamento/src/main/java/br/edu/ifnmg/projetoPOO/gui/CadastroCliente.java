@@ -51,7 +51,6 @@ public class CadastroCliente extends javax.swing.JFrame {
         lblEmail = new javax.swing.JLabel();
         lblDdd = new javax.swing.JLabel();
         lblFone = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         btnCadastrar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         lblCpf = new javax.swing.JLabel();
@@ -83,9 +82,6 @@ public class CadastroCliente extends javax.swing.JFrame {
         lblDdd.setText("DDD:");
 
         lblFone.setText("Fone:");
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("CADASTRO DE MENSALISTA");
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -128,9 +124,10 @@ public class CadastroCliente extends javax.swing.JFrame {
         pnlPainelCadastroClienteLayout.setHorizontalGroup(
             pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                        .addGap(16, 16, 16)
                         .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
                                 .addComponent(fmtDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,17 +146,16 @@ public class CadastroCliente extends javax.swing.JFrame {
                     .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
                         .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
-                                .addGap(36, 36, 36)
+                                .addGap(26, 26, 26)
                                 .addComponent(lblCpf)
                                 .addGap(18, 18, 18)
                                 .addComponent(fmtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
-                                .addContainerGap()
                                 .addComponent(lblEndereco)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
-                                .addGap(34, 34, 34)
+                                .addGap(24, 24, 24)
                                 .addComponent(lblDdd)
                                 .addGap(18, 18, 18)
                                 .addComponent(fmtDdd, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -168,10 +164,7 @@ public class CadastroCliente extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(fmtFone, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
-                                .addGap(86, 86, 86)
-                                .addComponent(jLabel1))
-                            .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
-                                .addGap(28, 28, 28)
+                                .addGap(18, 18, 18)
                                 .addComponent(lblNome)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -181,9 +174,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         pnlPainelCadastroClienteLayout.setVerticalGroup(
             pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(34, 34, 34)
+                .addContainerGap()
                 .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -205,7 +196,7 @@ public class CadastroCliente extends javax.swing.JFrame {
                     .addComponent(fmtDdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFone)
                     .addComponent(fmtFone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(lblData)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,7 +341,6 @@ public class CadastroCliente extends javax.swing.JFrame {
     private com.toedter.calendar.JDayChooser fmtDia;
     private javax.swing.JFormattedTextField fmtFone;
     private com.toedter.calendar.JDayChooser jDayChooser1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblData;

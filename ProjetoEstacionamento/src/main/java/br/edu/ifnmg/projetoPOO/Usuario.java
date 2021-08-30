@@ -7,12 +7,25 @@ package br.edu.ifnmg.projetoPOO;
  * @version 1.1
  */
 
-public class Usuario {
+public class Usuario extends Entidade{
     
     private String nome;
     private String senha;
     private String email;
     private boolean admin;
+
+    public Usuario(Long id, String nome, String email, String senha, Boolean administrador) {
+        super(id);
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.admin = administrador;
+    }
+
+
+    public Usuario() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     public String getNome() {
         return nome;
