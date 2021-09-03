@@ -39,7 +39,6 @@ public class ClienteDao implements IDao<Cliente, Long>{
     @Override
     public void excluir(Cliente o) {
         System.out.println("select * from cliente where cpf = '"+ o.getCpf() +"';");
-        
     }
 
     

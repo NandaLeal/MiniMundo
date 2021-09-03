@@ -12,7 +12,7 @@ import br.edu.ifnmg.projetoPOO.dao.UsuarioDao;
  *
  * @author Filip
  */
-public class CadastroUsuario extends javax.swing.JFrame {
+public class CadastroUsuario extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CadastroUsuario

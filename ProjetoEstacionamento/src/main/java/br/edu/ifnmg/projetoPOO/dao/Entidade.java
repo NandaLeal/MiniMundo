@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifnmg.projetoPOO;
+package br.edu.ifnmg.projetoPOO.dao;
 
 /**
  *
  * @author Filip
  */
 public class Entidade {
+    /**
+     * Identidade da entidade (chave primária mapeada para o banco de dados)
+     */
     private Long id;
 
     //<editor-fold defaultstate="collapsed" desc="Construtores">
@@ -37,4 +40,5 @@ public class Entidade {
     public void setId(Long id) {
         this.id = id;
     }
+    //</editor-fold>
 }

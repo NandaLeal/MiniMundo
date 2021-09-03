@@ -22,7 +22,7 @@ import java.util.Date;
  * @author Filipi
  * @version 1.2
  */
-public class CadastroCliente extends javax.swing.JFrame {
+public class CadastroCliente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form telaCliente

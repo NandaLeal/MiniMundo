@@ -44,13 +44,13 @@ public class ConexaoBd {
      * Inicialização de valores estáticos.
      */
     static {
-        URL = "jdbc:mysql://127.0.0.1:3306/poo"
+        URL = "jdbc:mysql://127.0.0.1:3306/tcdpoo"
                 + "?useUnicode=true"
                 + "&useJDBCCompliantTimezoneShift=true"
                 + "&serverTimezone=UTC"
                 + "&autoReconnect=true";
         usuario = "root";
-        senha = "";
+        senha = "root";
     }
 
     //<editor-fold defaultstate="collapsed" desc="Construtor privado">

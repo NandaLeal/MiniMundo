@@ -12,7 +12,7 @@ import br.edu.ifnmg.projetoPOO.dao.VeiculoDao;
  *
  * @author Filipi
  */
-public class CadastroVeiculo extends javax.swing.JFrame {
+public class CadastroVeiculo extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CadastroVeiculo

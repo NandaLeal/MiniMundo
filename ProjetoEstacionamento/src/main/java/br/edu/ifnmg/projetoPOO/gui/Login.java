@@ -8,6 +8,7 @@ package br.edu.ifnmg.projetoPOO.gui;
 import br.edu.ifnmg.projetoPOO.Usuario;
 import br.edu.ifnmg.projetoPOO.dao.UsuarioDao;
 
+
 /**
  *CadastroUsuario cadastroUsuario = new CadastroUsuario();
         cadastroUsuario.setVisible(true);
@@ -45,6 +46,18 @@ public class Login extends javax.swing.JFrame {
         lblUsuario.setText("Usuário:");
 
         lblSenha.setText("Senha:");
+
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
+
+        pwdSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pwdSenhaActionPerformed(evt);
+            }
+        });
 
         btnAutenticar.setText("Autenticar");
         btnAutenticar.addActionListener(new java.awt.event.ActionListener() {
@@ -111,6 +124,14 @@ public class Login extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnAutenticarActionPerformed
 
+    private void pwdSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdSenhaActionPerformed
+        btnAutenticarActionPerformed(evt);
+    }//GEN-LAST:event_pwdSenhaActionPerformed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        pwdSenha.requestFocus();
+    }//GEN-LAST:event_txtUsuarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -153,4 +174,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField pwdSenha;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private void setLocationRelativeTo(Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

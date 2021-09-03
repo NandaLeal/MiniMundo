@@ -1,6 +1,8 @@
 
 package br.edu.ifnmg.projetoPOO;
 
+import br.edu.ifnmg.projetoPOO.dao.Entidade;
+
 /**
  *
  * @author Filipi

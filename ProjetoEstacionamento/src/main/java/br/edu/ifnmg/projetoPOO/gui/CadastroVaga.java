@@ -9,7 +9,7 @@ package br.edu.ifnmg.projetoPOO.gui;
  *
  * @author Filip
  */
-public class CadastroVaga extends javax.swing.JFrame {
+public class CadastroVaga extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CadastroVaga
