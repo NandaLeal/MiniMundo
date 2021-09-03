@@ -23,7 +23,7 @@ public class Principal {
         new UsuarioDao().salvar(usuarioA);
         System.out.println(">> Novo usuário ADMIN inserido no banco de dados");
         
-        Usuario usuarioB = new Usuario(null, "Comum2", "comum2@mail.com", "123456", false);
+        Usuario usuarioB = new Usuario(null, "Comum", "comum@mail.com", "123456", false);
         new UsuarioDao().salvar(usuarioB);
         System.out.println(">> Novo usuário COMUM inserido no banco de dados");
         

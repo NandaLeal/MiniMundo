@@ -56,6 +56,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         mnuUsuario = new javax.swing.JMenuItem();
         mnuAdministrador = new javax.swing.JMenuItem();
         mnuAjuda = new javax.swing.JMenu();
+        mnuSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,11 +64,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         dskPrincipal.setLayout(dskPrincipalLayout);
         dskPrincipalLayout.setHorizontalGroup(
             dskPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 989, Short.MAX_VALUE)
+            .addGap(0, 890, Short.MAX_VALUE)
         );
         dskPrincipalLayout.setVerticalGroup(
             dskPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 348, Short.MAX_VALUE)
+            .addGap(0, 464, Short.MAX_VALUE)
         );
 
         mnuArquivo.setText("Arquivo");
@@ -90,6 +91,15 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         mnuBarra.add(mnuArquivo);
 
         mnuAjuda.setText("Ajuda");
+
+        mnuSobre.setText("Sobre");
+        mnuSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuSobreActionPerformed(evt);
+            }
+        });
+        mnuAjuda.add(mnuSobre);
+
         mnuBarra.add(mnuAjuda);
 
         setJMenuBar(mnuBarra);
@@ -113,6 +123,12 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         cadastroUsuario.setVisible(true);
         dskPrincipal.add(cadastroUsuario);
     }//GEN-LAST:event_mnuUsuarioActionPerformed
+
+    private void mnuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSobreActionPerformed
+        Sobre janelaSobre = new Sobre();
+        janelaSobre.setVisible(true);
+        dskPrincipal.add(janelaSobre);
+    }//GEN-LAST:event_mnuSobreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,6 +173,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu mnuArquivo;
     private javax.swing.JMenuBar mnuBarra;
     private javax.swing.JMenu mnuCadastro;
+    private javax.swing.JMenuItem mnuSobre;
     private javax.swing.JMenuItem mnuUsuario;
     // End of variables declaration//GEN-END:variables
 }

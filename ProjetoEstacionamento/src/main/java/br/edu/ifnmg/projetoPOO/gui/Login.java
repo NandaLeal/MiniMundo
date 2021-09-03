@@ -77,10 +77,12 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(lblSenha))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAutenticar, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                    .addComponent(txtUsuario)
-                    .addComponent(pwdSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
-                .addContainerGap(68, Short.MAX_VALUE))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                    .addComponent(pwdSenha)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnAutenticar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,6 +104,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAutenticarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutenticarActionPerformed
+        System.out.println("Autenticar");
         
         Usuario usuario = new Usuario();
         usuario.setEmail(txtUsuario.getText());
