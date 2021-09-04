@@ -12,12 +12,12 @@ import br.edu.ifnmg.projetoPOO.dao.VagaDao;
  *
  * @author Filip
  */
-public class CadastroVaga extends javax.swing.JInternalFrame {
+public class RemoveVaga extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form CadastroVaga
+     * Creates new form RomveVaga
      */
-    public CadastroVaga() {
+    public RemoveVaga() {
         initComponents();
     }
 
@@ -30,37 +30,17 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        fmtPlaca = new javax.swing.JFormattedTextField();
-        lblPlaca = new javax.swing.JLabel();
-        fmtPlacaVaga = new javax.swing.JFormattedTextField();
-        jLabel1 = new javax.swing.JLabel();
-        txtDesc = new javax.swing.JTextField();
-        boxVaga = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        boxVaga = new javax.swing.JComboBox<>();
         btnCancelarVaga = new javax.swing.JButton();
         btnCadastrarVaga = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        try {
-            fmtPlaca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUU-AAAA")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        lblPlaca.setText("Placa");
-
-        try {
-            fmtPlacaVaga.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUU-AAAA")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jLabel1.setText("Descição");
+        jLabel2.setText("Vaga:");
 
         boxVaga.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" }));
-
-        jLabel2.setText("Vaga");
 
         btnCancelarVaga.setText("Cancelar");
         btnCancelarVaga.addActionListener(new java.awt.event.ActionListener() {
@@ -69,12 +49,14 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
             }
         });
 
-        btnCadastrarVaga.setText("Cadastrar");
+        btnCadastrarVaga.setText("Liberar");
         btnCadastrarVaga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarVagaActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Selecione a vaga para ser liberada");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,41 +66,27 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fmtPlacaVaga, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(lblPlaca)))
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(boxVaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnCancelarVaga))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(boxVaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnCancelarVaga)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCadastrarVaga)))
+                        .addComponent(btnCadastrarVaga))
+                    .addComponent(jLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPlaca)
-                    .addComponent(jLabel1)
+                    .addComponent(boxVaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fmtPlacaVaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxVaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelarVaga)
                     .addComponent(btnCadastrarVaga))
@@ -134,12 +102,10 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
 
     private void btnCadastrarVagaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarVagaActionPerformed
         Vaga vaga = new Vaga();
-        vaga.setPlaca(fmtPlacaVaga.getValue().toString().replaceAll("[-]", ""));
-        vaga.setDescricao(txtDesc.getText());
         vaga.setNumero(boxVaga.getSelectedIndex());
-        
+
         VagaDao vagaDao = new VagaDao();
-        vagaDao.salvar(vaga);
+        vagaDao.excluir(vaga);
         dispose();
     }//GEN-LAST:event_btnCadastrarVagaActionPerformed
 
@@ -160,20 +126,23 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroVaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RemoveVaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroVaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RemoveVaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroVaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RemoveVaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroVaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RemoveVaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroVaga().setVisible(true);
+                new RemoveVaga().setVisible(true);
             }
         });
     }
@@ -182,11 +151,7 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> boxVaga;
     private javax.swing.JButton btnCadastrarVaga;
     private javax.swing.JButton btnCancelarVaga;
-    private javax.swing.JFormattedTextField fmtPlaca;
-    private javax.swing.JFormattedTextField fmtPlacaVaga;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel lblPlaca;
-    private javax.swing.JTextField txtDesc;
     // End of variables declaration//GEN-END:variables
 }

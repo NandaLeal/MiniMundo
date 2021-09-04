@@ -8,7 +8,7 @@ package br.edu.ifnmg.projetoPOO;
  */
 public class Vaga {
     
-    private int numero = 0;
+    private int numero;
     private String placa;
     private String descricao;
 

@@ -52,6 +52,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem2 = new javax.swing.JMenuItem();
         dskPrincipal = new javax.swing.JDesktopPane();
         mnuBarra = new javax.swing.JMenuBar();
         mnuArquivo = new javax.swing.JMenu();
@@ -59,9 +60,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         mnuCadastroCliente = new javax.swing.JMenuItem();
         mnuUsuario = new javax.swing.JMenuItem();
         btnVaga = new javax.swing.JMenuItem();
+        mnuRemover = new javax.swing.JMenu();
+        mnuRemoverCliente = new javax.swing.JMenuItem();
+        mnuLiberarVaga = new javax.swing.JMenuItem();
         mnuAdministrador = new javax.swing.JMenuItem();
         mnuAjuda = new javax.swing.JMenu();
         mnuSobre = new javax.swing.JMenuItem();
+
+        jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,6 +111,26 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         mnuCadastro.add(btnVaga);
 
         mnuArquivo.add(mnuCadastro);
+
+        mnuRemover.setText("Remover");
+
+        mnuRemoverCliente.setText("Cliente");
+        mnuRemoverCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuRemoverClienteActionPerformed(evt);
+            }
+        });
+        mnuRemover.add(mnuRemoverCliente);
+
+        mnuLiberarVaga.setText("Liberar Vaga");
+        mnuLiberarVaga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuLiberarVagaActionPerformed(evt);
+            }
+        });
+        mnuRemover.add(mnuLiberarVaga);
+
+        mnuArquivo.add(mnuRemover);
 
         mnuAdministrador.setText("Administrador");
         mnuArquivo.add(mnuAdministrador);
@@ -164,6 +190,19 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         dskPrincipal.add(cadCliente);
     }//GEN-LAST:event_mnuCadastroClienteActionPerformed
 
+    private void mnuRemoverClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRemoverClienteActionPerformed
+        RemoveCliente removeCliente = new RemoveCliente();
+        removeCliente.setVisible(true);
+        dskPrincipal.add(removeCliente);
+    }//GEN-LAST:event_mnuRemoverClienteActionPerformed
+
+    private void mnuLiberarVagaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLiberarVagaActionPerformed
+        RemoveVaga rmvVaga = new RemoveVaga();
+        rmvVaga.setVisible(true);
+        dskPrincipal.add(rmvVaga);
+        
+    }//GEN-LAST:event_mnuLiberarVagaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -203,12 +242,16 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnVaga;
     private javax.swing.JDesktopPane dskPrincipal;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem mnuAdministrador;
     private javax.swing.JMenu mnuAjuda;
     private javax.swing.JMenu mnuArquivo;
     private javax.swing.JMenuBar mnuBarra;
     private javax.swing.JMenu mnuCadastro;
     private javax.swing.JMenuItem mnuCadastroCliente;
+    private javax.swing.JMenuItem mnuLiberarVaga;
+    private javax.swing.JMenu mnuRemover;
+    private javax.swing.JMenuItem mnuRemoverCliente;
     private javax.swing.JMenuItem mnuSobre;
     private javax.swing.JMenuItem mnuUsuario;
     // End of variables declaration//GEN-END:variables
