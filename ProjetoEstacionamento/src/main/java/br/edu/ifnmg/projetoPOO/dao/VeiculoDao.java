@@ -6,41 +6,53 @@
 package br.edu.ifnmg.projetoPOO.dao;
 
 import br.edu.ifnmg.projetoPOO.Veiculo;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 
 /**
  *
- * @author Filipi
- * @version 1.2
+ * @author Filip
  */
-public class VeiculoDao implements IDao<Veiculo, Long>{
+public class VeiculoDao extends AbstractDao<Veiculo, Long>{
 
     @Override
-    public Long salvar(Veiculo o){
-        
-        System.out.println("insert into veiculo (tipo, modelo, cor, placa) values "
-        + "('"+o.getTipo()+"', '"+o.getModelo()+"', '"+o.getCor()+"', '"+o.getPlaca()+"');");
-        return 0L;
-    }
-
-    public Veiculo localizarPorPlaca(String placa){
-        System.out.println("select * from veiculo where placa = '"+ placa +"';");
-        return null;
+    public String getDeclaracaoInsert() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Veiculo> localizarTodos() {
-        System.out.println("select * from veiculo;");
-        return null;
+    public String getDeclaracaoSelectPorId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void excluir(Veiculo o) {
-        System.out.println("select from veiculo where placa = '"+o.getPlaca()+"';");
+    public String getDeclaracaoSelectTodos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override   // O veiculo não possui um id do tipo Long. Metodo não será usado.
-    public Veiculo localizarPorId(Long id) {
+    @Override
+    public String getDeclaracaoUpdate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getDeclaracaoDelete() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void montarDeclaracao(PreparedStatement pstmt, Veiculo o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Veiculo extrairObjeto(ResultSet resultSet) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Veiculo> extrairObjetos(ResultSet resultSet) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

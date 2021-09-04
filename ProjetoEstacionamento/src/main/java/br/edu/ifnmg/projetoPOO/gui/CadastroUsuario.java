@@ -162,13 +162,13 @@ public class CadastroUsuario extends javax.swing.JInternalFrame {
 
     private void pswConfirmacaoSenhaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pswConfirmacaoSenhaKeyReleased
         // Confirma se as senhas são iguais e o nome e e-mail foram preenchidos 
-        if(String.valueOf(pswSenha.getPassword()).equals(pswConfirmacaoSenha.getPassword()) 
-                && !txtNome.getText().trim().isEmpty()
-                && !txtEmail.getText().trim().isEmpty()){
-            btnCadastrar.setEnabled(true);
-        }else{
-            btnCadastrar.setEnabled(false);
-        }
+//        if(String.valueOf(pswSenha.getPassword()).equals(pswConfirmacaoSenha.getPassword()) 
+//                && !txtNome.getText().trim().isEmpty()
+//                && !txtEmail.getText().trim().isEmpty()){
+//            btnCadastrar.setEnabled(true);
+//        }else{
+//            btnCadastrar.setEnabled(false);
+//        }
     }//GEN-LAST:event_pswConfirmacaoSenhaKeyReleased
 
     /**

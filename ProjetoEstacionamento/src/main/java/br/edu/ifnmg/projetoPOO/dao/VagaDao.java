@@ -71,7 +71,7 @@ public class VagaDao{
      *
      * @param o Objeto a ser salvo no banco de dados.
      */
-    public void salvar(Vaga o) {
+    public boolean salvar(Vaga o) {
 
         Vaga vaga = localizarPorId(o.getNumero());
 
@@ -95,8 +95,11 @@ public class VagaDao{
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            System.out.println("Vaga CADASTRADA com sucesso.");
+            return true;
         } else {
-            System.out.println("Vaga em uso. Tente outra vaga.");
+            System.out.println("Vaga EM USO. Tente outra vaga.");
+            return false;
         }
     }
 
@@ -130,8 +133,9 @@ public class VagaDao{
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
+            System.out.println("Vaga LIBERADA.");
         } else {
+            System.out.println("Vaga já está liberada.");
             return false;
         }
 

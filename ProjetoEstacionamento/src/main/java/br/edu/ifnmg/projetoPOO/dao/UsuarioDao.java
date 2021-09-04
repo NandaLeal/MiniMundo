@@ -5,6 +5,7 @@
  */
 package br.edu.ifnmg.projetoPOO.dao;
 
+import br.edu.ifnmg.projetoPOO.Cliente;
 import br.edu.ifnmg.projetoPOO.dao.Entidade;
 
 import br.edu.ifnmg.projetoPOO.Usuario;
@@ -20,59 +21,137 @@ import java.util.logging.Logger;
  *
  * @author Filip
  */
-public class UsuarioDao extends AbstractDao<Usuario, Long> {
+public class UsuarioDao {
  
 
-//    @Override
-//    public Long salvar(Usuario o) {
-//       System.out.println("insert into usuario (nome, email, senha, admin) values "
-//               + "('"+o.getNome()+"', '"+o.getEmail()+"', '"+o.getSenha()+"', '"+o.isAdmin()+"');");
-//    return 0L;
-//    }
-//
-//    @Override
-//    public Usuario localizarPorId(Long id) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    @Override
-//    public void excluir(Usuario o) {
-//        System.out.println("select from usuario where email = '"+o.getEmail()+"' and senha = '"+o.getSenha()+"';");
-//    }
-//
-//    @Override
-//    public List<Usuario> localizarTodos() {
-//        System.out.println("select * from usuario;");
-//        return null;
-//    }
     
-    @Override
     public String getDeclaracaoInsert() {
-        return "INSERT INTO usuario (id, nome, email, senha, administrador) VALUES (default, ?, ?, MD5(?), ?);";
+        return "INSERT INTO usuario (nome, email, senha, administrador) VALUES (?, ?, MD5(?), ?);";
     }
 
-    @Override
-    public String getDeclaracaoSelectPorId() {
-         return "SELECT * FROM usuario WHERE id = ?;";
+    public String getDeclaracaoSelectPorEmail() {
+         return "SELECT * FROM usuario WHERE email = ?;";
     }
 
-    @Override
     public String getDeclaracaoSelectTodos() {
          return "SELECT * FROM usuario";
     }
 
-    @Override
     public String getDeclaracaoUpdate() {
         return "UPDATE usuario SET nome = ?, email = ?, senha = MD5(?), administrador = ? WHERE id = ?;";
     }
 
-    @Override
     public String getDeclaracaoDelete() {
-        return "DELETE FROM usuario WHERE id = ?;";
+        return "DELETE FROM usuario WHERE email = ?;";
+    }
+    
+    public void salvar(Usuario o) {
+
+        Usuario usuario = localizarPorId(o.getEmail());
+
+        // Novo registro
+        if (usuario == null) {
+
+            // try-with-resources libera recurso ao final do bloco (PreparedStatement)
+            try (PreparedStatement pstmt
+                    = ConexaoBd.getConexao().prepareStatement(
+                            // Sentença SQL para inserção de registros
+                            getDeclaracaoInsert())) {
+
+                // Prepara a declaração com os dados do objeto passado
+                pstmt.setString(1, o.getNome());
+                pstmt.setString(2, o.getEmail());
+                pstmt.setString(3, o.getSenha());
+                pstmt.setBoolean(4, o.isAdmin());
+
+                // Executa o comando SQL
+                pstmt.executeUpdate();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
+            System.out.println("Usuario CADASTRADO com sucesso.");
+            
+        } else {
+            System.out.println("FALHA na tentativa de cadastro.");
+        }
     }
     
     
-    @Override
+    /**
+     * Exclui o registro do objeto no banco de dados.
+     *
+     * @param o Objeto a ser excluído.<br>
+     * <i>OBS.: o único valor útil é a identidade do objeto mapeado.</i>
+     * @return Condição de sucesso ou falha na exclusão.
+    */
+    public Boolean excluir(Usuario o) {
+        // Recupera a identidade (chave primária composta) 
+        // do objeto a ser excluído
+        String emailUsuario = o.getEmail();
+
+        // Se há uma identidade válida...
+        if (emailUsuario != null) {
+            // ... tenta preparar uma sentença SQL para a conexão já estabelecida
+            try (PreparedStatement pstmt
+                    = ConexaoBd.getConexao().prepareStatement(
+                            // Sentença SQL para exclusão de registros
+                            getDeclaracaoDelete())) {
+
+                // Prepara a declaração com os dados do objeto passado
+                // TODO Ajustar a declaração preparada
+                pstmt.setString(1, o.getEmail());
+
+                // Executa o comando SQL
+                pstmt.executeUpdate();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            System.out.println("Usuario REMOVIDO com sucesso.");
+        } else {
+            System.out.println("Este email de usuário não existe!");
+            return false;
+        }
+
+        return true;
+    }
+    
+    
+    
+    
+    public Usuario localizarPorId(String emailUsuario) {
+        // Declara referência para reter o objeto a ser recuperado
+        Usuario objeto = null;
+
+        // Tenta preparar uma sentença SQL para a conexão já estabelecida
+        try (PreparedStatement pstmt
+                = ConexaoBd.getConexao().prepareStatement(
+                        // Sentença SQL para busca por chave primária
+                        getDeclaracaoSelectPorEmail())) {
+
+            // Prepara a declaração com os dados do objeto passado
+            pstmt.setString(1, emailUsuario);
+
+            // Executa o comando SQL
+            ResultSet resultSet = pstmt.executeQuery();
+
+            // Se há resultado retornado...
+            if (resultSet.next()  ) {
+                // ... extrai objeto do respectivo registro do banco de dados
+                objeto = extrairObjeto(resultSet);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Devolve nulo (objeto não encontrado) ou o objeto recuperado
+        return objeto;
+    }
+    
+    
     public void montarDeclaracao(PreparedStatement pstmt, Usuario usuario) {
         // Tenta definir valores junto à sentença SQL preparada para execução 
         // no banco de dados.
@@ -103,7 +182,8 @@ public class UsuarioDao extends AbstractDao<Usuario, Long> {
      * @param resultSet Resultado proveniente do banco de dados relacional.
      * @return Objeto constituído.
      */
-    @Override
+    
+    
     public Usuario extrairObjeto(ResultSet resultSet) {
         // Cria referência para montagem da tarefa
         Usuario usuario = new Usuario();
@@ -111,7 +191,6 @@ public class UsuarioDao extends AbstractDao<Usuario, Long> {
         // Tenta recuperar dados do registro retornado pelo banco de dados
         // e ajustar o estado da tarefa a ser mapeada
         try {
-            usuario.setId(resultSet.getLong("id"));
             usuario.setNome(resultSet.getString("nome"));
             usuario.setEmail(resultSet.getString("email"));
             usuario.setSenha(resultSet.getString("senha"));
@@ -131,7 +210,7 @@ public class UsuarioDao extends AbstractDao<Usuario, Long> {
      * relacional.
      * @return Lista de objeto(s) constituído(s).
      */
-    @Override
+    
     public List<Usuario> extrairObjetos(ResultSet resultSet) {
 
         // Cria referência para inserção das tarefas a serem mapeadas
@@ -146,7 +225,6 @@ public class UsuarioDao extends AbstractDao<Usuario, Long> {
 
                 // Tenta recuperar dados do registro retornado pelo banco 
                 // de dados e ajustar o estado da tarefa a ser mapeada
-                usuario.setId(resultSet.getLong("id"));
                 usuario.setNome(resultSet.getString("nome"));
                 usuario.setEmail(resultSet.getString("email"));
                 usuario.setSenha(resultSet.getString("senha"));

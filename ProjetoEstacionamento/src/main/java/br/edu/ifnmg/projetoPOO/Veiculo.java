@@ -12,6 +12,29 @@ public class Veiculo{
     private String cor;
     private String placa;
     private String tipo;
+    
+    /**
+     * Cria um novo veículo
+     */
+    public Veiculo(){
+        
+    }
+    
+    /**
+     * 
+     * @param modelo Representa o modelo do carro
+     * @param cor Representa a cor do veículo
+     * @param placa Representa a placa do veículo
+     * @param tipo Representa o tipo do veículo
+     */
+    public Veiculo(String modelo, String cor, String placa, String tipo){
+        this.modelo = modelo;
+        this.cor = cor;
+        this.placa = placa;
+        this.tipo = tipo;        
+    }
+    
+    
 
     public String getTipo() {
         return tipo;

@@ -24,7 +24,6 @@ public class Cliente {
     private Fatura fatura;
     private Veiculo veiculo;
     
-    
 
     public Veiculo getVeiculo() {
         return veiculo;

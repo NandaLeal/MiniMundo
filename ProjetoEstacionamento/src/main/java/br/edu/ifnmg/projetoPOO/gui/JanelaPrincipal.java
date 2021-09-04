@@ -29,8 +29,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         // Configuração da janela diante do perfil de administrador
 //        if(usuarioSistema.getAdministrador()) {
 //            System.out.println("admin? " + usuarioSistema.getAdministrador());
+
             mnuAdministrador.setEnabled(usuarioSistema.isAdmin());
             mnuUsuario.setEnabled(usuarioSistema.isAdmin());
+            mnuRemoverUsuario.setEnabled(usuarioSistema.isAdmin());
+
 //        }
         
         // Centralização da janela
@@ -62,8 +65,10 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         btnVaga = new javax.swing.JMenuItem();
         mnuRemover = new javax.swing.JMenu();
         mnuRemoverCliente = new javax.swing.JMenuItem();
+        mnuRemoverUsuario = new javax.swing.JMenuItem();
         mnuLiberarVaga = new javax.swing.JMenuItem();
         mnuAdministrador = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         mnuAjuda = new javax.swing.JMenu();
         mnuSobre = new javax.swing.JMenuItem();
 
@@ -122,6 +127,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         mnuRemover.add(mnuRemoverCliente);
 
+        mnuRemoverUsuario.setText("Usuario");
+        mnuRemoverUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuRemoverUsuarioActionPerformed(evt);
+            }
+        });
+        mnuRemover.add(mnuRemoverUsuario);
+
         mnuLiberarVaga.setText("Liberar Vaga");
         mnuLiberarVaga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,6 +147,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         mnuAdministrador.setText("Administrador");
         mnuArquivo.add(mnuAdministrador);
+
+        jMenuItem1.setText("Sair");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        mnuArquivo.add(jMenuItem1);
 
         mnuBarra.add(mnuArquivo);
 
@@ -203,6 +224,18 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_mnuLiberarVagaActionPerformed
 
+    private void mnuRemoverUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRemoverUsuarioActionPerformed
+        RemoveUsuario rmvUsuario = new RemoveUsuario();
+        rmvUsuario.setVisible(true);
+        dskPrincipal.add(rmvUsuario);
+    }//GEN-LAST:event_mnuRemoverUsuarioActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        Login telaLogin = new Login();
+        telaLogin.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -242,6 +275,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnVaga;
     private javax.swing.JDesktopPane dskPrincipal;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem mnuAdministrador;
     private javax.swing.JMenu mnuAjuda;
@@ -252,6 +286,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuLiberarVaga;
     private javax.swing.JMenu mnuRemover;
     private javax.swing.JMenuItem mnuRemoverCliente;
+    private javax.swing.JMenuItem mnuRemoverUsuario;
     private javax.swing.JMenuItem mnuSobre;
     private javax.swing.JMenuItem mnuUsuario;
     // End of variables declaration//GEN-END:variables

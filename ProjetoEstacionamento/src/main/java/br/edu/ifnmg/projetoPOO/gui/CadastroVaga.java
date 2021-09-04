@@ -139,8 +139,15 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
         vaga.setNumero(boxVaga.getSelectedIndex());
         
         VagaDao vagaDao = new VagaDao();
-        vagaDao.salvar(vaga);
-        dispose();
+        if(vagaDao.salvar(vaga) == true){
+            dispose();
+        }
+        else {
+        // Limpa os campos da tela
+        fmtPlacaVaga.setText(null);
+        txtDesc.setText(null);
+        }
+        
     }//GEN-LAST:event_btnCadastrarVagaActionPerformed
 
     /**
