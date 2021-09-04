@@ -1,6 +1,7 @@
 
 package br.edu.ifnmg.projetoPOO;
 
+import br.edu.ifnmg.projetoPOO.dao.Entidade;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -9,20 +10,14 @@ import java.time.LocalDateTime;
  * @author Filipi
  * @version 1.2
  */
-public class Ticket {
+public class Ticket extends Entidade{
     
-    private int id;
+
     private LocalDate entrada;
     private String placa;
     private String descricaoVeiculo;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+  
 
     public String getPlaca() {
         return placa;

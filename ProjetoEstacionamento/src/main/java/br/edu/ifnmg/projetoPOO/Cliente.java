@@ -1,5 +1,6 @@
 package br.edu.ifnmg.projetoPOO;
 
+import br.edu.ifnmg.projetoPOO.dao.Entidade;
 import com.toedter.calendar.JCalendar;
 import java.text.DateFormat;
 import java.time.LocalDate;
@@ -13,16 +14,42 @@ import java.util.Date;
  * @version 1.2
  */
 
-public class Cliente {
+public class Cliente extends Entidade{
     
     private String nome;
     private String endereco;
     private String email;
-    private int ddd;
-    private long fone;
+    private Long ddd;
+    private Long fone;
     private Long cpf;
-    private Fatura fatura;
     private Veiculo veiculo;
+    
+    public Cliente(){
+        
+    }
+    
+    /**
+     * @param id
+     * @param nome
+     * @param endereco
+     * @param email
+     * @param ddd
+     * @param fone
+     * @param cpf
+     * @param veiculo 
+     */
+    public Cliente(Long id, String nome, String endereco, String email, 
+                           Long ddd, Long fone, Long cpf){
+        super(id);
+        this.nome = nome;
+        this.endereco = endereco;
+        this.email = email;
+        this.ddd = ddd;
+        this.fone = fone;
+        this.cpf = cpf;
+//        this.veiculo = veiculo;            
+    }
+    
     
 
     public Veiculo getVeiculo() {
@@ -33,13 +60,6 @@ public class Cliente {
         this.veiculo = veiculo;
     }
     
-    public Fatura getFatura() {
-        return fatura;
-    }
-
-    public void setFatura(Fatura fatura) {
-        this.fatura = fatura;
-    }
     
     public String getNome() {
         return nome;
@@ -53,7 +73,7 @@ public class Cliente {
         return email;
     }
 
-    public int getDdd() {
+    public Long getDdd() {
         return ddd;
     }
 
@@ -77,11 +97,11 @@ public class Cliente {
         this.email = email;
     }
 
-    public void setDdd(int ddd) {
+    public void setDdd(Long ddd) {
         this.ddd = ddd;
     }
 
-    public void setFone(long fone) {
+    public void setFone(Long fone) {
         this.fone = fone;
     }
 

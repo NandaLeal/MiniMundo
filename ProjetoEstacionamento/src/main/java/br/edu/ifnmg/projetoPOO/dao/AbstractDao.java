@@ -45,13 +45,13 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
         if (((Entidade) o).getId() == null || ((Entidade) o).getId() == 0) {
 
             // try-with-resources libera recurso ao final do bloco (PreparedStatement)
-            try (PreparedStatement pstmt = ConexaoBd.getConexao().prepareStatement(
+            try (PreparedStatement pstmt
+                    = ConexaoBd.getConexao().prepareStatement(
                             // Sentença SQL para inserção de registros
-                            getDeclaracaoInsert()
+                            getDeclaracaoInsert(),
                             // Especifica que a(s) chave(s) primária(s) devem ser
                             // retornadas como resposta
-//                            Statement.RETURN_GENERATED_KEYS
-            )) {
+                            Statement.RETURN_GENERATED_KEYS)) {
 
                 // Prepara a declaração com os dados do objeto passado
                 montarDeclaracao(pstmt, o);
@@ -111,7 +111,7 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
      * @return Condição de sucesso ou falha na exclusão.
      */
     @Override
-    public void excluir(T o) {
+    public Boolean excluir(T o) {
         // Recupera a identidade (chave primária) do objeto a ser excluído
         Long id = ((Entidade) o).getId();
 
@@ -134,10 +134,10 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
             }
 
         } else {
-            // false
+            return false;
         }
 
-        // true
+        return true;
     }
 
     /**
@@ -177,27 +177,7 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
         // Devolve nulo (objeto não encontrado) ou o objeto recuperado
         return objeto;
     }
-/**
-     * Insere o valor da chave primária na senteça SQL específica para seu uso.
-     *
-     * @param pstmt Declaração previamente preparada.
-     * @param id Chave primária a ser inserida na sentença SQL.
-     */
-    public void ajustarIdDeclaracao(PreparedStatement pstmt, K id) {
-        try {
-            // Caso id seja um Long, emprega setLong()
-            if(id instanceof Long) {
-                // Cast é requerido porque K não é um tipo previamente definido
-                pstmt.setLong(1, (Long) id);
-            } else {
-                // Caso id seja um Integer, emprega setLong()
-                pstmt.setInt(1, (Integer) id);
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(AbstractDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+
     /**
      * Recupera todos os objetos mapeados para o banco de dados do tipo
      * específico.
@@ -231,7 +211,7 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
         // ou a relação de objeto(s) recuperado(s)
         return objetos;
     }
-
+    
     /**
      * Recupera a sentença SQL específica para a inserção da entidade no banco
      * de dados.
@@ -272,7 +252,27 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
      */
     public abstract String getDeclaracaoDelete();
 
-    
+    /**
+     * Insere o valor da chave primária na senteça SQL específica para seu uso.
+     *
+     * @param pstmt Declaração previamente preparada.
+     * @param id Chave primária a ser inserida na sentença SQL.
+     */
+    public void ajustarIdDeclaracao(PreparedStatement pstmt, K id) {
+        try {
+            // Caso id seja um Long, emprega setLong()
+            if(id instanceof Long) {
+                // Cast é requerido porque K não é um tipo previamente definido
+                pstmt.setLong(1, (Long) id);
+            } else {
+                // Caso id seja um Integer, emprega setLong()
+                pstmt.setInt(1, (Integer) id);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AbstractDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * Insere os valores do objeto na senteça SQL específica para inserção ou

@@ -23,235 +23,105 @@ import java.util.logging.Logger;
  */
 public class ClienteDao extends AbstractDao<Cliente, Long>{
 
-    
-    /**
-     * Recupera a sentença SQL específica para a inserção da entidade no banco
-     * de dados.
-     *
-     * @return Sentença SQl para inserção.
-     */
     @Override
     public String getDeclaracaoInsert() {
-        return "INSERT INTO cliente(nome, endereco, email, ddd, fone, cpf) VALUES (?, ?, ?, ?, ?, ?);";
+         return "INSERT INTO cliente(nome, endereco, email, ddd, fone, cpf) VALUES (?, ?, ?, ?, ?, ?);";
     }
 
-    /**
-     * Recupera a sentença SQL específica para a busca da entidade no banco de
-     * dados.
-     *
-     * @return Sentença SQl para busca por entidade.
-     */
     @Override
     public String getDeclaracaoSelectPorId() {
-        return "SELECT * FROM cliente WHERE cpf = ?;";
+         return "SELECT * FROM cliente WHERE id = ?;";
     }
 
-    /**
-     * Recupera a sentença SQL específica para a busca das entidades no banco de
-     * dados.
-     *
-     * @return Sentença SQl para busca por entidades.
-     */
     @Override
     public String getDeclaracaoSelectTodos() {
-        return "SELECT * FROM cliente;";
+         return "SELECT * FROM cliente;";
     }
-    
-    /**
-     * Recupera a sentença SQL específica para a exclusão da entidade no banco
-     * de dados.
-     *
-     * @return Sentença SQl para exclusão.
-     */
+
+    @Override
+    public String getDeclaracaoUpdate() {
+         return "UPDATE cliente SET nome = ? WHERE id = ?;";
+    }
+
     @Override
     public String getDeclaracaoDelete() {
         return "DELETE FROM cliente WHERE cpf = ?;";
     }
-    
-//    /**
-//     * Executa o procedimento de salvamento (inserção ou atualização) do objeto
-//     * mapeado no banco de dados.
-//     *
-//     * @param o Objeto a ser salvo no banco de dados.
-//     */
-//    @Override
-//    public Long salvar(Cliente o) {
-//
-//        Cliente cliente = localizarPorId(o.getCpf());
-//
-//        // Novo registro
-//        if (cliente == null) {
-//
-//            // try-with-resources libera recurso ao final do bloco (PreparedStatement)
-//            try (PreparedStatement pstmt
-//                    = ConexaoBd.getConexao().prepareStatement(
-//                            // Sentença SQL para inserção de registros
-//                            getDeclaracaoInsert())) {
-//
-//                // Prepara a declaração com os dados do objeto passado
-//                pstmt.setString(1, o.getNome());
-//                pstmt.setString(2, o.getEndereco());
-//                pstmt.setString(3, o.getEmail());
-//                pstmt.setLong(4, o.getDdd());
-//                pstmt.setLong(5, o.getFone());
-//                pstmt.setLong(6, o.getCpf());
-//
-//                // Executa o comando SQL
-//                pstmt.executeUpdate();
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-//
-//    /**
-//     * Exclui o registro do objeto no banco de dados.
-//     *
-//     * @param o Objeto a ser excluído.<br>
-//     * <i>OBS.: o único valor útil é a identidade do objeto mapeado.</i>
-//     * @return Condição de sucesso ou falha na exclusão.
-//     */
-//    public Boolean excluir(Cliente o) {
-//        // Recupera a identidade (chave primária composta) 
-//        // do objeto a ser excluído
-//        Long clienteCpf = o.getCpf();
-//
-//        // Se há uma identidade válida...
-//        if (clienteCpf != null && clienteCpf != 0) {
-//            // ... tenta preparar uma sentença SQL para a conexão já estabelecida
-//            try (PreparedStatement pstmt
-//                    = ConexaoBd.getConexao().prepareStatement(
-//                            // Sentença SQL para exclusão de registros
-//                            getDeclaracaoDelete())) {
-//
-//                // Prepara a declaração com os dados do objeto passado
-//                // TODO Ajustar a declaração preparada
-//                pstmt.setLong(1, o.getCpf());
-//
-//                // Executa o comando SQL
-//                pstmt.executeUpdate();
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//
-//        } else {
-//            return false;
-//        }
-//
-//        return true;
-//    }
-//    
-//    public Cliente localizarPorId(Long clienteCpf) {
-//        // Declara referência para reter o objeto a ser recuperado
-//        Cliente objeto = null;
-//
-//        // Tenta preparar uma sentença SQL para a conexão já estabelecida
-//        try (PreparedStatement pstmt
-//                = ConexaoBd.getConexao().prepareStatement(
-//                        // Sentença SQL para busca por chave primária
-//                        getDeclaracaoSelectPorId())) {
-//
-//            // Prepara a declaração com os dados do objeto passado
-//            pstmt.setLong(1, clienteCpf);
-//
-//            // Executa o comando SQL
-//            ResultSet resultSet = pstmt.executeQuery();
-//
-//            // Se há resultado retornado...
-//            if (resultSet.next()) {
-//                // ... extrai objeto do respectivo registro do banco de dados
-//                objeto = extrairObjeto(resultSet);
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        // Devolve nulo (objeto não encontrado) ou o objeto recuperado
-//        return objeto;
-//    }
-    
-//     public Cliente localizarTodos() {
-//        // Declara referência para reter o objeto a ser recuperado
-//        Cliente objeto = null;
-//
-//        // Tenta preparar uma sentença SQL para a conexão já estabelecida
-//        try (PreparedStatement pstmt
-//                = ConexaoBd.getConexao().prepareStatement(
-//                        // Sentença SQL para busca por chave primária
-//                        getDeclaracaoSelectTodos())) {
-//
-//            // Prepara a declaração com os dados do objeto passado
-//
-//            // Executa o comando SQL
-//            ResultSet resultSet = pstmt.executeQuery();
-//
-//            // Se há resultado retornado...
-//            if (resultSet.next()) {
-//                // ... extrai objeto do respectivo registro do banco de dados
-//                objeto = extrairObjeto(resultSet);
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        // Devolve nulo (objeto não encontrado) ou o objeto recuperado
-//        return objeto;
-//    }
-    
+
     /**
-     * Cria objeto a partir do registro fornecido pelo banco de dados.
+     * Insere os valores do objeto na senteça SQL específica para inserção ou
+     * atualização de registros no banco de dados.
      *
-     * @param resultSet Resultado proveniente do banco de dados relacional.
-     * @return Objeto constituído.
+     * @param pstmt Declaração previamente preparada.
+     * @param id Chave primária a ser inserida na sentença SQL.
      */
     @Override
+    public void montarDeclaracao(PreparedStatement pstmt, Cliente cliente) {
+        // Tenta definir valores junto à sentença SQL preparada para execução 
+        // no banco de dados.
+        try {
+            // INSERT
+            if (cliente.getId() == null || cliente.getId() == 0) {
+                pstmt.setString(1, cliente.getNome());
+                pstmt.setString(2, cliente.getEndereco());
+                pstmt.setString(3, cliente.getEmail());
+                pstmt.setLong(4, cliente.getDdd());
+                pstmt.setLong(5, cliente.getFone());
+                pstmt.setLong(6, cliente.getCpf());
+            } else {
+                // UPDATE
+                pstmt.setString(1, cliente.getNome());
+                pstmt.setString(2, cliente.getEndereco());
+                pstmt.setString(3, cliente.getEmail());
+                pstmt.setLong(4, cliente.getDdd());
+                pstmt.setLong(5, cliente.getFone());
+                pstmt.setLong(6, cliente.getCpf());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
     public Cliente extrairObjeto(ResultSet resultSet) {
-        // Cria referência para montagem do autor-livro
+        // Cria referência para montagem do livro
         Cliente cliente = new Cliente();
 
         // Tenta recuperar dados do registro retornado pelo banco de dados
-        // e ajustar o estado do autor-livro a ser mapeado
+        // e ajustar o estado do livro a ser mapeado
         try {
+//            livro.set...(resultSet.get...("???"));
+            cliente.setId(resultSet.getLong("id"));
             cliente.setNome(resultSet.getString("nome"));
             cliente.setEndereco(resultSet.getString("endereco"));
             cliente.setEmail(resultSet.getString("email"));
             cliente.setDdd(resultSet.getInt("ddd"));
             cliente.setFone(resultSet.getLong("fone"));
             cliente.setCpf(resultSet.getLong("cpf"));
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        // Devolve o autor-livro mapeado
+        // Devolve o livro mapeado
         return cliente;
     }
-    /**
-     * Cria objeto(s) a partir do(s) registro(s) fornecido(s) pelo banco de
-     * dados.
-     *
-     * @param resultSet Resultado(s) proveniente(s) do banco de dados
-     * relacional.
-     * @return Lista de objeto(s) constituído(s).
-     */
+
     @Override
     public List<Cliente> extrairObjetos(ResultSet resultSet) {
-
-        // Cria referência para inserção das autores-livros a serem mapeados
-        ArrayList<Cliente> clienteList = new ArrayList<>();
+        // Cria referência para inserção dos livros a serem mapeados
+        ArrayList<Cliente> clientes = new ArrayList<>();
 
         // Tenta...
         try {
             // ... enquanto houver registros a serem processados
             while (resultSet.next()) {
-                // Cria referência para montagem do autor-livro
+                
+                // Cria referência para montagem do livro
                 Cliente cliente = new Cliente();
 
-                // Tenta recuperar dados do registro retornado pelo banco 
-                // de dados e ajustar o estado do autor-livro a ser mapeado
+                // Cria referência para montagem do livro
+                cliente.setId(resultSet.getLong("id"));
                 cliente.setNome(resultSet.getString("nome"));
                 cliente.setEndereco(resultSet.getString("endereco"));
                 cliente.setEmail(resultSet.getString("email"));
@@ -264,49 +134,10 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
             Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        // Devolve a lista de autores-livros reconstituídos
-        // dos registros do banco de dados
-        return clienteList;
+        // Devolve a lista de livros reconstituídos dos registros do banco 
+        // de dados
+        return clientes;
     }
-    
-    
-    
-//    
-//    
-//    @Override
-//    public Long salvar(Cliente o) {
-//        System.out.println("insert into cliente (nome, email, endereco, cpf, ddd, fone) values "
-//                + "('"+o.getNome()+"', '"+o.getEmail()+"', '"+o.getEndereco()+"', '"+o.getCpf()+"', "
-//                 + "'"+o.getDdd()+"', '"+o.getFone()+"');");
-//        return 0L;           
-//    }
-//
-//    @Override //id do cliente é o cpf
-//    public Cliente localizarPorId(Long cpf) { 
-//        System.out.println("select * from cliente where cpf = '"+ cpf +"';");       
-//        return null;
-//    }
-//
-//    @Override
-//    public List<Cliente> localizarTodos() {
-//        System.out.println("select * from cliente");        
-//        return null;
-//    }
-//
-//    @Override
-//    public void excluir(Cliente o) {
-//        System.out.println("select * from cliente where cpf = '"+ o.getCpf() +"';");
-//    }
-
-    @Override
-    public String getDeclaracaoUpdate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void montarDeclaracao(PreparedStatement pstmt, Cliente o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
 }
+
+    

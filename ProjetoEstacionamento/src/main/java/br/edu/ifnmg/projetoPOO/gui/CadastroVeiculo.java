@@ -146,7 +146,7 @@ public class CadastroVeiculo extends javax.swing.JInternalFrame {
         
         VeiculoDao veiculoDao = new VeiculoDao();
         veiculoDao.salvar(veiculo);
-        veiculoDao.localizarPorPlaca(veiculo.getPlaca());
+        veiculoDao.localizarPorId(veiculo.getPlaca());
         veiculoDao.localizarTodos();
         veiculoDao.excluir(veiculo);
     }//GEN-LAST:event_btnCadastrarVeiculoActionPerformed

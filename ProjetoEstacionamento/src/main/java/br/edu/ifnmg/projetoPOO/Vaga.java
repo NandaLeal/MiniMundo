@@ -1,16 +1,39 @@
 
 package br.edu.ifnmg.projetoPOO;
 
+import br.edu.ifnmg.projetoPOO.dao.Entidade;
+
 /**
  *
  * @author Filipi
  * @version 1.1
  */
-public class Vaga {
+public class Vaga extends Entidade{
     
     private int numero;
     private String placa;
     private String descricao;
+    
+    /**
+     * 
+     */
+    public Vaga(){
+        
+    }
+    
+    /**
+     * @param id Usado par aidentificação única no BD
+     * @param numero Numero da vaga de estacionamento onde o veiculo se encontra
+     * @param placa Placa do veículo que está na vaga
+     * @param descricao Breve descricção com as características do veículo
+     */
+    public Vaga(Long id, int numero, String placa, String descricao){
+        super(id);
+        this.numero = numero;
+        this.placa = placa;
+        this.descricao = descricao;
+    }
+    
 
     public String getPlaca() {
         return placa;

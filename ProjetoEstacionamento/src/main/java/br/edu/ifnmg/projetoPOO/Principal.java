@@ -15,8 +15,15 @@ public class Principal {
     public static void main(String[] args) {
        
         
-        
-        Veiculo veiculo = new Veiculo("Corsa", "verde", "ttt-rrrr", "Carro");
+        Cliente cliente = new Cliente(0L, "joao", "rua do joao", "joao@mail", 38L, 9999L, 120765L);
+        new ClienteDao().salvar(cliente);
+        System.out.println("Cliente inserido");
+                
+                
+                
+                
+                
+//        Veiculo veiculo = new Veiculo("Corsa", "verde", "ttt-rrrr", "Carro");
         
         
          // Inclusão de novo usuário

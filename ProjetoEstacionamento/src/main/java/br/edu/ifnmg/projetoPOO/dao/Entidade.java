@@ -9,6 +9,11 @@ package br.edu.ifnmg.projetoPOO.dao;
  *
  * @author Filip
  */
+
+
+/*
+    comentario de teste para comitar
+*/
 public class Entidade {
     /**
      * Identidade da entidade (chave primária mapeada para o banco de dados)
