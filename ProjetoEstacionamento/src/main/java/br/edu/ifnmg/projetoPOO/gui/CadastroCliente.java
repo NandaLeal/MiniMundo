@@ -241,7 +241,7 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
         
         // Estabeleço as ligações
         cliente.setFatura(fatura);
-        fatura.setCliente(cliente);
+//        fatura.setCliente(cliente);
         /** cliente.setVeiculo(veiculo);  como cadastrar os veículos do cliente 
         *   estando eles em outra tela?
         */
@@ -249,15 +249,16 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
         // Salvo no BD
         ClienteDao clienteDao = new ClienteDao();
         clienteDao.salvar(cliente);
-        clienteDao.localizarPorId(cliente.getCpf());
-        clienteDao.localizarTodos();
-        clienteDao.excluir(cliente);
+        dispose();
+//        clienteDao.localizarPorId(cliente.getCpf());
+//        clienteDao.localizarTodos();
+//        clienteDao.excluir(cliente);
         
-        FaturaDao faturaDao = new FaturaDao();
-        faturaDao.salvar(fatura);              
-        faturaDao.localizarPorId(fatura.getCliente().getCpf());
-        faturaDao.localizarTodos();
-        faturaDao.excluir(fatura);
+//        FaturaDao faturaDao = new FaturaDao();
+//        faturaDao.salvar(fatura);              
+//        faturaDao.localizarPorId(fatura.getCliente().getCpf());
+//        faturaDao.localizarTodos();
+//        faturaDao.excluir(fatura);
         
     }//GEN-LAST:event_btnCadastrarActionPerformed
 

@@ -14,6 +14,14 @@
                 <Property name="text" type="java.lang.String" value="Cadastro"/>
               </Properties>
               <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="mnuCadastroCliente">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Cliente"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuCadastroClienteActionPerformed"/>
+                  </Events>
+                </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="mnuUsuario">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>

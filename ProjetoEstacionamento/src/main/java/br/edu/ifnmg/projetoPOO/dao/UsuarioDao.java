@@ -47,6 +47,32 @@ public class UsuarioDao extends AbstractDao<Usuario, Long> {
 //    }
     
     @Override
+    public String getDeclaracaoInsert() {
+        return "INSERT INTO usuario (id, nome, email, senha, administrador) VALUES (default, ?, ?, MD5(?), ?);";
+    }
+
+    @Override
+    public String getDeclaracaoSelectPorId() {
+         return "SELECT * FROM usuario WHERE id = ?;";
+    }
+
+    @Override
+    public String getDeclaracaoSelectTodos() {
+         return "SELECT * FROM usuario";
+    }
+
+    @Override
+    public String getDeclaracaoUpdate() {
+        return "UPDATE usuario SET nome = ?, email = ?, senha = MD5(?), administrador = ? WHERE id = ?;";
+    }
+
+    @Override
+    public String getDeclaracaoDelete() {
+        return "DELETE FROM usuario WHERE id = ?;";
+    }
+    
+    
+    @Override
     public void montarDeclaracao(PreparedStatement pstmt, Usuario usuario) {
         // Tenta definir valores junto à sentença SQL preparada para execução 
         // no banco de dados.
@@ -170,30 +196,7 @@ public class UsuarioDao extends AbstractDao<Usuario, Long> {
         return null;
     }
 
-    @Override
-    public String getDeclaracaoInsert() {
-        return "INSERT INTO usuario (id, nome, email, senha, administrador) VALUES (default, ?, ?, MD5(?), ?);";
-    }
-
-    @Override
-    public String getDeclaracaoSelectPorId() {
-         return "SELECT * FROM usuario WHERE id = ?;";
-    }
-
-    @Override
-    public String getDeclaracaoSelectTodos() {
-         return "SELECT * FROM usuario";
-    }
-
-    @Override
-    public String getDeclaracaoUpdate() {
-        return "UPDATE usuario SET nome = ?, email = ?, senha = MD5(?), administrador = ? WHERE id = ?;";
-    }
-
-    @Override
-    public String getDeclaracaoDelete() {
-        return "DELETE FROM usuario WHERE id = ?;";
-    }
+    
 
     
 }

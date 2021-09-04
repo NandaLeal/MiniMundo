@@ -20,9 +20,11 @@ public class Cliente {
     private String email;
     private int ddd;
     private long fone;
-    private long cpf = 0;
+    private Long cpf;
     private Fatura fatura;
     private Veiculo veiculo;
+    
+    
 
     public Veiculo getVeiculo() {
         return veiculo;
@@ -60,7 +62,7 @@ public class Cliente {
         return fone;
     }
 
-    public long getCpf() {
+    public Long getCpf() {
         return cpf;
     }
 
@@ -84,7 +86,7 @@ public class Cliente {
         this.fone = fone;
     }
 
-    public void setCpf(long cpf) {
+    public void setCpf(Long cpf) {
         this.cpf = cpf;
     }
 

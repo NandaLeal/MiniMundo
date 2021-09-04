@@ -56,6 +56,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         mnuBarra = new javax.swing.JMenuBar();
         mnuArquivo = new javax.swing.JMenu();
         mnuCadastro = new javax.swing.JMenu();
+        mnuCadastroCliente = new javax.swing.JMenuItem();
         mnuUsuario = new javax.swing.JMenuItem();
         btnVaga = new javax.swing.JMenuItem();
         mnuAdministrador = new javax.swing.JMenuItem();
@@ -78,6 +79,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         mnuArquivo.setText("Arquivo");
 
         mnuCadastro.setText("Cadastro");
+
+        mnuCadastroCliente.setText("Cliente");
+        mnuCadastroCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuCadastroClienteActionPerformed(evt);
+            }
+        });
+        mnuCadastro.add(mnuCadastroCliente);
 
         mnuUsuario.setText("Usuário");
         mnuUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -149,6 +158,12 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         dskPrincipal.add(cadVaga);
     }//GEN-LAST:event_btnVagaActionPerformed
 
+    private void mnuCadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroClienteActionPerformed
+        CadastroCliente cadCliente = new CadastroCliente();
+        cadCliente.setVisible(true);
+        dskPrincipal.add(cadCliente);
+    }//GEN-LAST:event_mnuCadastroClienteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -193,6 +208,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu mnuArquivo;
     private javax.swing.JMenuBar mnuBarra;
     private javax.swing.JMenu mnuCadastro;
+    private javax.swing.JMenuItem mnuCadastroCliente;
     private javax.swing.JMenuItem mnuSobre;
     private javax.swing.JMenuItem mnuUsuario;
     // End of variables declaration//GEN-END:variables

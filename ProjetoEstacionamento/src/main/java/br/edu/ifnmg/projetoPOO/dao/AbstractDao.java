@@ -177,7 +177,27 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
         // Devolve nulo (objeto não encontrado) ou o objeto recuperado
         return objeto;
     }
-
+/**
+     * Insere o valor da chave primária na senteça SQL específica para seu uso.
+     *
+     * @param pstmt Declaração previamente preparada.
+     * @param id Chave primária a ser inserida na sentença SQL.
+     */
+    public void ajustarIdDeclaracao(PreparedStatement pstmt, K id) {
+        try {
+            // Caso id seja um Long, emprega setLong()
+            if(id instanceof Long) {
+                // Cast é requerido porque K não é um tipo previamente definido
+                pstmt.setLong(1, (Long) id);
+            } else {
+                // Caso id seja um Integer, emprega setLong()
+                pstmt.setInt(1, (Integer) id);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AbstractDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * Recupera todos os objetos mapeados para o banco de dados do tipo
      * específico.
@@ -252,27 +272,7 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
      */
     public abstract String getDeclaracaoDelete();
 
-    /**
-     * Insere o valor da chave primária na senteça SQL específica para seu uso.
-     *
-     * @param pstmt Declaração previamente preparada.
-     * @param id Chave primária a ser inserida na sentença SQL.
-     */
-    public void ajustarIdDeclaracao(PreparedStatement pstmt, K id) {
-        try {
-            // Caso id seja um Long, emprega setLong()
-            if(id instanceof Long) {
-                // Cast é requerido porque K não é um tipo previamente definido
-                pstmt.setLong(1, (Long) id);
-            } else {
-                // Caso id seja um Integer, emprega setLong()
-                pstmt.setInt(1, (Integer) id);
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(AbstractDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
 
     /**
      * Insere os valores do objeto na senteça SQL específica para inserção ou
