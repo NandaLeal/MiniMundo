@@ -45,13 +45,13 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
         if (((Entidade) o).getId() == null || ((Entidade) o).getId() == 0) {
 
             // try-with-resources libera recurso ao final do bloco (PreparedStatement)
-            try (PreparedStatement pstmt
-                    = ConexaoBd.getConexao().prepareStatement(
+            try (PreparedStatement pstmt = ConexaoBd.getConexao().prepareStatement(
                             // Sentença SQL para inserção de registros
-                            getDeclaracaoInsert(),
+                            getDeclaracaoInsert()
                             // Especifica que a(s) chave(s) primária(s) devem ser
                             // retornadas como resposta
-                            Statement.RETURN_GENERATED_KEYS)) {
+//                            Statement.RETURN_GENERATED_KEYS
+            )) {
 
                 // Prepara a declaração com os dados do objeto passado
                 montarDeclaracao(pstmt, o);

@@ -6,8 +6,15 @@
 package br.edu.ifnmg.projetoPOO.dao;
 
 import br.edu.ifnmg.projetoPOO.Cliente;
+import br.edu.ifnmg.projetoPOO.Usuario;
 import java.util.List;
 import br.edu.ifnmg.projetoPOO.gui.CadastroCliente;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,6 +23,9 @@ import br.edu.ifnmg.projetoPOO.gui.CadastroCliente;
  */
 public class ClienteDao implements IDao<Cliente, Long>{
 
+    
+    
+    
     @Override
     public Long salvar(Cliente o) {
         System.out.println("insert into cliente (nome, email, endereco, cpf, ddd, fone) values "

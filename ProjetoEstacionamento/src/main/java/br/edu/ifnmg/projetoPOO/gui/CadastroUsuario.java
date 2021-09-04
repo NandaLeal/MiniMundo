@@ -19,6 +19,7 @@ public class CadastroUsuario extends javax.swing.JInternalFrame {
      */
     public CadastroUsuario() {
         initComponents();
+        
     }
 
     /**

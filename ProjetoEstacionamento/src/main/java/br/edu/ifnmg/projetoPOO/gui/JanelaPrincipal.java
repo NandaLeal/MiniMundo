@@ -30,6 +30,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 //        if(usuarioSistema.getAdministrador()) {
 //            System.out.println("admin? " + usuarioSistema.getAdministrador());
             mnuAdministrador.setEnabled(usuarioSistema.isAdmin());
+            mnuUsuario.setEnabled(usuarioSistema.isAdmin());
 //        }
         
         // Centralização da janela
@@ -38,6 +39,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     
     public JanelaPrincipal() {
         initComponents();
+        // Centralização da janela
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -54,6 +57,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         mnuArquivo = new javax.swing.JMenu();
         mnuCadastro = new javax.swing.JMenu();
         mnuUsuario = new javax.swing.JMenuItem();
+        btnVaga = new javax.swing.JMenuItem();
         mnuAdministrador = new javax.swing.JMenuItem();
         mnuAjuda = new javax.swing.JMenu();
         mnuSobre = new javax.swing.JMenuItem();
@@ -82,6 +86,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             }
         });
         mnuCadastro.add(mnuUsuario);
+
+        btnVaga.setText("Vaga");
+        btnVaga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVagaActionPerformed(evt);
+            }
+        });
+        mnuCadastro.add(btnVaga);
 
         mnuArquivo.add(mnuCadastro);
 
@@ -122,6 +134,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         CadastroUsuario cadastroUsuario = new CadastroUsuario();
         cadastroUsuario.setVisible(true);
         dskPrincipal.add(cadastroUsuario);
+        
     }//GEN-LAST:event_mnuUsuarioActionPerformed
 
     private void mnuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSobreActionPerformed
@@ -129,6 +142,12 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         janelaSobre.setVisible(true);
         dskPrincipal.add(janelaSobre);
     }//GEN-LAST:event_mnuSobreActionPerformed
+
+    private void btnVagaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVagaActionPerformed
+        CadastroVaga cadVaga = new CadastroVaga();
+        cadVaga.setVisible(true);
+        dskPrincipal.add(cadVaga);
+    }//GEN-LAST:event_btnVagaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,6 +186,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btnVaga;
     private javax.swing.JDesktopPane dskPrincipal;
     private javax.swing.JMenuItem mnuAdministrador;
     private javax.swing.JMenu mnuAjuda;
