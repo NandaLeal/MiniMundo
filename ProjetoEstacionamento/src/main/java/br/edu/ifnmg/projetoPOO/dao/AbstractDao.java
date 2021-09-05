@@ -12,6 +12,8 @@ package br.edu.ifnmg.projetoPOO.dao;
  */
 
 
+import br.edu.ifnmg.projetoPOO.Cliente;
+import br.edu.ifnmg.projetoPOO.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,7 +44,7 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
         Long id = 0L;
 
         // Novo registro
-        if (((Entidade) o).getId() == null || ((Entidade) o).getId() == 0) {
+        if (((Entidade) o).getId() != null || ((Entidade) o).getId() != 0) {
 
             // try-with-resources libera recurso ao final do bloco (PreparedStatement)
             try (PreparedStatement pstmt
@@ -74,29 +76,32 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
                 e.printStackTrace();
             }
 
-        } else {
-            // Atualizar registro
-
-            try (PreparedStatement pstmt
-                    = ConexaoBd.getConexao().prepareStatement(
-                            // Sentença SQL para atualização de registros
-                            getDeclaracaoUpdate())) {
-
-                // Prepara a declaração com os dados do objeto passado
-                montarDeclaracao(pstmt, o);
-
-                // Executa o comando SQL
-                pstmt.executeUpdate();
-
-                // Retorno da mesma id recebida com o objeto para manter
-                // compatibilidade com o procedimento do método
-                // TODO Retorno imediato (return ...)?
-                id = ((Entidade) o).getId();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        } 
+          else {
+            System.out.println("Id nulo ou 0.");
         }
+//            // Atualizar registro
+//
+//            try (PreparedStatement pstmt
+//                    = ConexaoBd.getConexao().prepareStatement(
+//                            // Sentença SQL para atualização de registros
+//                            getDeclaracaoUpdate())) {
+//
+//                // Prepara a declaração com os dados do objeto passado
+//                montarDeclaracao(pstmt, o);
+//
+//                // Executa o comando SQL
+//                pstmt.executeUpdate();
+//
+//                // Retorno da mesma id recebida com o objeto para manter
+//                // compatibilidade com o procedimento do método
+//                // TODO Retorno imediato (return ...)?
+//                id = ((Entidade) o).getId();
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
 
         // Cast requerido para adaptação do tipo pois, mesmo que a id seja sempre
         // longa, esse trecho de código não reconhece tal tipo implicitamente
@@ -112,11 +117,16 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
      */
     @Override
     public Boolean excluir(T o) {
-        // Recupera a identidade (chave primária) do objeto a ser excluído
+        
+        
+        
+        // Recupera a identidade (chave primária) do objeto a ser excluído        
         Long id = ((Entidade) o).getId();
-
+        String email = ((Usuario) o).getEmail();
+        Long cpf = ((Cliente) o).getCpf();
+        
         // Se há uma identidade válida...
-        if (id != null && id != 0) {
+        if (id != null) {
             // ... tenta preparar uma sentença SQL para a conexão já estabelecida
             try (PreparedStatement pstmt
                     = ConexaoBd.getConexao().prepareStatement(
@@ -133,13 +143,36 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
                 e.printStackTrace();
             }
 
-        } else {
+        } 
+        else if(email != null){
+            // ... tenta preparar uma sentença SQL para a conexão já estabelecida
+            try (PreparedStatement pstmt
+                    = ConexaoBd.getConexao().prepareStatement(
+                            // Sentença SQL para exclusão de registros
+                            getDeclaracaoDelete())) {
+
+                // Declaração com parametro                 
+                pstmt.setString(1, ((Usuario) o).getEmail() );
+
+                // Executa o comando SQL
+                pstmt.executeUpdate();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else if(cpf != null){
+            System.out.println("Excluir cliente");
+        }
+        else {
             return false;
         }
 
         return true;
     }
 
+    
+    
     /**
      * Recupera um dado objeto mapeado para o banco de dados por meio de sua
      * chave de identidade.
@@ -178,6 +211,9 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
         return objeto;
     }
 
+ 
+    
+    
     /**
      * Recupera todos os objetos mapeados para o banco de dados do tipo
      * específico.
@@ -227,6 +263,10 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
      * @return Sentença SQl para busca por entidade.
      */
     public abstract String getDeclaracaoSelectPorId();
+    
+    
+    
+    
 
     /**
      * Recupera a sentença SQL específica para a busca das entidades no banco de
@@ -282,6 +322,8 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
      * @param id Chave primária a ser inserida na sentença SQL.
      */
     public abstract void montarDeclaracao(PreparedStatement pstmt, T o);
+    
+    
 
     /**
      * Cria objeto a partir do registro fornecido pelo banco de dados.

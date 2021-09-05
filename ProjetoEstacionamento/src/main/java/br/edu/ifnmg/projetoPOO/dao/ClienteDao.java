@@ -25,7 +25,7 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
 
     @Override
     public String getDeclaracaoInsert() {
-         return "INSERT INTO cliente(nome, endereco, email, ddd, fone, cpf) VALUES (?, ?, ?, ?, ?, ?);";
+         return "INSERT INTO cliente(id, nome, endereco, email, ddd, fone, cpf) VALUES (?, ?, ?, ?, ?, ?, ?);";
     }
 
     @Override
@@ -40,13 +40,14 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
 
     @Override
     public String getDeclaracaoUpdate() {
-         return "UPDATE cliente SET nome = ? WHERE id = ?;";
+         return "UPDATE cliente SET nome = ?, endereco = ?, email = ?, ddd = ?, fone = ?, cpf = ? WHERE id = ?;";
     }
 
     @Override
     public String getDeclaracaoDelete() {
-        return "DELETE FROM cliente WHERE cpf = ?;";
+        return "DELETE FROM cliente WHERE id = ?;";
     }
+    
 
     /**
      * Insere os valores do objeto na senteça SQL específica para inserção ou
@@ -61,22 +62,25 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
         // no banco de dados.
         try {
             // INSERT
-            if (cliente.getId() == null || cliente.getId() == 0) {
-                pstmt.setString(1, cliente.getNome());
-                pstmt.setString(2, cliente.getEndereco());
-                pstmt.setString(3, cliente.getEmail());
-                pstmt.setLong(4, cliente.getDdd());
-                pstmt.setLong(5, cliente.getFone());
-                pstmt.setLong(6, cliente.getCpf());
-            } else {
-                // UPDATE
-                pstmt.setString(1, cliente.getNome());
-                pstmt.setString(2, cliente.getEndereco());
-                pstmt.setString(3, cliente.getEmail());
-                pstmt.setLong(4, cliente.getDdd());
-                pstmt.setLong(5, cliente.getFone());
-                pstmt.setLong(6, cliente.getCpf());
-            }
+//            if (cliente.getId() == null || cliente.getId() == 0) {
+                pstmt.setLong(1, cliente.getId());
+                pstmt.setString(2, cliente.getNome());
+                pstmt.setString(3, cliente.getEndereco());
+                pstmt.setString(4, cliente.getEmail());
+                pstmt.setLong(5, cliente.getDdd());
+                pstmt.setLong(6, cliente.getFone());
+                pstmt.setLong(7, cliente.getCpf());
+//            } else {
+//                // UPDATE
+//                pstmt.setString(1, cliente.getNome());
+//                pstmt.setString(2, cliente.getEndereco());
+//                pstmt.setString(3, cliente.getEmail());
+//                pstmt.setLong(4, cliente.getDdd());
+//                pstmt.setLong(5, cliente.getFone());
+//                pstmt.setLong(6, cliente.getCpf());
+//                pstmt.setLong(7, cliente.getId());
+//                
+//            }
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -95,7 +99,7 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
             cliente.setNome(resultSet.getString("nome"));
             cliente.setEndereco(resultSet.getString("endereco"));
             cliente.setEmail(resultSet.getString("email"));
-            cliente.setDdd(resultSet.getInt("ddd"));
+            cliente.setDdd(resultSet.getLong("ddd"));
             cliente.setFone(resultSet.getLong("fone"));
             cliente.setCpf(resultSet.getLong("cpf"));
 
@@ -125,9 +129,11 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
                 cliente.setNome(resultSet.getString("nome"));
                 cliente.setEndereco(resultSet.getString("endereco"));
                 cliente.setEmail(resultSet.getString("email"));
-                cliente.setDdd(resultSet.getInt("ddd"));
+                cliente.setDdd(resultSet.getLong("ddd"));
                 cliente.setFone(resultSet.getLong("fone"));
                 cliente.setCpf(resultSet.getLong("cpf"));
+                
+                clientes.add(cliente);
 
             }
         } catch (SQLException ex) {
@@ -138,6 +144,8 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
         // de dados
         return clientes;
     }
+
+    
 }
 
     

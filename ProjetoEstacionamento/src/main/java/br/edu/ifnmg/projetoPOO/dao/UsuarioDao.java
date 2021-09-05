@@ -21,35 +21,34 @@ import java.util.logging.Logger;
  *
  * @author Filip
  */
-public class UsuarioDao {
- 
-
+public class UsuarioDao extends AbstractDao<Usuario, Long>{
     
+    @Override
     public String getDeclaracaoInsert() {
         return "INSERT INTO usuario (nome, email, senha, administrador) VALUES (?, ?, MD5(?), ?);";
     }
 
-    public String getDeclaracaoSelectPorEmail() {
-         return "SELECT * FROM usuario WHERE email = ?;";
+    @Override
+    public String getDeclaracaoSelectPorId() {
+        return "SELECT * FROM usuario WHERE email = ?;";
     }
 
+    @Override
     public String getDeclaracaoSelectTodos() {
          return "SELECT * FROM usuario";
     }
 
+    @Override
     public String getDeclaracaoUpdate() {
         return "UPDATE usuario SET nome = ?, email = ?, senha = MD5(?), administrador = ? WHERE id = ?;";
     }
 
+    @Override
     public String getDeclaracaoDelete() {
         return "DELETE FROM usuario WHERE email = ?;";
     }
-    
-    
-    
-    
-    
-    
+
+    @Override
     public void montarDeclaracao(PreparedStatement pstmt, Usuario usuario) {
         // Tenta definir valores junto à sentença SQL preparada para execução 
         // no banco de dados.
@@ -64,24 +63,13 @@ public class UsuarioDao {
                 pstmt.setString(2, usuario.getEmail());
                 pstmt.setString(3, usuario.getSenha());
                 pstmt.setBoolean(4, usuario.isAdmin());
-                pstmt.setLong(5, usuario.getId());
             }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    
-    
-    /**
-     * Cria objeto a partir do registro fornecido pelo banco de dados.
-     *
-     * @param resultSet Resultado proveniente do banco de dados relacional.
-     * @return Objeto constituído.
-     */
-    
-    
+
+    @Override
     public Usuario extrairObjeto(ResultSet resultSet) {
         // Cria referência para montagem da tarefa
         Usuario usuario = new Usuario();
@@ -100,15 +88,8 @@ public class UsuarioDao {
         // Devolve a tarefa mapeada
         return usuario;
     }
-    /**
-     * Cria objeto(s) a partir do(s) registro(s) fornecido(s) pelo banco de
-     * dados.
-     *
-     * @param resultSet Resultado(s) proveniente(s) do banco de dados
-     * relacional.
-     * @return Lista de objeto(s) constituído(s).
-     */
-    
+
+    @Override
     public List<Usuario> extrairObjetos(ResultSet resultSet) {
 
         // Cria referência para inserção das tarefas a serem mapeadas
@@ -139,8 +120,8 @@ public class UsuarioDao {
         // de dados
         return usuarios;
     }
-    
-    
+
+   
     
     public Usuario autenticar(Usuario usuario) {
         try (PreparedStatement pstmt
@@ -172,7 +153,56 @@ public class UsuarioDao {
         return null;
     }
 
+
+    @Override
+    public Boolean excluir(Usuario usuario){
+        // Recupera a identidade (chave primária) do objeto a ser excluído
+        String email = ((Usuario) usuario).getEmail();
+        
+        // Se há uma identidade válida...
+        if (email != null) {
+            // ... tenta preparar uma sentença SQL para a conexão já estabelecida
+            try (PreparedStatement pstmt
+                    = ConexaoBd.getConexao().prepareStatement(
+                            // Sentença SQL para exclusão de registros
+                            getDeclaracaoDelete())) {
+
+                // Declaração com parametro                 
+                pstmt.setString(1, ((Usuario) usuario).getEmail() );
+
+                // Executa o comando SQL
+                pstmt.executeUpdate();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            return false;
+        }
+
+        return true;
+    }
+
     
 
     
 }
+
+
+
+
+/*
+
+    public void montarDeclaracaoExcluirUsuario(PreparedStatement pstmt, Usuario usuario) {
+        // Tenta definir valores junto à sentença SQL preparada para execução 
+        // no banco de dados.
+        try {
+                pstmt.setString(1, usuario.getEmail() );
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+*/

@@ -245,16 +245,17 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
         cliente.setNome(txtNome.getText());
         cliente.setEndereco(txtEndereco.getText());
         cliente.setEmail(txtEmail.getText());
-        cliente.setDdd(Integer.parseInt(fmtDdd.getValue().toString()));
+        cliente.setDdd(Long.parseLong(fmtDdd.getValue().toString()));
         cliente.setFone(Long.parseLong(fmtFone.getValue().toString().replaceAll("[-]", "")));
         cliente.setCpf(Long.parseLong(fmtCpf.getValue().toString().replaceAll("[-.]", "")));
+        cliente.setId(cliente.getCpf());
         
-        fatura.setDiaVencimento(fmtDia.getDay());
-        fatura.setDataEmissao(LocalDate.now());
-        fatura.setValor(CalculaValorFatura(cliente));
+//        fatura.setDiaVencimento(fmtDia.getDay());
+//        fatura.setDataEmissao(LocalDate.now());
+//        fatura.setValor(CalculaValorFatura(cliente));
         
         // Estabeleço as ligações
-        cliente.setFatura(fatura);
+//        cliente.setFatura(fatura);
 //        fatura.setCliente(cliente);
         /** cliente.setVeiculo(veiculo);  como cadastrar os veículos do cliente 
         *   estando eles em outra tela?

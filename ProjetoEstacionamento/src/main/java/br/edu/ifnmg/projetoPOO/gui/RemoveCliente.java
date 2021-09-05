@@ -104,10 +104,12 @@ public class RemoveCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-        Cliente cliente = new Cliente();
-        cliente.setCpf(Long.parseLong(fmtCpf.getValue().toString().replaceAll("[-.]", "")));
         
-        ClienteDao clienteDao = new ClienteDao();
+        // O ID do cliente é o cpf
+        Cliente cliente = new Cliente();
+        cliente.setId(Long.parseLong(fmtCpf.getValue().toString().replaceAll("[-.]", "")));
+        
+        ClienteDao clienteDao = new ClienteDao();        
         clienteDao.excluir(cliente);
         dispose();
     }//GEN-LAST:event_btnRemoverActionPerformed
