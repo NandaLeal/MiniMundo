@@ -263,8 +263,15 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
         
         // Salvo no BD
         ClienteDao clienteDao = new ClienteDao();
-        clienteDao.salvar(cliente);
-        dispose();
+        if(clienteDao.localizarPorId(cliente.getId()) == null ){
+            clienteDao.salvar(cliente);
+            dispose();
+        }
+        else{
+            fmtCpf.requestFocus();
+            System.out.println("CPF informado pertence a outro cliente! Tente novamente.");
+        }
+        
 //        clienteDao.localizarPorId(cliente.getCpf());
 //        clienteDao.localizarTodos();
 //        clienteDao.excluir(cliente);

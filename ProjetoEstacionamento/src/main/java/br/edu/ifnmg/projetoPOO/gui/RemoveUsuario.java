@@ -19,6 +19,8 @@ public class RemoveUsuario extends javax.swing.JInternalFrame {
      */
     public RemoveUsuario() {
         initComponents();
+        
+        fmtCpfRemoveUsuario.requestFocus();
     }
 
     /**
@@ -31,16 +33,14 @@ public class RemoveUsuario extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         lblAvisoRemocao = new javax.swing.JLabel();
-        lblEmailRemocao = new javax.swing.JLabel();
-        txtEmailRemocao = new javax.swing.JTextField();
         btnCancelarRemocao = new javax.swing.JButton();
         btnRemoverUsuario = new javax.swing.JButton();
+        fmtCpfRemoveUsuario = new javax.swing.JFormattedTextField();
+        lblCpf = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        lblAvisoRemocao.setText("Informe o e-mail do usuário que será REMOVIDO:");
-
-        lblEmailRemocao.setText("E-mail:");
+        lblAvisoRemocao.setText("Informe o CPF do usuário que será REMOVIDO:");
 
         btnCancelarRemocao.setText("Cancelar");
         btnCancelarRemocao.addActionListener(new java.awt.event.ActionListener() {
@@ -56,24 +56,33 @@ public class RemoveUsuario extends javax.swing.JInternalFrame {
             }
         });
 
+        try {
+            fmtCpfRemoveUsuario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        lblCpf.setText("CPF:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblAvisoRemocao)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(lblAvisoRemocao)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(50, 50, 50)
+                            .addComponent(btnCancelarRemocao)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRemoverUsuario)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblEmailRemocao)
+                        .addComponent(lblCpf)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnCancelarRemocao)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnRemoverUsuario))
-                            .addComponent(txtEmailRemocao))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(fmtCpfRemoveUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,15 +91,12 @@ public class RemoveUsuario extends javax.swing.JInternalFrame {
                 .addComponent(lblAvisoRemocao)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEmailRemocao)
-                    .addComponent(txtEmailRemocao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 86, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblCpf)
+                    .addComponent(fmtCpfRemoveUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRemoverUsuario)
-                    .addComponent(btnCancelarRemocao))
-                .addContainerGap())
+                    .addComponent(btnCancelarRemocao)))
         );
 
         pack();
@@ -102,11 +108,22 @@ public class RemoveUsuario extends javax.swing.JInternalFrame {
 
     private void btnRemoverUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverUsuarioActionPerformed
         Usuario usuarioRemocao = new Usuario();
-        usuarioRemocao.setEmail(txtEmailRemocao.getText());
+        usuarioRemocao.setCpf(Long.parseLong(fmtCpfRemoveUsuario.getValue().toString().replaceAll("[-.]", "")));
+        usuarioRemocao.setId(usuarioRemocao.getCpf());
         
         UsuarioDao usuarioDao = new UsuarioDao();
-        usuarioDao.excluir(usuarioRemocao);
-        dispose();
+        
+        // Se existe alguém com esse cpf, então remove
+        if(usuarioDao.localizarPorId(usuarioRemocao.getId()) != null ){
+            usuarioDao.excluir(usuarioRemocao);
+            dispose();
+        }
+        else{
+            fmtCpfRemoveUsuario.requestFocus();
+            System.out.println("Nenhum usuário encontrado com o CPF informado! Tente novamente.");
+        }
+        
+        
     }//GEN-LAST:event_btnRemoverUsuarioActionPerformed
 
     /**
@@ -148,8 +165,8 @@ public class RemoveUsuario extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarRemocao;
     private javax.swing.JButton btnRemoverUsuario;
+    private javax.swing.JFormattedTextField fmtCpfRemoveUsuario;
     private javax.swing.JLabel lblAvisoRemocao;
-    private javax.swing.JLabel lblEmailRemocao;
-    private javax.swing.JTextField txtEmailRemocao;
+    private javax.swing.JLabel lblCpf;
     // End of variables declaration//GEN-END:variables
 }

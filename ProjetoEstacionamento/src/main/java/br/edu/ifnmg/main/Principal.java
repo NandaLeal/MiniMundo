@@ -3,8 +3,10 @@ package br.edu.ifnmg.main;
 
 import br.edu.ifnmg.projetoPOO.Cliente;
 import br.edu.ifnmg.projetoPOO.Usuario;
+import br.edu.ifnmg.projetoPOO.Vaga;
 import br.edu.ifnmg.projetoPOO.dao.ClienteDao;
 import br.edu.ifnmg.projetoPOO.dao.UsuarioDao;
+import br.edu.ifnmg.projetoPOO.dao.VagaDao;
 import java.util.Scanner;
 
 /**
@@ -16,6 +18,21 @@ public class Principal {
         
     public static void main(String[] args) {
        
+        
+//        Vaga vaga = new Vaga();
+//        vaga.setNumero(1L);
+////        vaga.setPlaca("mue3e39");
+////        vaga.setDescricao("corsa verm");
+//        vaga.setId(vaga.getNumero());
+//        
+//        VagaDao vagaDao = new VagaDao();
+////        vagaDao.salvar(vaga);
+//        vagaDao.excluir(vaga);
+        
+        
+        
+        
+        
         
 //        Cliente cliente = new Cliente();        
 //        cliente.setNome("Marcos");
@@ -57,9 +74,9 @@ public class Principal {
 //        System.out.println(">> Novo usuário ADMIN inserido no banco de dados");
         
         
-        Usuario usuarioB = new Usuario();
-        usuarioB.setEmail("fil@mail");
-        new UsuarioDao().excluir(usuarioB);
+//        Usuario usuarioB = new Usuario();
+//        usuarioB.setEmail("fil@mail");
+//        new UsuarioDao().excluir(usuarioB);
         
         
 //        Usuario usuarioB = new Usuario(null, "Comum", "comum@mail.com", "123456", false);

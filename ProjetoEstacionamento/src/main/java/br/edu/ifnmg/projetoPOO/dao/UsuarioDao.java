@@ -12,6 +12,7 @@ import br.edu.ifnmg.projetoPOO.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,12 +26,12 @@ public class UsuarioDao extends AbstractDao<Usuario, Long>{
     
     @Override
     public String getDeclaracaoInsert() {
-        return "INSERT INTO usuario (nome, email, senha, administrador) VALUES (?, ?, MD5(?), ?);";
+        return "INSERT INTO usuario (nome, email, senha, administrador, cpf) VALUES (?, ?, MD5(?), ?, ?);";
     }
 
     @Override
     public String getDeclaracaoSelectPorId() {
-        return "SELECT * FROM usuario WHERE email = ?;";
+        return "SELECT * FROM usuario WHERE cpf = ?;";
     }
 
     @Override
@@ -53,17 +54,19 @@ public class UsuarioDao extends AbstractDao<Usuario, Long>{
         // Tenta definir valores junto à sentença SQL preparada para execução 
         // no banco de dados.
         try {
-            if (usuario.getId() == null || usuario.getId() == 0) {
+//            if (usuario.getId() != null || usuario.getId() == 0) {
                 pstmt.setString(1, usuario.getNome());
                 pstmt.setString(2, usuario.getEmail());
                 pstmt.setString(3, usuario.getSenha());
                 pstmt.setBoolean(4, usuario.isAdmin());
-            } else {
-                pstmt.setString(1, usuario.getNome());
-                pstmt.setString(2, usuario.getEmail());
-                pstmt.setString(3, usuario.getSenha());
-                pstmt.setBoolean(4, usuario.isAdmin());
-            }
+                pstmt.setLong(5, usuario.getCpf());
+//            } 
+//            else {
+//                pstmt.setString(1, usuario.getNome());
+//                pstmt.setString(2, usuario.getEmail());
+//                pstmt.setString(3, usuario.getSenha());
+//                pstmt.setBoolean(4, usuario.isAdmin());
+//            }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -81,6 +84,7 @@ public class UsuarioDao extends AbstractDao<Usuario, Long>{
             usuario.setEmail(resultSet.getString("email"));
             usuario.setSenha(resultSet.getString("senha"));
             usuario.setAdmin(resultSet.getBoolean("administrador"));
+            usuario.setCpf(resultSet.getLong("cpf"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -108,6 +112,7 @@ public class UsuarioDao extends AbstractDao<Usuario, Long>{
                 usuario.setEmail(resultSet.getString("email"));
                 usuario.setSenha(resultSet.getString("senha"));
                 usuario.setAdmin(resultSet.getBoolean("administrador"));
+                usuario.setCpf(resultSet.getLong("cpf"));
 
                 // Insere a tarefa na lista de tarefas recuperadas
                 usuarios.add(usuario);

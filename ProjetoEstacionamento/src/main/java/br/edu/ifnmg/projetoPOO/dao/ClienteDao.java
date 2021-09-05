@@ -30,7 +30,7 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
 
     @Override
     public String getDeclaracaoSelectPorId() {
-         return "SELECT * FROM cliente WHERE id = ?;";
+         return "SELECT * FROM cliente WHERE cpf = ?;";
     }
 
     @Override

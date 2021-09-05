@@ -10,7 +10,7 @@ import br.edu.ifnmg.projetoPOO.dao.Entidade;
  */
 public class Vaga extends Entidade{
     
-    private int numero;
+    private Long numero;
     private String placa;
     private String descricao;
     
@@ -27,7 +27,7 @@ public class Vaga extends Entidade{
      * @param placa Placa do veículo que está na vaga
      * @param descricao Breve descricção com as características do veículo
      */
-    public Vaga(Long id, int numero, String placa, String descricao){
+    public Vaga(Long id, Long numero, String placa, String descricao){
         super(id);
         this.numero = numero;
         this.placa = placa;
@@ -53,11 +53,11 @@ public class Vaga extends Entidade{
 
     
     
-    public int getNumero() {
+    public Long getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(Long numero) {
         this.numero = numero;
     }
     

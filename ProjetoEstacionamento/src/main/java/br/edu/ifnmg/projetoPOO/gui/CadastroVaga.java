@@ -58,7 +58,7 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Descição");
 
-        boxVaga.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" }));
+        boxVaga.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" }));
 
         jLabel2.setText("Vaga");
 
@@ -97,13 +97,13 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(boxVaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 147, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnCancelarVaga)
                         .addGap(18, 18, 18)
                         .addComponent(btnCadastrarVaga)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,16 +136,22 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
         Vaga vaga = new Vaga();
         vaga.setPlaca(fmtPlacaVaga.getValue().toString().replaceAll("[-]", ""));
         vaga.setDescricao(txtDesc.getText());
-        vaga.setNumero(boxVaga.getSelectedIndex());
+        vaga.setNumero( Long.parseLong( boxVaga.getItemAt(boxVaga.getSelectedIndex()) ) );
+        vaga.setId(vaga.getNumero());
         
+        // Se a vaga estiver liberada, vou cadastrar
         VagaDao vagaDao = new VagaDao();
-        if(vagaDao.salvar(vaga) == true){
+        if(vagaDao.localizarPorId(vaga.getId()) == null){
+            vagaDao.salvar(vaga);
             dispose();
         }
+        // Se não tiver liberar, tentou outro vaga
         else {
+            System.out.println("Vaga em uso! tente outra.");
         // Limpa os campos da tela
-        fmtPlacaVaga.setText(null);
-        txtDesc.setText(null);
+//        fmtPlacaVaga.setText(null);
+//        txtDesc.setText(null);
+            boxVaga.requestFocus();
         }
         
     }//GEN-LAST:event_btnCadastrarVagaActionPerformed

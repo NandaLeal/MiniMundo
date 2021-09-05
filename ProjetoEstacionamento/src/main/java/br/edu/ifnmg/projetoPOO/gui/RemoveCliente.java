@@ -107,11 +107,21 @@ public class RemoveCliente extends javax.swing.JInternalFrame {
         
         // O ID do cliente é o cpf
         Cliente cliente = new Cliente();
-        cliente.setId(Long.parseLong(fmtCpf.getValue().toString().replaceAll("[-.]", "")));
+        cliente.setCpf(Long.parseLong(fmtCpf.getValue().toString().replaceAll("[-.]", "")));
+        cliente.setId(cliente.getCpf());
         
-        ClienteDao clienteDao = new ClienteDao();        
-        clienteDao.excluir(cliente);
-        dispose();
+        ClienteDao clienteDao = new ClienteDao();
+        
+        // Se encontrar um cliente com cpf informado, remove
+        if(clienteDao.localizarPorId(cliente.getId()) != null){
+            clienteDao.excluir(cliente);
+            dispose();
+        }
+        // Se não encontrar ninguém, então avisa
+        else{
+            fmtCpf.requestFocus();
+            System.out.println("Nenhum cliente encontrado com o CPF informado! Tente novamente.");
+        }
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     /**

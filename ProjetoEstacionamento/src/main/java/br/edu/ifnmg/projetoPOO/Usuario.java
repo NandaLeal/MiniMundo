@@ -15,6 +15,7 @@ public class Usuario extends Entidade{
     private String senha;
     private String email;
     private boolean admin;
+    private Long cpf;
 
    
 
@@ -32,14 +33,26 @@ public class Usuario extends Entidade{
      * @param email Email do usuário
      * @param senha Senha  do usuário
      * @param administrador Identificação se o usuário de é administrador ou não
+     * @param cpf
      */
-     public Usuario(Long id, String nome, String email, String senha, Boolean administrador) {
+     public Usuario(Long id, String nome, String email, String senha, Boolean administrador, Long cpf) {
         super(id);
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.admin = administrador;
+        this.cpf = cpf;
     }
+
+    public Long getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(Long cpf) {
+        this.cpf = cpf;
+    }
+     
+     
     
     public String getNome() {
         return nome;

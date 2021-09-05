@@ -84,7 +84,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         );
         dskPrincipalLayout.setVerticalGroup(
             dskPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
+            .addGap(0, 493, Short.MAX_VALUE)
         );
 
         mnuArquivo.setText("Arquivo");
@@ -228,6 +228,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         RemoveUsuario rmvUsuario = new RemoveUsuario();
         rmvUsuario.setVisible(true);
         dskPrincipal.add(rmvUsuario);
+        
     }//GEN-LAST:event_mnuRemoverUsuarioActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed

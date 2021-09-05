@@ -116,14 +116,11 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
      * @return Condição de sucesso ou falha na exclusão.
      */
     @Override
-    public Boolean excluir(T o) {
-        
+    public Boolean excluir(T o) {      
         
         
         // Recupera a identidade (chave primária) do objeto a ser excluído        
         Long id = ((Entidade) o).getId();
-        String email = ((Usuario) o).getEmail();
-        Long cpf = ((Cliente) o).getCpf();
         
         // Se há uma identidade válida...
         if (id != null) {
@@ -144,26 +141,7 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
             }
 
         } 
-        else if(email != null){
-            // ... tenta preparar uma sentença SQL para a conexão já estabelecida
-            try (PreparedStatement pstmt
-                    = ConexaoBd.getConexao().prepareStatement(
-                            // Sentença SQL para exclusão de registros
-                            getDeclaracaoDelete())) {
-
-                // Declaração com parametro                 
-                pstmt.setString(1, ((Usuario) o).getEmail() );
-
-                // Executa o comando SQL
-                pstmt.executeUpdate();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        else if(cpf != null){
-            System.out.println("Excluir cliente");
-        }
+        
         else {
             return false;
         }
