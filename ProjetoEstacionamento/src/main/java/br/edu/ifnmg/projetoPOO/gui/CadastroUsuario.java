@@ -56,6 +56,7 @@ public class CadastroUsuario extends javax.swing.JInternalFrame {
         lblCpf.setText("CPF:");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Usuário");
 
         lblNome.setText("Nome:");
 
@@ -142,7 +143,7 @@ public class CadastroUsuario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCpf1)
                     .addComponent(fmtCpfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -176,14 +177,14 @@ public class CadastroUsuario extends javax.swing.JInternalFrame {
         usuario.setEmail(txtEmail.getText());
         usuario.setSenha(String.valueOf(pswSenha.getPassword()));
         usuario.setAdmin(boxAdmin.isSelected());
-        usuario.setCpf(Long.parseLong(fmtCpf.getValue().toString().replaceAll("[-.]", "")));
-        usuario.setId(usuario.getCpf());
+        usuario.setCpf(Long.parseLong(fmtCpfUsuario.getValue().toString().replaceAll("[-.]", "")));
+
         
         // Salvar usuário
         UsuarioDao usuarioDao = new UsuarioDao();
-        usuarioDao.salvar(usuario);
+//        usuarioDao.salvar(usuario);
         
-        if(usuarioDao.localizarPorId(usuario.getId()) == null ){
+        if(usuarioDao.localizarPorId(usuario.getCpf()) == null ){
             usuarioDao.salvar(usuario);
             dispose();
         }

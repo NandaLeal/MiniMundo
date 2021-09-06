@@ -39,6 +39,7 @@ public class RemoveUsuario extends javax.swing.JInternalFrame {
         lblCpf = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Remove Usuário");
 
         lblAvisoRemocao.setText("Informe o CPF do usuário que será REMOVIDO:");
 

@@ -62,12 +62,12 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         mnuCadastro = new javax.swing.JMenu();
         mnuCadastroCliente = new javax.swing.JMenuItem();
         mnuUsuario = new javax.swing.JMenuItem();
-        btnVaga = new javax.swing.JMenuItem();
         mnuRemover = new javax.swing.JMenu();
         mnuRemoverCliente = new javax.swing.JMenuItem();
         mnuRemoverUsuario = new javax.swing.JMenuItem();
-        mnuLiberarVaga = new javax.swing.JMenuItem();
         mnuAdministrador = new javax.swing.JMenuItem();
+        btnVaga = new javax.swing.JMenuItem();
+        mnuLiberarVaga = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         mnuAjuda = new javax.swing.JMenu();
         mnuSobre = new javax.swing.JMenuItem();
@@ -84,12 +84,12 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         );
         dskPrincipalLayout.setVerticalGroup(
             dskPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 493, Short.MAX_VALUE)
+            .addGap(0, 499, Short.MAX_VALUE)
         );
 
         mnuArquivo.setText("Arquivo");
 
-        mnuCadastro.setText("Cadastro");
+        mnuCadastro.setText("Cadastrar");
 
         mnuCadastroCliente.setText("Cliente");
         mnuCadastroCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -106,14 +106,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             }
         });
         mnuCadastro.add(mnuUsuario);
-
-        btnVaga.setText("Vaga");
-        btnVaga.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVagaActionPerformed(evt);
-            }
-        });
-        mnuCadastro.add(btnVaga);
 
         mnuArquivo.add(mnuCadastro);
 
@@ -135,18 +127,26 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         mnuRemover.add(mnuRemoverUsuario);
 
+        mnuArquivo.add(mnuRemover);
+
+        mnuAdministrador.setText("Administrador");
+        mnuArquivo.add(mnuAdministrador);
+
+        btnVaga.setText("Ocupar Vaga");
+        btnVaga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVagaActionPerformed(evt);
+            }
+        });
+        mnuArquivo.add(btnVaga);
+
         mnuLiberarVaga.setText("Liberar Vaga");
         mnuLiberarVaga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuLiberarVagaActionPerformed(evt);
             }
         });
-        mnuRemover.add(mnuLiberarVaga);
-
-        mnuArquivo.add(mnuRemover);
-
-        mnuAdministrador.setText("Administrador");
-        mnuArquivo.add(mnuAdministrador);
+        mnuArquivo.add(mnuLiberarVaga);
 
         jMenuItem1.setText("Sair");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {

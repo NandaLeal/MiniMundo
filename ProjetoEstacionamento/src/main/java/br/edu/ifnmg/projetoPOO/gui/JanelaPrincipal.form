@@ -16,7 +16,7 @@
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="mnuCadastro">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cadastro"/>
+                <Property name="text" type="java.lang.String" value="Cadastrar"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="mnuCadastroCliente">
@@ -33,14 +33,6 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuUsuarioActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="btnVaga">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Vaga"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVagaActionPerformed"/>
                   </Events>
                 </MenuItem>
               </SubComponents>
@@ -66,20 +58,28 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuRemoverUsuarioActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="mnuLiberarVaga">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Liberar Vaga"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuLiberarVagaActionPerformed"/>
-                  </Events>
-                </MenuItem>
               </SubComponents>
             </Menu>
             <MenuItem class="javax.swing.JMenuItem" name="mnuAdministrador">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Administrador"/>
               </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="btnVaga">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ocupar Vaga"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVagaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuLiberarVaga">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Liberar Vaga"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuLiberarVagaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
@@ -152,7 +152,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="493" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="499" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

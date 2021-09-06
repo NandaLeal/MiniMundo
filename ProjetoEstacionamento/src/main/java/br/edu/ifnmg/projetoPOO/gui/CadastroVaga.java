@@ -47,6 +47,7 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
         }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Vaga");
 
         lblPlaca.setText("Placa");
 
@@ -58,7 +59,8 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Descição");
 
-        boxVaga.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" }));
+        boxVaga.setMaximumRowCount(10);
+        boxVaga.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" }));
 
         jLabel2.setText("Vaga");
 
@@ -137,11 +139,11 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
         vaga.setPlaca(fmtPlacaVaga.getValue().toString().replaceAll("[-]", ""));
         vaga.setDescricao(txtDesc.getText());
         vaga.setNumero( Long.parseLong( boxVaga.getItemAt(boxVaga.getSelectedIndex()) ) );
-        vaga.setId(vaga.getNumero());
+
         
         // Se a vaga estiver liberada, vou cadastrar
         VagaDao vagaDao = new VagaDao();
-        if(vagaDao.localizarPorId(vaga.getId()) == null){
+        if(vagaDao.localizarPorId(vaga.getNumero()) == null){
             vagaDao.salvar(vaga);
             dispose();
         }

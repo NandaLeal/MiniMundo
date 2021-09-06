@@ -41,7 +41,7 @@ public class UsuarioDao extends AbstractDao<Usuario, Long>{
 
     @Override
     public String getDeclaracaoUpdate() {
-        return "UPDATE usuario SET nome = ?, email = ?, senha = MD5(?), administrador = ? WHERE id = ?;";
+        return "UPDATE usuario SET nome = ?, email = ?, senha = MD5(?), administrador = ?, cpf = ? WHERE cpf = ?;";
     }
 
     @Override
@@ -158,38 +158,38 @@ public class UsuarioDao extends AbstractDao<Usuario, Long>{
         return null;
     }
 
-
-    @Override
-    public Boolean excluir(Usuario usuario){
-        // Recupera a identidade (chave primária) do objeto a ser excluído
-        String email = ((Usuario) usuario).getEmail();
-        
-        // Se há uma identidade válida...
-        if (email != null) {
-            // ... tenta preparar uma sentença SQL para a conexão já estabelecida
-            try (PreparedStatement pstmt
-                    = ConexaoBd.getConexao().prepareStatement(
-                            // Sentença SQL para exclusão de registros
-                            getDeclaracaoDelete())) {
-
-                // Declaração com parametro                 
-                pstmt.setString(1, ((Usuario) usuario).getEmail() );
-
-                // Executa o comando SQL
-                pstmt.executeUpdate();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        } else {
-            return false;
-        }
-
-        return true;
-    }
-
-    
+//
+//    @Override
+//    public Boolean excluir(Usuario usuario){
+//        // Recupera a identidade (chave primária) do objeto a ser excluído
+//        String email = ((Usuario) usuario).getEmail();
+//        
+//        // Se há uma identidade válida...
+//        if (email != null) {
+//            // ... tenta preparar uma sentença SQL para a conexão já estabelecida
+//            try (PreparedStatement pstmt
+//                    = ConexaoBd.getConexao().prepareStatement(
+//                            // Sentença SQL para exclusão de registros
+//                            getDeclaracaoDelete())) {
+//
+//                // Declaração com parametro                 
+//                pstmt.setString(1, ((Usuario) usuario).getEmail() );
+//
+//                // Executa o comando SQL
+//                pstmt.executeUpdate();
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//
+//        } else {
+//            return false;
+//        }
+//
+//        return true;
+//    }
+//
+//    
 
     
 }
