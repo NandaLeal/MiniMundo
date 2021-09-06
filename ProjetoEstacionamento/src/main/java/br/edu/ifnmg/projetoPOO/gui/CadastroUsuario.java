@@ -102,18 +102,15 @@ public class CadastroUsuario extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblConfirmacaoSenha)
+                    .addComponent(lblSenha, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblEmail, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblCpf1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblNome, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(lblNome)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNome))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblConfirmacaoSenha)
-                            .addComponent(lblSenha, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblEmail, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtEmail)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -126,24 +123,22 @@ public class CadastroUsuario extends javax.swing.JInternalFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(btnCadastrar))
                                     .addComponent(pswConfirmacaoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(pswSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 105, Short.MAX_VALUE)))))
-                .addGap(43, 43, 43))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(lblCpf1)
-                .addGap(18, 18, 18)
-                .addComponent(fmtCpfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(pswSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fmtCpfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 105, Short.MAX_VALUE)))
+                        .addGap(43, 43, 43))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtNome)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNome, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCpf1)
                     .addComponent(fmtCpfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -186,23 +181,17 @@ public class CadastroUsuario extends javax.swing.JInternalFrame {
         
         if(usuarioDao.localizarPorId(usuario.getCpf()) == null ){
             usuarioDao.salvar(usuario);
+            System.out.println("Usuario CADASTRADO com sucesso.");
             dispose();
         }
-        else{
-            fmtCpf.requestFocus();
+        else{            
             System.out.println("CPF informado pertence a outro usuario! Tente novamente.");
+            fmtCpf.requestFocus();
         }
         
         
         
         
-        // Limpa os campos da tela
-        txtNome.setText(null);
-        txtEmail.setText(null);
-        pswSenha.setText(null);
-        pswConfirmacaoSenha.setText(null);
-        boxAdmin.setSelected(false);
-        txtNome.requestFocus();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

@@ -248,7 +248,6 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
         cliente.setDdd(Long.parseLong(fmtDdd.getValue().toString()));
         cliente.setFone(Long.parseLong(fmtFone.getValue().toString().replaceAll("[-]", "")));
         cliente.setCpf(Long.parseLong(fmtCpf.getValue().toString().replaceAll("[-.]", "")));
-        cliente.setId(cliente.getCpf());
         
 //        fatura.setDiaVencimento(fmtDia.getDay());
 //        fatura.setDataEmissao(LocalDate.now());
@@ -263,8 +262,9 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
         
         // Salvo no BD
         ClienteDao clienteDao = new ClienteDao();
-        if(clienteDao.localizarPorId(cliente.getId()) == null ){
+        if(clienteDao.localizarPorId(cliente.getCpf()) == null ){
             clienteDao.salvar(cliente);
+            System.out.println("Cliente CADASTRADO com sucesso.");
             dispose();
         }
         else{

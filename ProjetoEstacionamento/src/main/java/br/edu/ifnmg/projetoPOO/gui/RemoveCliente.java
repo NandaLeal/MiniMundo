@@ -115,6 +115,7 @@ public class RemoveCliente extends javax.swing.JInternalFrame {
         // Se encontrar um cliente com cpf informado, remove
         if(clienteDao.localizarPorId(cliente.getId()) != null){
             clienteDao.excluir(cliente);
+            System.out.println("Cliente REMOVIDO com sucesso.");
             dispose();
         }
         // Se não encontrar ninguém, então avisa

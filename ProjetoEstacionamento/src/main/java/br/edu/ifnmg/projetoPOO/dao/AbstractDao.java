@@ -189,13 +189,7 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
  
     
     
-    /**
-     * Recupera todos os objetos mapeados para o banco de dados do tipo
-     * específico.
-     *
-     * @return Lista (geralmente um <code>ArrayList<T></code>) de objetos
-     * persistidos.
-     */
+   
     @Override
     public List<T> localizarTodos() {
 

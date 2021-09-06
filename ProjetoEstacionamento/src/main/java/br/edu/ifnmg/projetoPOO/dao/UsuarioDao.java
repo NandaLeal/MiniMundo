@@ -46,7 +46,7 @@ public class UsuarioDao extends AbstractDao<Usuario, Long>{
 
     @Override
     public String getDeclaracaoDelete() {
-        return "DELETE FROM usuario WHERE email = ?;";
+        return "DELETE FROM usuario WHERE cpf = ?;";
     }
 
     @Override
@@ -54,19 +54,23 @@ public class UsuarioDao extends AbstractDao<Usuario, Long>{
         // Tenta definir valores junto à sentença SQL preparada para execução 
         // no banco de dados.
         try {
-//            if (usuario.getId() != null || usuario.getId() == 0) {
+            // insert
+            if (usuario.getId() == null || usuario.getId() == 0) {
                 pstmt.setString(1, usuario.getNome());
                 pstmt.setString(2, usuario.getEmail());
                 pstmt.setString(3, usuario.getSenha());
                 pstmt.setBoolean(4, usuario.isAdmin());
                 pstmt.setLong(5, usuario.getCpf());
-//            } 
-//            else {
-//                pstmt.setString(1, usuario.getNome());
-//                pstmt.setString(2, usuario.getEmail());
-//                pstmt.setString(3, usuario.getSenha());
-//                pstmt.setBoolean(4, usuario.isAdmin());
-//            }
+            } 
+            // update
+            else {
+                pstmt.setString(1, usuario.getNome());
+                pstmt.setString(2, usuario.getEmail());
+                pstmt.setString(3, usuario.getSenha());
+                pstmt.setBoolean(4, usuario.isAdmin());
+                pstmt.setLong(5, usuario.getCpf());
+                pstmt.setLong(6, usuario.getId());
+            }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -74,11 +78,11 @@ public class UsuarioDao extends AbstractDao<Usuario, Long>{
 
     @Override
     public Usuario extrairObjeto(ResultSet resultSet) {
-        // Cria referência para montagem da tarefa
+        // Cria referência para montagem do usuario
         Usuario usuario = new Usuario();
 
         // Tenta recuperar dados do registro retornado pelo banco de dados
-        // e ajustar o estado da tarefa a ser mapeada
+        // e ajustar o estado do usuario a ser mapeado
         try {
             usuario.setNome(resultSet.getString("nome"));
             usuario.setEmail(resultSet.getString("email"));
@@ -88,46 +92,44 @@ public class UsuarioDao extends AbstractDao<Usuario, Long>{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        // Devolve a tarefa mapeada
+        // Devolve o usuario mapeada
         return usuario;
     }
 
     @Override
     public List<Usuario> extrairObjetos(ResultSet resultSet) {
 
-        // Cria referência para inserção das tarefas a serem mapeadas
+        // Cria referência para inserção dos usuarios a serem mapeadas
         ArrayList<Usuario> usuarios = new ArrayList<>();
 
         // Tenta...
         try {
             // ... entquanto houver registros a serem processados
             while (resultSet.next()) {
-                // Cria referência para montagem da tarefa
+                // Cria referência para montagem do usuario
                 Usuario usuario = new Usuario();
 
                 // Tenta recuperar dados do registro retornado pelo banco 
-                // de dados e ajustar o estado da tarefa a ser mapeada
+                // de dados e ajustar o estado do usuario a ser mapeado
                 usuario.setNome(resultSet.getString("nome"));
                 usuario.setEmail(resultSet.getString("email"));
                 usuario.setSenha(resultSet.getString("senha"));
                 usuario.setAdmin(resultSet.getBoolean("administrador"));
                 usuario.setCpf(resultSet.getLong("cpf"));
 
-                // Insere a tarefa na lista de tarefas recuperadas
+                // Insere o usuario na lista de usuarios recuperados
                 usuarios.add(usuario);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        // Devolve a lista de tarefas reconstituídas dos registros do banco 
+        // Devolve a lista de usuarios reconstituídas dos registros do banco 
         // de dados
         return usuarios;
     }
 
-   
-    
+       
     public Usuario autenticar(Usuario usuario) {
         try (PreparedStatement pstmt
                 = ConexaoBd.getConexao().prepareStatement(
@@ -158,56 +160,4 @@ public class UsuarioDao extends AbstractDao<Usuario, Long>{
         return null;
     }
 
-//
-//    @Override
-//    public Boolean excluir(Usuario usuario){
-//        // Recupera a identidade (chave primária) do objeto a ser excluído
-//        String email = ((Usuario) usuario).getEmail();
-//        
-//        // Se há uma identidade válida...
-//        if (email != null) {
-//            // ... tenta preparar uma sentença SQL para a conexão já estabelecida
-//            try (PreparedStatement pstmt
-//                    = ConexaoBd.getConexao().prepareStatement(
-//                            // Sentença SQL para exclusão de registros
-//                            getDeclaracaoDelete())) {
-//
-//                // Declaração com parametro                 
-//                pstmt.setString(1, ((Usuario) usuario).getEmail() );
-//
-//                // Executa o comando SQL
-//                pstmt.executeUpdate();
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//
-//        } else {
-//            return false;
-//        }
-//
-//        return true;
-//    }
-//
-//    
-
-    
 }
-
-
-
-
-/*
-
-    public void montarDeclaracaoExcluirUsuario(PreparedStatement pstmt, Usuario usuario) {
-        // Tenta definir valores junto à sentença SQL preparada para execução 
-        // no banco de dados.
-        try {
-                pstmt.setString(1, usuario.getEmail() );
-
-        } catch (SQLException ex) {
-            Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-*/

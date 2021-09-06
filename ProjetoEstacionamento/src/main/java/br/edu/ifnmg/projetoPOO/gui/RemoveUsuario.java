@@ -117,6 +117,7 @@ public class RemoveUsuario extends javax.swing.JInternalFrame {
         // Se existe alguém com esse cpf, então remove
         if(usuarioDao.localizarPorId(usuarioRemocao.getId()) != null ){
             usuarioDao.excluir(usuarioRemocao);
+            System.out.println("Usuario REMOVIDO com sucesso.");
             dispose();
         }
         else{

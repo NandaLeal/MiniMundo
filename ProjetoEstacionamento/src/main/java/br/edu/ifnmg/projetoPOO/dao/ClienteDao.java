@@ -45,7 +45,7 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
 
     @Override
     public String getDeclaracaoDelete() {
-        return "DELETE FROM cliente WHERE id = ?;";
+        return "DELETE FROM cliente WHERE cpf = ?;";
     }
     
 
@@ -87,32 +87,32 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
 
     @Override
     public Cliente extrairObjeto(ResultSet resultSet) {
-        // Cria referência para montagem do livro
+        // Cria referência para montagem do cliente
         Cliente cliente = new Cliente();
 
         // Tenta recuperar dados do registro retornado pelo banco de dados
-        // e ajustar o estado do livro a ser mapeado
+        // e ajustar o estado do cliente a ser mapeado
         try {
-//            livro.set...(resultSet.get...("???"));
-            cliente.setId(resultSet.getLong("id"));
+//            cliente.set...(resultSet.get...("???"));
             cliente.setNome(resultSet.getString("nome"));
             cliente.setEndereco(resultSet.getString("endereco"));
             cliente.setEmail(resultSet.getString("email"));
             cliente.setDdd(resultSet.getLong("ddd"));
             cliente.setFone(resultSet.getLong("fone"));
-            cliente.setCpf(resultSet.getLong("cpf"));
+            cliente.setCpf(resultSet.getLong("cpf"));            
+            cliente.setId(resultSet.getLong("cpf"));
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        // Devolve o livro mapeado
+        // Devolve o cliente mapeado
         return cliente;
     }
 
     @Override
     public List<Cliente> extrairObjetos(ResultSet resultSet) {
-        // Cria referência para inserção dos livros a serem mapeados
+        // Cria referência para inserção dos clienetes a serem mapeados
         ArrayList<Cliente> clientes = new ArrayList<>();
 
         // Tenta...
@@ -120,17 +120,17 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
             // ... enquanto houver registros a serem processados
             while (resultSet.next()) {
                 
-                // Cria referência para montagem do livro
+                // Cria referência para montagem dos clienetes
                 Cliente cliente = new Cliente();
 
-                // Cria referência para montagem do livro
-                cliente.setId(resultSet.getLong("id"));
+                // Cria referência para montagem do clienete
                 cliente.setNome(resultSet.getString("nome"));
                 cliente.setEndereco(resultSet.getString("endereco"));
                 cliente.setEmail(resultSet.getString("email"));
                 cliente.setDdd(resultSet.getLong("ddd"));
                 cliente.setFone(resultSet.getLong("fone"));
                 cliente.setCpf(resultSet.getLong("cpf"));
+                cliente.setId(resultSet.getLong("cpf"));
                 
                 clientes.add(cliente);
 
@@ -139,7 +139,7 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
             Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        // Devolve a lista de livros reconstituídos dos registros do banco 
+        // Devolve a lista de clienetes reconstituídos dos registros do banco 
         // de dados
         return clientes;
     }

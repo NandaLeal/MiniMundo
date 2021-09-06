@@ -145,6 +145,7 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
         VagaDao vagaDao = new VagaDao();
         if(vagaDao.localizarPorId(vaga.getNumero()) == null){
             vagaDao.salvar(vaga);
+            System.out.println("Vaga OCUPADA com sucesso.");
             dispose();
         }
         // Se não tiver liberar, tentou outro vaga

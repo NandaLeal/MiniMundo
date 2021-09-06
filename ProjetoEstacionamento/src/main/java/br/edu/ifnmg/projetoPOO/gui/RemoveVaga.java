@@ -116,7 +116,7 @@ public class RemoveVaga extends javax.swing.JInternalFrame {
         // Se tiver em uso, então vou liberar
         else{
             vagaDao.excluir(vaga);
-            System.out.println("Vaga liberada com sucesso.");
+            System.out.println("Vaga LIBERADA com sucesso.");
             dispose();
         }
         
