@@ -34,17 +34,17 @@ public class Principal {
         
         
         
-//        Cliente cliente = new Cliente();        
-//        cliente.setNome("Marcos");
-//        cliente.setEndereco("dd");
-//        cliente.setEmail("dd");
-//        cliente.setDdd(66L);
-//        cliente.setFone(77L);
-//        cliente.setCpf(12076587667L);
-//        cliente.setId(cliente.getCpf());
+        Cliente cliente = new Cliente();        
+        cliente.setNome("Marcos");
+        cliente.setEndereco("dd");
+        cliente.setEmail("dd");
+        cliente.setDdd(66L);
+        cliente.setFone(77L);
+        cliente.setCpf(12076587667L);
+        cliente.setId(null);
 //        
-//        ClienteDao clienteDao = new ClienteDao();        
-//        Long id = clienteDao.salvar(cliente);        
+        ClienteDao clienteDao = new ClienteDao();        
+        Long id = clienteDao.salvar(cliente);        
 //        cliente.setId(id);
         
 //

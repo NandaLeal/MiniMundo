@@ -25,7 +25,7 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
 
     @Override
     public String getDeclaracaoInsert() {
-         return "INSERT INTO cliente(id, nome, endereco, email, ddd, fone, cpf) VALUES (?, ?, ?, ?, ?, ?, ?);";
+         return "INSERT INTO cliente (nome, endereco, email, ddd, fone, cpf) VALUES (?, ?, ?, ?, ?, ?);";
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
 
     @Override
     public String getDeclaracaoUpdate() {
-         return "UPDATE cliente SET nome = ?, endereco = ?, email = ?, ddd = ?, fone = ?, cpf = ? WHERE id = ?;";
+         return "UPDATE cliente SET nome = ?, endereco = ?, email = ?, ddd = ?, fone = ?, cpf = ? WHERE cpf = ?;";
     }
 
     @Override
@@ -54,7 +54,7 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
      * atualização de registros no banco de dados.
      *
      * @param pstmt Declaração previamente preparada.
-     * @param id Chave primária a ser inserida na sentença SQL.
+     * @param cliente
      */
     @Override
     public void montarDeclaracao(PreparedStatement pstmt, Cliente cliente) {
@@ -62,25 +62,24 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
         // no banco de dados.
         try {
             // INSERT
-//            if (cliente.getId() == null || cliente.getId() == 0) {
-                pstmt.setLong(1, cliente.getId());
-                pstmt.setString(2, cliente.getNome());
-                pstmt.setString(3, cliente.getEndereco());
-                pstmt.setString(4, cliente.getEmail());
-                pstmt.setLong(5, cliente.getDdd());
-                pstmt.setLong(6, cliente.getFone());
-                pstmt.setLong(7, cliente.getCpf());
-//            } else {
-//                // UPDATE
-//                pstmt.setString(1, cliente.getNome());
-//                pstmt.setString(2, cliente.getEndereco());
-//                pstmt.setString(3, cliente.getEmail());
-//                pstmt.setLong(4, cliente.getDdd());
-//                pstmt.setLong(5, cliente.getFone());
-//                pstmt.setLong(6, cliente.getCpf());
-//                pstmt.setLong(7, cliente.getId());
+            if (cliente.getId() == null || cliente.getId() == 0) {
+                pstmt.setString(1, cliente.getNome());
+                pstmt.setString(2, cliente.getEndereco());
+                pstmt.setString(3, cliente.getEmail());
+                pstmt.setLong(4, cliente.getDdd());
+                pstmt.setLong(5, cliente.getFone());
+                pstmt.setLong(6, cliente.getCpf());
+            } else {
+//          // UPDATE
+                pstmt.setString(1, cliente.getNome());
+                pstmt.setString(2, cliente.getEndereco());
+                pstmt.setString(3, cliente.getEmail());
+                pstmt.setLong(4, cliente.getDdd());
+                pstmt.setLong(5, cliente.getFone());
+                pstmt.setLong(6, cliente.getCpf());
+                pstmt.setLong(7, cliente.getId());
 //                
-//            }
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
         }

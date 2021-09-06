@@ -44,7 +44,7 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
         Long id = 0L;
 
         // Novo registro
-        if (((Entidade) o).getId() != null || ((Entidade) o).getId() != 0) {
+        if (((Entidade) o).getId() == null || ((Entidade) o).getId() == 0) {
 
             // try-with-resources libera recurso ao final do bloco (PreparedStatement)
             try (PreparedStatement pstmt
@@ -75,33 +75,31 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-        } 
-          else {
-            System.out.println("Id nulo ou 0.");
-        }
+            System.out.println("Dado INSERIDO com sucesso no BD.");
+        } else {
 //            // Atualizar registro
-//
-//            try (PreparedStatement pstmt
-//                    = ConexaoBd.getConexao().prepareStatement(
-//                            // Sentença SQL para atualização de registros
-//                            getDeclaracaoUpdate())) {
-//
-//                // Prepara a declaração com os dados do objeto passado
-//                montarDeclaracao(pstmt, o);
-//
-//                // Executa o comando SQL
-//                pstmt.executeUpdate();
-//
-//                // Retorno da mesma id recebida com o objeto para manter
-//                // compatibilidade com o procedimento do método
-//                // TODO Retorno imediato (return ...)?
-//                id = ((Entidade) o).getId();
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
+
+            try (PreparedStatement pstmt
+                    = ConexaoBd.getConexao().prepareStatement(
+                            // Sentença SQL para atualização de registros
+                            getDeclaracaoUpdate())) {
+
+                // Prepara a declaração com os dados do objeto passado
+                montarDeclaracao(pstmt, o);
+
+                // Executa o comando SQL
+                pstmt.executeUpdate();
+
+                // Retorno da mesma id recebida com o objeto para manter
+                // compatibilidade com o procedimento do método
+                // TODO Retorno imediato (return ...)?
+                id = ((Entidade) o).getId();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            System.out.println("Dado ATUALIZADO com sucesso no BD.");
+        }
 
         // Cast requerido para adaptação do tipo pois, mesmo que a id seja sempre
         // longa, esse trecho de código não reconhece tal tipo implicitamente
@@ -116,8 +114,7 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
      * @return Condição de sucesso ou falha na exclusão.
      */
     @Override
-    public Boolean excluir(T o) {      
-        
+    public Boolean excluir(T o) {             
         
         // Recupera a identidade (chave primária) do objeto a ser excluído        
         Long id = ((Entidade) o).getId();
@@ -139,10 +136,10 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-        } 
-        
+            System.out.println("Dado EXCLUIDO com sucesso no BD.");
+        }        
         else {
+            System.out.println("FALHA ao tentar excluir. ID nulo.");
             return false;
         }
 
