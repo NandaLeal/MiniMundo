@@ -1,4 +1,3 @@
-
 package br.edu.ifnmg.projetoPOO;
 
 import br.edu.ifnmg.projetoPOO.dao.Entidade;
@@ -8,34 +7,27 @@ import br.edu.ifnmg.projetoPOO.dao.Entidade;
  * @author Filipi
  * @version 1.1
  */
+public class Usuario extends Entidade {
 
-public class Usuario extends Entidade{
-    
     private String nome;
     private String senha;
     private String email;
     private boolean admin;
     private Long cpf;
 
-   
-
-    /**
-     * 
-     */
     public Usuario() {
-        
+
     }
 
     /**
-     * 
      * @param id Usado par aidentificação única no BD
      * @param nome Nome do usuário
      * @param email Email do usuário
-     * @param senha Senha  do usuário
+     * @param senha Senha do usuário
      * @param administrador Identificação se o usuário de é administrador ou não
-     * @param cpf
+     * @param cpf Identificação única do usuário
      */
-     public Usuario(Long id, String nome, String email, String senha, Boolean administrador, Long cpf) {
+    public Usuario(Long id, String nome, String email, String senha, Boolean administrador, Long cpf) {
         super(id);
         this.nome = nome;
         this.email = email;
@@ -51,9 +43,7 @@ public class Usuario extends Entidade{
     public void setCpf(Long cpf) {
         this.cpf = cpf;
     }
-     
-     
-    
+
     public String getNome() {
         return nome;
     }
@@ -85,5 +75,5 @@ public class Usuario extends Entidade{
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
-    
+
 }

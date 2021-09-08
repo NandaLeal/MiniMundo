@@ -19,7 +19,7 @@ public class RemoveUsuario extends javax.swing.JInternalFrame {
      */
     public RemoveUsuario() {
         initComponents();
-        
+
         fmtCpfRemoveUsuario.requestFocus();
     }
 
@@ -109,23 +109,21 @@ public class RemoveUsuario extends javax.swing.JInternalFrame {
 
     private void btnRemoverUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverUsuarioActionPerformed
         Usuario usuarioRemocao = new Usuario();
+        UsuarioDao usuarioDao = new UsuarioDao();
+
         usuarioRemocao.setCpf(Long.parseLong(fmtCpfRemoveUsuario.getValue().toString().replaceAll("[-.]", "")));
         usuarioRemocao.setId(usuarioRemocao.getCpf());
-        
-        UsuarioDao usuarioDao = new UsuarioDao();
-        
+
         // Se existe alguém com esse cpf, então remove
-        if(usuarioDao.localizarPorId(usuarioRemocao.getId()) != null ){
+        if (usuarioDao.localizarPorId(usuarioRemocao.getId()) != null) {
             usuarioDao.excluir(usuarioRemocao);
             System.out.println("Usuario REMOVIDO com sucesso.");
             dispose();
-        }
-        else{
+        } else {
             fmtCpfRemoveUsuario.requestFocus();
             System.out.println("Nenhum usuário encontrado com o CPF informado! Tente novamente.");
         }
-        
-        
+
     }//GEN-LAST:event_btnRemoverUsuarioActionPerformed
 
     /**

@@ -5,14 +5,10 @@
  */
 package br.edu.ifnmg.projetoPOO.dao;
 
-import br.edu.ifnmg.projetoPOO.Cliente;
-import br.edu.ifnmg.projetoPOO.dao.Entidade;
-
 import br.edu.ifnmg.projetoPOO.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,10 +16,11 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Filip
+ * @author Filipi Classe dao com as sentenças sql que serão usadas pra interagir
+ * com o banco.
  */
-public class UsuarioDao extends AbstractDao<Usuario, Long>{
-    
+public class UsuarioDao extends AbstractDao<Usuario, Long> {
+
     @Override
     public String getDeclaracaoInsert() {
         return "INSERT INTO usuario (nome, email, senha, administrador, cpf) VALUES (?, ?, MD5(?), ?, ?);";
@@ -36,7 +33,7 @@ public class UsuarioDao extends AbstractDao<Usuario, Long>{
 
     @Override
     public String getDeclaracaoSelectTodos() {
-         return "SELECT * FROM usuario";
+        return "SELECT * FROM usuario";
     }
 
     @Override
@@ -61,8 +58,7 @@ public class UsuarioDao extends AbstractDao<Usuario, Long>{
                 pstmt.setString(3, usuario.getSenha());
                 pstmt.setBoolean(4, usuario.isAdmin());
                 pstmt.setLong(5, usuario.getCpf());
-            } 
-            // update
+            } // update
             else {
                 pstmt.setString(1, usuario.getNome());
                 pstmt.setString(2, usuario.getEmail());
@@ -129,7 +125,6 @@ public class UsuarioDao extends AbstractDao<Usuario, Long>{
         return usuarios;
     }
 
-       
     public Usuario autenticar(Usuario usuario) {
         try (PreparedStatement pstmt
                 = ConexaoBd.getConexao().prepareStatement(

@@ -14,9 +14,6 @@ import br.edu.ifnmg.projetoPOO.dao.VeiculoDao;
  */
 public class CadastroVeiculo extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form CadastroVeiculo
-     */
     public CadastroVeiculo() {
         initComponents();
     }
@@ -139,28 +136,26 @@ public class CadastroVeiculo extends javax.swing.JInternalFrame {
 
     private void btnCadastrarVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarVeiculoActionPerformed
         Veiculo veiculo = new Veiculo();
+        VeiculoDao veiculoDao = new VeiculoDao();
+
         veiculo.setCor(boxCor.getItemAt(boxCor.getSelectedIndex()));
         veiculo.setModelo(txtModelo.getText());
         veiculo.setPlaca(fmtPlaca.getText());
         veiculo.setTipo(boxTipoVeiculo.getItemAt(boxTipoVeiculo.getSelectedIndex()));
-        veiculo.setIdPlaca( Long.parseLong( veiculo.CriptografarPlaca( veiculo.getPlaca() ) ) );
-        
-                
-        VeiculoDao veiculoDao = new VeiculoDao();
-        
-        if( veiculoDao.localizarPorId(veiculo.getIdPlaca()) == null ){            
+        veiculo.setIdPlaca(Long.parseLong(veiculo.CriptografarPlaca(veiculo.getPlaca())));
+
+        if (veiculoDao.localizarPorId(veiculo.getIdPlaca()) == null) {
             veiculoDao.salvar(veiculo);
             System.out.println("Veiculo CADASTRADO com sucesso.");
             dispose();
-        }
-        else{
+        } else {
             fmtPlaca.requestFocus();
-            System.out.println("PLACA informada pertence a outro carro! Tente novamente.");
+            System.out.println("PLACA informada pertence a outro veículo! Tente novamente.");
         }
-        
-        
+
+
     }//GEN-LAST:event_btnCadastrarVeiculoActionPerformed
-   
+
     private void btnCancelarVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarVeiculoActionPerformed
         dispose();
     }//GEN-LAST:event_btnCancelarVeiculoActionPerformed

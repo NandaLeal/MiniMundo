@@ -7,16 +7,12 @@ package br.edu.ifnmg.projetoPOO.dao;
 
 import java.util.List;
 
-/**
- *
- * @author Filip
- */
+
 public interface IDao<T, K> {
     
     public K salvar(T o);
     public T localizarPorId (K id);
     public List<T> localizarTodos();
-    public Boolean excluir(T o);
-    
+    public Boolean excluir(T o);    
     
 }

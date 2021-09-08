@@ -14,9 +14,7 @@ import br.edu.ifnmg.projetoPOO.dao.VagaDao;
  */
 public class CadastroVaga extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form CadastroVaga
-     */
+
     public CadastroVaga() {
         initComponents();
     }
@@ -57,7 +55,7 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
-        jLabel1.setText("Descição");
+        jLabel1.setText("Descição do Veículo");
 
         boxVaga.setMaximumRowCount(10);
         boxVaga.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" }));
@@ -99,13 +97,13 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(boxVaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 147, Short.MAX_VALUE))
+                        .addGap(0, 19, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnCancelarVaga)
                         .addGap(18, 18, 18)
                         .addComponent(btnCadastrarVaga)))
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +118,7 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
                     .addComponent(fmtPlacaVaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boxVaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelarVaga)
                     .addComponent(btnCadastrarVaga))
@@ -138,25 +136,21 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
         Vaga vaga = new Vaga();
         vaga.setPlaca(fmtPlacaVaga.getValue().toString().replaceAll("[-]", ""));
         vaga.setDescricao(txtDesc.getText());
-        vaga.setNumero( Long.parseLong( boxVaga.getItemAt(boxVaga.getSelectedIndex()) ) );
+        vaga.setNumero(Long.parseLong(boxVaga.getItemAt(boxVaga.getSelectedIndex())));
 
-        
         // Se a vaga estiver liberada, vou cadastrar
         VagaDao vagaDao = new VagaDao();
-        if(vagaDao.localizarPorId(vaga.getNumero()) == null){
+        if (vagaDao.localizarPorId(vaga.getNumero()) == null) {
             vagaDao.salvar(vaga);
-            System.out.println("Vaga OCUPADA com sucesso.");
+            System.out.println("Vaga RESERVADA com sucesso.");
             dispose();
-        }
-        // Se não tiver liberar, tentou outro vaga
+        } // Se não tiver liberar, tento outro vaga
         else {
             System.out.println("Vaga em uso! tente outra.");
-        // Limpa os campos da tela
-//        fmtPlacaVaga.setText(null);
-//        txtDesc.setText(null);
+            // Limpa os campos da tela
             boxVaga.requestFocus();
         }
-        
+
     }//GEN-LAST:event_btnCadastrarVagaActionPerformed
 
     /**

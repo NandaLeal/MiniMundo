@@ -1,23 +1,18 @@
-
 package br.edu.ifnmg.projetoPOO;
 
 import br.edu.ifnmg.projetoPOO.dao.Entidade;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  *
  * @author Filipi
  * @version 1.2
  */
-public class Ticket extends Entidade{
-    
+public class Ticket extends Entidade {
 
     private LocalDate entrada;
     private String placa;
     private String descricaoVeiculo;
-
-  
 
     public String getPlaca() {
         return placa;
@@ -34,7 +29,7 @@ public class Ticket extends Entidade{
     public void setEntrada(LocalDate entrada) {
         this.entrada = entrada;
     }
-    
+
     public String getDescricaoVeiculo() {
         return descricaoVeiculo;
     }
@@ -42,6 +37,5 @@ public class Ticket extends Entidade{
     public void setDescricaoVeiculo(String observacao) {
         this.descricaoVeiculo = observacao;
     }
-    
-    
+
 }

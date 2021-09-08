@@ -5,10 +5,8 @@
  */
 package br.edu.ifnmg.projetoPOO.dao;
 
-import br.edu.ifnmg.projetoPOO.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +16,7 @@ import java.util.logging.Logger;
  * @author Filip
  */
 public class ConexaoBd {
+
     /**
      * URL de conexão com o banco de dados
      * (protocolo/sgbd/ip/porta/banco/parâmetros).
@@ -81,10 +80,6 @@ public class ConexaoBd {
     }
     //</editor-fold>
 
-    
-    
-   
-    
     /**
      * Estabele e gera a retenção da conexão com o banco de dados.
      *

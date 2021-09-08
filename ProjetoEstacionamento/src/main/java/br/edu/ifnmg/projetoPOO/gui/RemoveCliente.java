@@ -105,28 +105,32 @@ public class RemoveCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-        
-        // O ID do cliente é o cpf
+
         Cliente cliente = new Cliente();
+        Cliente clienteResultado = new Cliente();
+        ClienteDao clienteDao = new ClienteDao();
+        VeiculoDao veiculoDao = new VeiculoDao();
+
+        // O ID do cliente é o cpf
         cliente.setCpf(Long.parseLong(fmtCpf.getValue().toString().replaceAll("[-.]", "")));
         cliente.setId(cliente.getCpf());
-        
-        ClienteDao clienteDao = new ClienteDao();
-        
-        // Se encontrar um cliente com cpf informado, remove
-        if(clienteDao.localizarPorId(cliente.getId()) != null){
+
+        // Busco no BD o cliente que quero remover
+        clienteResultado = clienteDao.localizarPorId(cliente.getId());
+
+        // Se encontrar um cliente com cpf informado, remove ele e seu veículo 
+        if (clienteResultado.getId() != null) {
+
             // exclui o cliente
             clienteDao.excluir(cliente);
-            
-            // exclui o carro dele também NAO ESTA PEGANDO O ID
-//            VeiculoDao veiculoDao = new VeiculoDao();
-//            veiculoDao.excluir(cliente.getVeiculo());
-            
+
+            // exclui o veículo do cliente
+            veiculoDao.excluir(clienteResultado.getVeiculo());
+
             System.out.println("Cliente REMOVIDO com sucesso.");
             dispose();
-        }
-        // Se não encontrar ninguém, então avisa
-        else{
+
+        } else {
             fmtCpf.requestFocus();
             System.out.println("Nenhum cliente encontrado com o CPF informado! Tente novamente.");
         }

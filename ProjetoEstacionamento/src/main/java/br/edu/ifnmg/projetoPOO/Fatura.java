@@ -1,21 +1,15 @@
-
 package br.edu.ifnmg.projetoPOO;
 
 import br.edu.ifnmg.projetoPOO.dao.Entidade;
-import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.time.LocalDate;
-import java.util.Locale;
 
 /**
  *
  * @author Filipi
  * @version 1.2
  */
-public class Fatura extends Entidade{
-    
+public class Fatura extends Entidade {
+
     private LocalDate dataEmissao;
     private int dataVencimento;
     private String valor;
@@ -28,7 +22,7 @@ public class Fatura extends Entidade{
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
+
     public LocalDate getDataEmissao() {
         return dataEmissao;
     }
@@ -52,6 +46,5 @@ public class Fatura extends Entidade{
     public void setValor(String valor) {
         this.valor = valor;
     }
-
 
 }

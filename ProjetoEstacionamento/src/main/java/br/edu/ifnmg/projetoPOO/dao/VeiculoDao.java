@@ -5,7 +5,6 @@
  */
 package br.edu.ifnmg.projetoPOO.dao;
 
-import br.edu.ifnmg.projetoPOO.Cliente;
 import br.edu.ifnmg.projetoPOO.Veiculo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author Filip
  */
-public class VeiculoDao extends AbstractDao<Veiculo, Long>{
+public class VeiculoDao extends AbstractDao<Veiculo, Long> {
 
     @Override
     public String getDeclaracaoInsert() {
@@ -33,22 +32,17 @@ public class VeiculoDao extends AbstractDao<Veiculo, Long>{
 
     @Override
     public String getDeclaracaoSelectTodos() {
-        // Sentença seleciona somente as placas e não todos os veículos
         return "SELECT * FROM veiculo;";
     }
-    
-//    public String getDeclaracaoSelectPorPlaca() {
-//        return ""
-//    }
 
     @Override
     public String getDeclaracaoUpdate() {
-        return "UPDATE veiculo SET modelo = ?, cor = ?, placa = ?, tipo = ?, cripto_placa = ? WHERE cripto_placa = ?;";
+        return "UPDATE veiculo SET numero = ?, placa = ?, descricao = ? WHERE numero = ?;";
     }
 
     @Override
     public String getDeclaracaoDelete() {
-        return "DELETE FROM veiculo WHERE placa = ?;";
+        return "DELETE FROM veiculo WHERE id_placa = ?;";
     }
 
     @Override
@@ -64,14 +58,13 @@ public class VeiculoDao extends AbstractDao<Veiculo, Long>{
                 pstmt.setString(4, veiculo.getTipo());
                 pstmt.setLong(5, veiculo.getIdPlaca());
             } else {
-//          // UPDATE
+                // UPDATE
                 pstmt.setString(1, veiculo.getModelo());
                 pstmt.setString(2, veiculo.getCor());
                 pstmt.setString(3, veiculo.getPlaca());
                 pstmt.setString(4, veiculo.getTipo());
                 pstmt.setLong(5, veiculo.getIdPlaca());
                 pstmt.setLong(6, veiculo.getId());
-//                
             }
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,11 +73,11 @@ public class VeiculoDao extends AbstractDao<Veiculo, Long>{
 
     @Override
     public Veiculo extrairObjeto(ResultSet resultSet) {
-        // Cria referência para montagem do cliente
+        // Cria referência para montagem do veiculo
         Veiculo veiculo = new Veiculo();
 
         // Tenta recuperar dados do registro retornado pelo banco de dados
-        // e ajustar o estado do cliente a ser mapeado
+        // e ajustar o estado do veiculo a ser mapeado
         try {
             veiculo.setModelo(resultSet.getString("modelo"));
             veiculo.setCor(resultSet.getString("cor"));
@@ -97,31 +90,31 @@ public class VeiculoDao extends AbstractDao<Veiculo, Long>{
             e.printStackTrace();
         }
 
-        // Devolve o cliente mapeado
+        // Devolve o veiculo mapeado
         return veiculo;
     }
 
     @Override
     public List<Veiculo> extrairObjetos(ResultSet resultSet) {
-        // Cria referência para inserção dos clienetes a serem mapeados
+        // Cria referência para inserção dos Veiculos a serem mapeados
         ArrayList<Veiculo> veiculos = new ArrayList<>();
 
         // Tenta...
         try {
             // ... enquanto houver registros a serem processados
             while (resultSet.next()) {
-                
-                // Cria referência para montagem dos clienetes
+
+                // Cria referência para montagem dos Veiculos
                 Veiculo veiculo = new Veiculo();
 
-//                 Cria referência para montagem do clienete
+                // Cria referência para montagem do Veiculos
                 veiculo.setModelo(resultSet.getString("modelo"));
                 veiculo.setCor(resultSet.getString("cor"));
                 veiculo.setPlaca(resultSet.getString("placa"));
                 veiculo.setTipo(resultSet.getString("tipo"));
                 veiculo.setIdPlaca(resultSet.getLong("id_placa"));
                 veiculo.setId(resultSet.getLong("id_placa"));
-                
+
                 veiculos.add(veiculo);
 
             }
@@ -129,10 +122,9 @@ public class VeiculoDao extends AbstractDao<Veiculo, Long>{
             Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        // Devolve a lista de clienetes reconstituídos dos registros do banco 
+        // Devolve a lista de Veiculos reconstituídos dos registros do banco 
         // de dados
         return veiculos;
     }
-    
-    
+
 }

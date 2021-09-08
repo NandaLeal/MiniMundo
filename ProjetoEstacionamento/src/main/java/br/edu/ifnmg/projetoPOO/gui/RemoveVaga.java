@@ -104,25 +104,21 @@ public class RemoveVaga extends javax.swing.JInternalFrame {
 
     private void btnLiberarVagaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarVagaActionPerformed
         Vaga vaga = new Vaga();
-        vaga.setNumero( Long.parseLong( boxVaga.getItemAt( boxVaga.getSelectedIndex() ) ) );
+        vaga.setNumero(Long.parseLong(boxVaga.getItemAt(boxVaga.getSelectedIndex())));
         vaga.setId(vaga.getNumero());
 
         // Se a vaga já estiver sido liberada, mostra o aviso
         VagaDao vagaDao = new VagaDao();
-        if(vagaDao.localizarPorId(vaga.getId()) == null){
-            System.out.println("A vaga "+vaga.getNumero()+" já está liberada!");
+        if (vagaDao.localizarPorId(vaga.getId()) == null) {
+            System.out.println("A vaga " + vaga.getNumero() + " já está liberada!");
             boxVaga.requestFocus();
-        }
-        // Se tiver em uso, então vou liberar
-        else{
+        } // Se tiver em uso, então vou liberar
+        else {
             vagaDao.excluir(vaga);
             System.out.println("Vaga LIBERADA com sucesso.");
             dispose();
         }
-        
-        
-        
-        
+
     }//GEN-LAST:event_btnLiberarVagaActionPerformed
 
     /**

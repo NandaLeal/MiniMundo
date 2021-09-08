@@ -11,10 +11,8 @@ import br.edu.ifnmg.projetoPOO.Veiculo;
 import br.edu.ifnmg.projetoPOO.dao.ClienteDao;
 import br.edu.ifnmg.projetoPOO.dao.VeiculoDao;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 
 /**
  *
@@ -24,42 +22,38 @@ import javax.swing.DefaultListModel;
 public class CadastroCliente extends javax.swing.JInternalFrame {
 
     private static CadastroCliente self;
-    
     private List<Veiculo> todosVeiculos;
     private Cliente cliente;
 
     public CadastroCliente() {
         initComponents();
-        
-        // Listar todos os veiculos
-        todosVeiculos = new VeiculoDao().localizarTodos();            
-        
-        DefaultComboBoxModel<Veiculo> comboBoxModel = new DefaultComboBoxModel<>();        
 
+        // Obtém todos os veículos do BD e guarda numa lista
+        todosVeiculos = new VeiculoDao().localizarTodos();
+
+        // Apresenta a lista de veículos na caixa de seleção da interface
+        DefaultComboBoxModel<Veiculo> comboBoxModel = new DefaultComboBoxModel<>();
         comboBoxModel.addAll(todosVeiculos);
-        
         cdoVeiculo.setModel(comboBoxModel);
-       
-        
     }
-    
+
     private CadastroCliente(Cliente cliente) {
         this();
-
         this.cliente = cliente;
 
         cdoVeiculo.getModel().setSelectedItem(
                 cliente.getVeiculo());
     }
-    
+
     public static CadastroCliente getInstance() {
+
         // Caso a janela ainda não tenha sido instanciada
         if (self == null) {
             self = new CadastroCliente();
         }
         return self;
     }
-   
+
     public static CadastroCliente getInstance(Cliente cliente) {
         // Caso a janela ainda não tenha sido instanciada
         if (self == null) {
@@ -68,9 +62,6 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
 
         return self;
     }
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -282,7 +273,8 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         Cliente cliente = new Cliente();
         Fatura fatura = new Fatura();
-        
+        ClienteDao clienteDao = new ClienteDao();
+
         // Preencho os atributos dos objetos
         cliente.setNome(txtNome.getText());
         cliente.setEndereco(txtEndereco.getText());
@@ -290,76 +282,24 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
         cliente.setDdd(Long.parseLong(fmtDdd.getValue().toString()));
         cliente.setFone(Long.parseLong(fmtFone.getValue().toString().replaceAll("[-]", "")));
         cliente.setCpf(Long.parseLong(fmtCpf.getValue().toString().replaceAll("[-.]", "")));
-        cliente.setVeiculo( (Veiculo) cdoVeiculo.getSelectedItem());
-        
-        
-//        fatura.setDiaVencimento(fmtDia.getDay());
-//        fatura.setDataEmissao(LocalDate.now());
-//        fatura.setValor(CalculaValorFatura(cliente));
-        
-        // Estabeleço as ligações
-//        cliente.setFatura(fatura);
-//        fatura.setCliente(cliente);
-        /** cliente.setVeiculo(veiculo);  como cadastrar os veículos do cliente 
-        *   estando eles em outra tela?
-        */
-        
-        // Salvo no BD
-        ClienteDao clienteDao = new ClienteDao();
-        if(clienteDao.localizarPorId(cliente.getCpf()) == null ){
+
+        // Obtenho o objeto veículo e faço set do id
+        cliente.setVeiculo((Veiculo) cdoVeiculo.getSelectedItem());
+        cliente.getVeiculo().setId(cliente.getVeiculo().getIdPlaca());
+
+        // Salvo no BD o cliente e seu veículo
+        if (clienteDao.localizarPorId(cliente.getCpf()) == null) {
             clienteDao.salvar(cliente);
             System.out.println("Cliente CADASTRADO com sucesso.");
             dispose();
-        }
-        else{
+        } else {
             fmtCpf.requestFocus();
             System.out.println("CPF informado pertence a outro cliente! Tente novamente.");
         }
-        
-//        clienteDao.localizarPorId(cliente.getCpf());
-//        clienteDao.localizarTodos();
-//        clienteDao.excluir(cliente);
-        
-//        FaturaDao faturaDao = new FaturaDao();
-//        faturaDao.salvar(fatura);              
-//        faturaDao.localizarPorId(fatura.getCliente().getCpf());
-//        faturaDao.localizarTodos();
-//        faturaDao.excluir(fatura);
-        
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
 
-    // Método para calcular o valor total da fatura em função da quantidade de veículos.
-    private String CalculaValorFatura(Cliente c){        
-        /*  Preciso acessar todos os veículos que um cliente possui
-         *  para poder calcular o valor da sua fatura
-         */
-        BigDecimal valorFatura = new BigDecimal("100.00");
-        BigDecimal valorCarro = new BigDecimal("20.59");
-        BigDecimal valorMoto = new BigDecimal("10.00");
-        
-                
-        /*  Aqui provavelmente será um loop que percorre todos os objetos do tipo
-         *  Veículo, de modo que vou saber o tipo de cada veículo para calcular
-         *  corretamente o valor total da fatura
-         */
-        
-//        if(c.getVeiculo().getTipo() == "Carro"){
-//            valorFatura = valorFatura.add(valorCarro);
-//        }
-//        else{
-//            valorFatura = valorFatura.add(valorMoto);            
-//        }
-     
-     /*  Talvez seja interessante o método retornar o resultado como string
-      *  pois a documentação recomenda usar String no BigDecimal para passar
-      *  os valores, logo, ficaria mais fácil de trabalhar com retornos
-      */
-        valorFatura = valorFatura.add(valorCarro);
-        
-        return valorFatura.toString();
-    }
-    
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed

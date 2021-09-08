@@ -8,13 +8,6 @@ package br.edu.ifnmg.projetoPOO.gui;
 import br.edu.ifnmg.projetoPOO.Usuario;
 import br.edu.ifnmg.projetoPOO.dao.UsuarioDao;
 
-
-/**
- *CadastroUsuario cadastroUsuario = new CadastroUsuario();
-        cadastroUsuario.setVisible(true);
-        dskPrincipal.add(cadastroUsuario);
- * @author Filip
- */
 public class Login extends javax.swing.JFrame {
 
     /**
@@ -105,13 +98,13 @@ public class Login extends javax.swing.JFrame {
 
     private void btnAutenticarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutenticarActionPerformed
         System.out.println("Autenticar");
-        
+
         Usuario usuario = new Usuario();
         usuario.setEmail(txtUsuario.getText());
         usuario.setSenha(String.valueOf(pwdSenha.getPassword()));
 
         Usuario usuarioAutenticado = new UsuarioDao().autenticar(usuario);
-        
+
         if (usuarioAutenticado != null) {
             System.out.println(">> Autenticado: " + usuarioAutenticado);
             new JanelaPrincipal(usuarioAutenticado).setVisible(true);
@@ -123,8 +116,7 @@ public class Login extends javax.swing.JFrame {
         pwdSenha.setText(null);
         txtUsuario.requestFocus();
         txtUsuario.selectAll();
-        
-        
+
     }//GEN-LAST:event_btnAutenticarActionPerformed
 
     private void pwdSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdSenhaActionPerformed

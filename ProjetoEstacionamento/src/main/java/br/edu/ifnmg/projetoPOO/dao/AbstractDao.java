@@ -4,16 +4,7 @@
  * and open the template in the editor.
  */
 package br.edu.ifnmg.projetoPOO.dao;
-/* 
- * Material didático destinado ao curso
- * de Programação Orientada a Objetos do 
- * Bacharelado em Ciência da Computação 
- * do IFNMG - Câmpus Montes Claros
- */
 
-
-import br.edu.ifnmg.projetoPOO.Cliente;
-import br.edu.ifnmg.projetoPOO.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +16,6 @@ import java.util.logging.Logger;
 
 /**
  * Classe abstrata para generalização de operações com banco de dados.
-
  */
 public abstract class AbstractDao<T, K> implements IDao<T, K> {
 
@@ -75,10 +65,8 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            System.out.println("Dado INSERIDO com sucesso no BD.");
         } else {
-//            // Atualizar registro
-
+            // Atualizar registro
             try (PreparedStatement pstmt
                     = ConexaoBd.getConexao().prepareStatement(
                             // Sentença SQL para atualização de registros
@@ -98,7 +86,6 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            System.out.println("Dado ATUALIZADO com sucesso no BD.");
         }
 
         // Cast requerido para adaptação do tipo pois, mesmo que a id seja sempre
@@ -114,11 +101,11 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
      * @return Condição de sucesso ou falha na exclusão.
      */
     @Override
-    public Boolean excluir(T o) {             
-        
+    public Boolean excluir(T o) {
+
         // Recupera a identidade (chave primária) do objeto a ser excluído        
         Long id = ((Entidade) o).getId();
-        
+
         // Se há uma identidade válida...
         if (id != null) {
             // ... tenta preparar uma sentença SQL para a conexão já estabelecida
@@ -136,18 +123,13 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            System.out.println("Dado EXCLUIDO com sucesso no BD.");
-        }        
-        else {
-            System.out.println("FALHA ao tentar excluir. ID nulo.");
+        } else {
             return false;
         }
 
         return true;
     }
 
-    
-    
     /**
      * Recupera um dado objeto mapeado para o banco de dados por meio de sua
      * chave de identidade.
@@ -186,10 +168,6 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
         return objeto;
     }
 
- 
-    
-    
-   
     @Override
     public List<T> localizarTodos() {
 
@@ -216,7 +194,7 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
         // ou a relação de objeto(s) recuperado(s)
         return objetos;
     }
-    
+
     /**
      * Recupera a sentença SQL específica para a inserção da entidade no banco
      * de dados.
@@ -232,10 +210,6 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
      * @return Sentença SQl para busca por entidade.
      */
     public abstract String getDeclaracaoSelectPorId();
-    
-    
-    
-    
 
     /**
      * Recupera a sentença SQL específica para a busca das entidades no banco de
@@ -270,14 +244,14 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
     public void ajustarIdDeclaracao(PreparedStatement pstmt, K id) {
         try {
             // Caso id seja um Long, emprega setLong()
-            if(id instanceof Long) {
+            if (id instanceof Long) {
                 // Cast é requerido porque K não é um tipo previamente definido
                 pstmt.setLong(1, (Long) id);
             } else {
                 // Caso id seja um Integer, emprega setLong()
                 pstmt.setInt(1, (Integer) id);
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(AbstractDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -291,8 +265,6 @@ public abstract class AbstractDao<T, K> implements IDao<T, K> {
      * @param id Chave primária a ser inserida na sentença SQL.
      */
     public abstract void montarDeclaracao(PreparedStatement pstmt, T o);
-    
-    
 
     /**
      * Cria objeto a partir do registro fornecido pelo banco de dados.

@@ -1,4 +1,3 @@
-
 package br.edu.ifnmg.projetoPOO;
 
 import br.edu.ifnmg.projetoPOO.dao.Entidade;
@@ -8,35 +7,33 @@ import br.edu.ifnmg.projetoPOO.dao.Entidade;
  * @author Filipi
  * @version 1.1
  */
-public class Veiculo extends Entidade{
-    
+public class Veiculo extends Entidade {
+
     private String modelo;
     private String cor;
     private String placa;
     private String tipo;
     private Long idPlaca;
-    
-    /**
-     * Cria um novo veículo
-     */
-    public Veiculo(){
-        
+
+    public Veiculo() {
+
     }
-    
+
     /**
      * @param id
      * @param modelo Representa o modelo do veículo (hatch, sedan, sport)
      * @param cor Representa a cor do veículo
      * @param placa Representa a placa do veículo (XXX-X0XXX)
      * @param tipo Representa o tipo do veículo (Carro ou moto)
-     * @param idPlaca
-     */    
-    public Veiculo(Long id, String modelo, String cor, String placa, String tipo, Long idPlaca){
+     * @param idPlaca Identificador único do veículo em formato numério.
+     *
+     */
+    public Veiculo(Long id, String modelo, String cor, String placa, String tipo, Long idPlaca) {
         super(id);
         this.modelo = modelo;
         this.cor = cor;
         this.placa = placa;
-        this.tipo = tipo;  
+        this.tipo = tipo;
         this.idPlaca = idPlaca;
     }
 
@@ -47,8 +44,6 @@ public class Veiculo extends Entidade{
     public void setIdPlaca(Long idPlaca) {
         this.idPlaca = idPlaca;
     }
-    
-    
 
     public String getTipo() {
         return tipo;
@@ -82,25 +77,39 @@ public class Veiculo extends Entidade{
         this.placa = placa;
     }
 
-   @Override
+    /**
+     * 
+     * @return retorna o valor que será apresentado na interface combobox, com
+     * as possíveis placas de veículos previamente cadastrados.
+     */
+    @Override
     public String toString() {
         return placa;
     }
-    
-    public String CriptografarPlaca(String placaVeiculo){
-        
+
+    /**
+     * O método irá conversar cada caractere da placa em um valor numérico
+     * referente ao seu código na tabela ascii, de modo que posso usar como
+     * identificador único em formato numérico para um veículo.
+     *
+     * @param placaVeiculo É a string com a placa do veículo
+     * @return Retorna um Long com a conversão de cada caractere da placa em seu
+     * respectivo valor número referente à tabela ascii.
+     */
+    public String CriptografarPlaca(String placaVeiculo) {
+
         String placaCriptografada = new String();
         char c;
         int ascii;
         Long longPlaca;
-        
+
         for (int i = 0; i < placaVeiculo.length(); i++) {
             c = placaVeiculo.charAt(i);
             ascii = (int) c;
             placaCriptografada += ascii;
         }
-        
+
         return placaCriptografada;
     }
-    
+
 }

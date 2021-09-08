@@ -1,21 +1,14 @@
 package br.edu.ifnmg.projetoPOO;
 
 import br.edu.ifnmg.projetoPOO.dao.Entidade;
-import com.toedter.calendar.JCalendar;
-import java.text.DateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  *
  * @author Filipi
  * @version 1.2
  */
+public class Cliente extends Entidade {
 
-public class Cliente extends Entidade{
-    
     private String nome;
     private String endereco;
     private String email;
@@ -23,11 +16,11 @@ public class Cliente extends Entidade{
     private Long fone;
     private Long cpf;
     private Veiculo veiculo;
-    
-    public Cliente(){
-        
+
+    public Cliente() {
+
     }
-    
+
     /**
      * @param id
      * @param nome
@@ -36,10 +29,10 @@ public class Cliente extends Entidade{
      * @param ddd
      * @param fone
      * @param cpf
-     * @param veiculo 
+     * @param veiculo
      */
-    public Cliente(Long id, String nome, String endereco, String email, 
-                           Long ddd, Long fone, Long cpf){
+    public Cliente(Long id, String nome, String endereco, String email,
+            Long ddd, Long fone, Long cpf) {
         super(id);
         this.nome = nome;
         this.endereco = endereco;
@@ -47,10 +40,7 @@ public class Cliente extends Entidade{
         this.ddd = ddd;
         this.fone = fone;
         this.cpf = cpf;
-        this.veiculo = veiculo;            
     }
-    
-    
 
     public Veiculo getVeiculo() {
         return veiculo;
@@ -59,8 +49,7 @@ public class Cliente extends Entidade{
     public void setVeiculo(Veiculo veiculo) {
         this.veiculo = veiculo;
     }
-    
-    
+
     public String getNome() {
         return nome;
     }
@@ -109,5 +98,4 @@ public class Cliente extends Entidade{
         this.cpf = cpf;
     }
 
-    
 }

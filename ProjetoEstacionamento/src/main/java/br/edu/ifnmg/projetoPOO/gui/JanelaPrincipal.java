@@ -16,8 +16,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form JanelaPrincipal
      */
-    
-     private Usuario usuarioSistema;
+    private Usuario usuarioSistema;
 
     /**
      * Creates new form Principal
@@ -25,21 +24,16 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     public JanelaPrincipal(Usuario usuarioSistema) {
         this.usuarioSistema = usuarioSistema;
         initComponents();
-        
+
         // Configuração da janela diante do perfil de administrador
-//        if(usuarioSistema.getAdministrador()) {
-//            System.out.println("admin? " + usuarioSistema.getAdministrador());
+        mnuAdministrador.setEnabled(usuarioSistema.isAdmin());
+        mnuUsuario.setEnabled(usuarioSistema.isAdmin());
+        mnuRemoverUsuario.setEnabled(usuarioSistema.isAdmin());
 
-            mnuAdministrador.setEnabled(usuarioSistema.isAdmin());
-            mnuUsuario.setEnabled(usuarioSistema.isAdmin());
-            mnuRemoverUsuario.setEnabled(usuarioSistema.isAdmin());
-
-//        }
-        
         // Centralização da janela
         setLocationRelativeTo(null);
     }
-    
+
     public JanelaPrincipal() {
         initComponents();
         // Centralização da janela
@@ -199,7 +193,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         CadastroUsuario cadastroUsuario = new CadastroUsuario();
         cadastroUsuario.setVisible(true);
         dskPrincipal.add(cadastroUsuario);
-        
     }//GEN-LAST:event_mnuUsuarioActionPerformed
 
     private void mnuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSobreActionPerformed
@@ -230,14 +223,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         RemoveVaga rmvVaga = new RemoveVaga();
         rmvVaga.setVisible(true);
         dskPrincipal.add(rmvVaga);
-        
+
     }//GEN-LAST:event_mnuLiberarVagaActionPerformed
 
     private void mnuRemoverUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRemoverUsuarioActionPerformed
         RemoveUsuario rmvUsuario = new RemoveUsuario();
         rmvUsuario.setVisible(true);
         dskPrincipal.add(rmvUsuario);
-        
+
     }//GEN-LAST:event_mnuRemoverUsuarioActionPerformed
 
     private void mnuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSairActionPerformed
@@ -250,7 +243,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         CadastroVeiculo cadastroVeiculo = new CadastroVeiculo();
         cadastroVeiculo.setVisible(true);
         dskPrincipal.add(cadastroVeiculo);
-        
+
     }//GEN-LAST:event_mnuCadastroVeiculoActionPerformed
 
     /**
