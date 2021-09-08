@@ -47,7 +47,7 @@ public class Cliente extends Entidade{
         this.ddd = ddd;
         this.fone = fone;
         this.cpf = cpf;
-//        this.veiculo = veiculo;            
+        this.veiculo = veiculo;            
     }
     
     

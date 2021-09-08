@@ -25,7 +25,7 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
 
     @Override
     public String getDeclaracaoInsert() {
-         return "INSERT INTO cliente (nome, endereco, email, ddd, fone, cpf) VALUES (?, ?, ?, ?, ?, ?);";
+         return "INSERT INTO cliente (nome, endereco, email, ddd, fone, cpf, id_placa_veiculo) VALUES (?, ?, ?, ?, ?, ?, ?);";
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
 
     @Override
     public String getDeclaracaoUpdate() {
-         return "UPDATE cliente SET nome = ?, endereco = ?, email = ?, ddd = ?, fone = ?, cpf = ? WHERE cpf = ?;";
+         return "UPDATE cliente SET nome = ?, endereco = ?, email = ?, ddd = ?, fone = ?, cpf = ?, id_placa_veiculo = ? WHERE cpf = ?;";
     }
 
     @Override
@@ -69,6 +69,8 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
                 pstmt.setLong(4, cliente.getDdd());
                 pstmt.setLong(5, cliente.getFone());
                 pstmt.setLong(6, cliente.getCpf());
+                pstmt.setLong(7, cliente.getVeiculo().getId());
+                
             } else {
 //          // UPDATE
                 pstmt.setString(1, cliente.getNome());
@@ -77,7 +79,8 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
                 pstmt.setLong(4, cliente.getDdd());
                 pstmt.setLong(5, cliente.getFone());
                 pstmt.setLong(6, cliente.getCpf());
-                pstmt.setLong(7, cliente.getId());
+                pstmt.setLong(7, cliente.getVeiculo().getIdPlaca());
+                pstmt.setLong(8, cliente.getId());
 //                
             }
         } catch (SQLException ex) {
@@ -99,7 +102,12 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
             cliente.setEmail(resultSet.getString("email"));
             cliente.setDdd(resultSet.getLong("ddd"));
             cliente.setFone(resultSet.getLong("fone"));
-            cliente.setCpf(resultSet.getLong("cpf"));            
+            cliente.setCpf(resultSet.getLong("cpf"));       
+            
+            // Objetos provenientes de outras tabelas do banco de dados
+            Long veiculoId = resultSet.getLong("id_placa_veiculo");
+            cliente.setVeiculo(new VeiculoDao().localizarPorId(veiculoId));
+                       
             cliente.setId(resultSet.getLong("cpf"));
 
         } catch (SQLException e) {
@@ -130,6 +138,11 @@ public class ClienteDao extends AbstractDao<Cliente, Long>{
                 cliente.setDdd(resultSet.getLong("ddd"));
                 cliente.setFone(resultSet.getLong("fone"));
                 cliente.setCpf(resultSet.getLong("cpf"));
+                                
+                // Objetos provenientes de outras tabelas do banco de dados
+                Long veiculoId = resultSet.getLong("id_placa_veiculo");
+                cliente.setVeiculo(new VeiculoDao().localizarPorId(veiculoId));
+                
                 cliente.setId(resultSet.getLong("cpf"));
                 
                 clientes.add(cliente);

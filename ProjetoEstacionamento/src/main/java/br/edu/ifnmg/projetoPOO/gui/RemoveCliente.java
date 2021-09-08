@@ -7,6 +7,7 @@ package br.edu.ifnmg.projetoPOO.gui;
 
 import br.edu.ifnmg.projetoPOO.Cliente;
 import br.edu.ifnmg.projetoPOO.dao.ClienteDao;
+import br.edu.ifnmg.projetoPOO.dao.VeiculoDao;
 
 /**
  *
@@ -114,7 +115,13 @@ public class RemoveCliente extends javax.swing.JInternalFrame {
         
         // Se encontrar um cliente com cpf informado, remove
         if(clienteDao.localizarPorId(cliente.getId()) != null){
+            // exclui o cliente
             clienteDao.excluir(cliente);
+            
+            // exclui o carro dele também NAO ESTA PEGANDO O ID
+//            VeiculoDao veiculoDao = new VeiculoDao();
+//            veiculoDao.excluir(cliente.getVeiculo());
+            
             System.out.println("Cliente REMOVIDO com sucesso.");
             dispose();
         }

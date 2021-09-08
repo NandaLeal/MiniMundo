@@ -4,6 +4,7 @@ package br.edu.ifnmg.main;
 import br.edu.ifnmg.projetoPOO.Cliente;
 import br.edu.ifnmg.projetoPOO.Usuario;
 import br.edu.ifnmg.projetoPOO.Vaga;
+import br.edu.ifnmg.projetoPOO.Veiculo;
 import br.edu.ifnmg.projetoPOO.dao.ClienteDao;
 import br.edu.ifnmg.projetoPOO.dao.UsuarioDao;
 import br.edu.ifnmg.projetoPOO.dao.VagaDao;
@@ -30,21 +31,19 @@ public class Principal {
 //        vagaDao.excluir(vaga);
         
         
+       
         
-        
-        
-        
-        Cliente cliente = new Cliente();        
-        cliente.setNome("Marcos");
-        cliente.setEndereco("dd");
-        cliente.setEmail("dd");
-        cliente.setDdd(66L);
-        cliente.setFone(77L);
-        cliente.setCpf(12076587667L);
-        cliente.setId(null);
-//        
-        ClienteDao clienteDao = new ClienteDao();        
-        Long id = clienteDao.salvar(cliente);        
+//        Cliente cliente = new Cliente();        
+//        cliente.setNome("Marcos");
+//        cliente.setEndereco("dd");
+//        cliente.setEmail("dd");
+//        cliente.setDdd(66L);
+//        cliente.setFone(77L);
+//        cliente.setCpf(12076587667L);
+//        cliente.setId(null);
+////        
+//        ClienteDao clienteDao = new ClienteDao();        
+//        Long id = clienteDao.salvar(cliente);        
 //        cliente.setId(id);
         
 //

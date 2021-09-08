@@ -5,10 +5,15 @@
  */
 package br.edu.ifnmg.projetoPOO.dao;
 
+import br.edu.ifnmg.projetoPOO.Cliente;
 import br.edu.ifnmg.projetoPOO.Veiculo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,42 +23,116 @@ public class VeiculoDao extends AbstractDao<Veiculo, Long>{
 
     @Override
     public String getDeclaracaoInsert() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "INSERT INTO veiculo (modelo, cor, placa, tipo, id_placa) VALUES (?,?,?,?,?);";
     }
 
     @Override
     public String getDeclaracaoSelectPorId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "SELECT * FROM veiculo WHERE id_placa = ?;";
     }
 
     @Override
     public String getDeclaracaoSelectTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // Sentença seleciona somente as placas e não todos os veículos
+        return "SELECT * FROM veiculo;";
     }
+    
+//    public String getDeclaracaoSelectPorPlaca() {
+//        return ""
+//    }
 
     @Override
     public String getDeclaracaoUpdate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "UPDATE veiculo SET modelo = ?, cor = ?, placa = ?, tipo = ?, cripto_placa = ? WHERE cripto_placa = ?;";
     }
 
     @Override
     public String getDeclaracaoDelete() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "DELETE FROM veiculo WHERE placa = ?;";
     }
 
     @Override
-    public void montarDeclaracao(PreparedStatement pstmt, Veiculo o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void montarDeclaracao(PreparedStatement pstmt, Veiculo veiculo) {
+        // Tenta definir valores junto à sentença SQL preparada para execução 
+        // no banco de dados.
+        try {
+            // INSERT
+            if (veiculo.getId() == null || veiculo.getId() == 0) {
+                pstmt.setString(1, veiculo.getModelo());
+                pstmt.setString(2, veiculo.getCor());
+                pstmt.setString(3, veiculo.getPlaca());
+                pstmt.setString(4, veiculo.getTipo());
+                pstmt.setLong(5, veiculo.getIdPlaca());
+            } else {
+//          // UPDATE
+                pstmt.setString(1, veiculo.getModelo());
+                pstmt.setString(2, veiculo.getCor());
+                pstmt.setString(3, veiculo.getPlaca());
+                pstmt.setString(4, veiculo.getTipo());
+                pstmt.setLong(5, veiculo.getIdPlaca());
+                pstmt.setLong(6, veiculo.getId());
+//                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public Veiculo extrairObjeto(ResultSet resultSet) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // Cria referência para montagem do cliente
+        Veiculo veiculo = new Veiculo();
+
+        // Tenta recuperar dados do registro retornado pelo banco de dados
+        // e ajustar o estado do cliente a ser mapeado
+        try {
+            veiculo.setModelo(resultSet.getString("modelo"));
+            veiculo.setCor(resultSet.getString("cor"));
+            veiculo.setPlaca(resultSet.getString("placa"));
+            veiculo.setTipo(resultSet.getString("tipo"));
+            veiculo.setIdPlaca(resultSet.getLong("id_placa"));
+            veiculo.setId(resultSet.getLong("id_placa"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Devolve o cliente mapeado
+        return veiculo;
     }
 
     @Override
     public List<Veiculo> extrairObjetos(ResultSet resultSet) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // Cria referência para inserção dos clienetes a serem mapeados
+        ArrayList<Veiculo> veiculos = new ArrayList<>();
+
+        // Tenta...
+        try {
+            // ... enquanto houver registros a serem processados
+            while (resultSet.next()) {
+                
+                // Cria referência para montagem dos clienetes
+                Veiculo veiculo = new Veiculo();
+
+//                 Cria referência para montagem do clienete
+                veiculo.setModelo(resultSet.getString("modelo"));
+                veiculo.setCor(resultSet.getString("cor"));
+                veiculo.setPlaca(resultSet.getString("placa"));
+                veiculo.setTipo(resultSet.getString("tipo"));
+                veiculo.setIdPlaca(resultSet.getLong("id_placa"));
+                veiculo.setId(resultSet.getLong("id_placa"));
+                
+                veiculos.add(veiculo);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // Devolve a lista de clienetes reconstituídos dos registros do banco 
+        // de dados
+        return veiculos;
     }
+    
     
 }

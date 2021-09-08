@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -22,21 +23,54 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class CadastroCliente extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form telaCliente
-     */
+    private static CadastroCliente self;
+    
+    private List<Veiculo> todosVeiculos;
+    private Cliente cliente;
+
     public CadastroCliente() {
         initComponents();
         
         // Listar todos os veiculos
-//        List<Veiculo> todosVeiculos = new VeiculoDao().localizarTodos();
-//        DefaultComboBoxModel<Veiculo> comboBoxModel = new DefaultComboBoxModel<>();
-//        comboBoxModel.addAll(todosVeiculos);
-//        cdoVeiculo.setModel(comboBoxModel);
-//        
+        todosVeiculos = new VeiculoDao().localizarTodos();            
         
+        DefaultComboBoxModel<Veiculo> comboBoxModel = new DefaultComboBoxModel<>();        
+
+        comboBoxModel.addAll(todosVeiculos);
+        
+        cdoVeiculo.setModel(comboBoxModel);
+       
         
     }
+    
+    private CadastroCliente(Cliente cliente) {
+        this();
+
+        this.cliente = cliente;
+
+        cdoVeiculo.getModel().setSelectedItem(
+                cliente.getVeiculo());
+    }
+    
+    public static CadastroCliente getInstance() {
+        // Caso a janela ainda não tenha sido instanciada
+        if (self == null) {
+            self = new CadastroCliente();
+        }
+        return self;
+    }
+   
+    public static CadastroCliente getInstance(Cliente cliente) {
+        // Caso a janela ainda não tenha sido instanciada
+        if (self == null) {
+            self = new CadastroCliente(cliente);
+        }
+
+        return self;
+    }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,6 +101,7 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
         fmtFone = new javax.swing.JFormattedTextField();
         fmtDia = new com.toedter.calendar.JDayChooser();
         cdoVeiculo = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -127,6 +162,10 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
+        cdoVeiculo.setToolTipText("");
+
+        jLabel1.setText("Veículo do cliente:");
+
         javax.swing.GroupLayout pnlPainelCadastroClienteLayout = new javax.swing.GroupLayout(pnlPainelCadastroCliente);
         pnlPainelCadastroCliente.setLayout(pnlPainelCadastroClienteLayout);
         pnlPainelCadastroClienteLayout.setHorizontalGroup(
@@ -138,22 +177,23 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
                         .addGap(16, 16, 16)
                         .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
-                                .addComponent(fmtDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                                .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
-                                        .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnCadastrar))
-                                    .addComponent(cdoVeiculo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
+                                .addComponent(lblEmail)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPainelCadastroClienteLayout.createSequentialGroup()
                                 .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblData)
-                                    .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
-                                        .addComponent(lblEmail)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addComponent(fmtDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblData))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
+                                            .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(btnCadastrar))
+                                        .addComponent(cdoVeiculo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                     .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
                         .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlPainelCadastroClienteLayout.createSequentialGroup()
@@ -208,7 +248,9 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
                     .addComponent(lblFone)
                     .addComponent(fmtFone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(lblData)
+                .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblData)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlPainelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPainelCadastroClienteLayout.createSequentialGroup()
@@ -248,6 +290,8 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
         cliente.setDdd(Long.parseLong(fmtDdd.getValue().toString()));
         cliente.setFone(Long.parseLong(fmtFone.getValue().toString().replaceAll("[-]", "")));
         cliente.setCpf(Long.parseLong(fmtCpf.getValue().toString().replaceAll("[-.]", "")));
+        cliente.setVeiculo( (Veiculo) cdoVeiculo.getSelectedItem());
+        
         
 //        fatura.setDiaVencimento(fmtDia.getDay());
 //        fatura.setDataEmissao(LocalDate.now());
@@ -365,6 +409,7 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDayChooser fmtDia;
     private javax.swing.JFormattedTextField fmtFone;
     private com.toedter.calendar.JDayChooser jDayChooser1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblData;

@@ -143,12 +143,22 @@ public class CadastroVeiculo extends javax.swing.JInternalFrame {
         veiculo.setModelo(txtModelo.getText());
         veiculo.setPlaca(fmtPlaca.getText());
         veiculo.setTipo(boxTipoVeiculo.getItemAt(boxTipoVeiculo.getSelectedIndex()));
+        veiculo.setIdPlaca( Long.parseLong( veiculo.CriptografarPlaca( veiculo.getPlaca() ) ) );
         
+                
         VeiculoDao veiculoDao = new VeiculoDao();
-        veiculoDao.salvar(veiculo);
-        veiculoDao.localizarPorId(veiculo.getPlaca());
-        veiculoDao.localizarTodos();
-        veiculoDao.excluir(veiculo);
+        
+        if( veiculoDao.localizarPorId(veiculo.getIdPlaca()) == null ){            
+            veiculoDao.salvar(veiculo);
+            System.out.println("Veiculo CADASTRADO com sucesso.");
+            dispose();
+        }
+        else{
+            fmtPlaca.requestFocus();
+            System.out.println("PLACA informada pertence a outro carro! Tente novamente.");
+        }
+        
+        
     }//GEN-LAST:event_btnCadastrarVeiculoActionPerformed
    
     private void btnCancelarVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarVeiculoActionPerformed

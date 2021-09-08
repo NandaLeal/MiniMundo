@@ -14,6 +14,7 @@ public class Veiculo extends Entidade{
     private String cor;
     private String placa;
     private String tipo;
+    private Long idPlaca;
     
     /**
      * Cria um novo veículo
@@ -28,13 +29,23 @@ public class Veiculo extends Entidade{
      * @param cor Representa a cor do veículo
      * @param placa Representa a placa do veículo (XXX-X0XXX)
      * @param tipo Representa o tipo do veículo (Carro ou moto)
-     */
-    public Veiculo(Long id, String modelo, String cor, String placa, String tipo){
+     * @param idPlaca
+     */    
+    public Veiculo(Long id, String modelo, String cor, String placa, String tipo, Long idPlaca){
         super(id);
         this.modelo = modelo;
         this.cor = cor;
         this.placa = placa;
-        this.tipo = tipo;        
+        this.tipo = tipo;  
+        this.idPlaca = idPlaca;
+    }
+
+    public Long getIdPlaca() {
+        return idPlaca;
+    }
+
+    public void setIdPlaca(Long idPlaca) {
+        this.idPlaca = idPlaca;
     }
     
     
@@ -71,5 +82,25 @@ public class Veiculo extends Entidade{
         this.placa = placa;
     }
 
-   
+   @Override
+    public String toString() {
+        return placa;
+    }
+    
+    public String CriptografarPlaca(String placaVeiculo){
+        
+        String placaCriptografada = new String();
+        char c;
+        int ascii;
+        Long longPlaca;
+        
+        for (int i = 0; i < placaVeiculo.length(); i++) {
+            c = placaVeiculo.charAt(i);
+            ascii = (int) c;
+            placaCriptografada += ascii;
+        }
+        
+        return placaCriptografada;
+    }
+    
 }

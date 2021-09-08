@@ -62,13 +62,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         mnuCadastro = new javax.swing.JMenu();
         mnuCadastroCliente = new javax.swing.JMenuItem();
         mnuUsuario = new javax.swing.JMenuItem();
+        mnuCadastroVeiculo = new javax.swing.JMenuItem();
         mnuRemover = new javax.swing.JMenu();
         mnuRemoverCliente = new javax.swing.JMenuItem();
         mnuRemoverUsuario = new javax.swing.JMenuItem();
         mnuAdministrador = new javax.swing.JMenuItem();
         btnVaga = new javax.swing.JMenuItem();
         mnuLiberarVaga = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        mnuSair = new javax.swing.JMenuItem();
         mnuAjuda = new javax.swing.JMenu();
         mnuSobre = new javax.swing.JMenuItem();
 
@@ -106,6 +107,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             }
         });
         mnuCadastro.add(mnuUsuario);
+
+        mnuCadastroVeiculo.setText("Veículo");
+        mnuCadastroVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuCadastroVeiculoActionPerformed(evt);
+            }
+        });
+        mnuCadastro.add(mnuCadastroVeiculo);
 
         mnuArquivo.add(mnuCadastro);
 
@@ -148,13 +157,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         mnuArquivo.add(mnuLiberarVaga);
 
-        jMenuItem1.setText("Sair");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mnuSair.setText("Sair");
+        mnuSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mnuSairActionPerformed(evt);
             }
         });
-        mnuArquivo.add(jMenuItem1);
+        mnuArquivo.add(mnuSair);
 
         mnuBarra.add(mnuArquivo);
 
@@ -231,11 +240,18 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_mnuRemoverUsuarioActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void mnuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSairActionPerformed
         Login telaLogin = new Login();
         telaLogin.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_mnuSairActionPerformed
+
+    private void mnuCadastroVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroVeiculoActionPerformed
+        CadastroVeiculo cadastroVeiculo = new CadastroVeiculo();
+        cadastroVeiculo.setVisible(true);
+        dskPrincipal.add(cadastroVeiculo);
+        
+    }//GEN-LAST:event_mnuCadastroVeiculoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,7 +292,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnVaga;
     private javax.swing.JDesktopPane dskPrincipal;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem mnuAdministrador;
     private javax.swing.JMenu mnuAjuda;
@@ -284,10 +299,12 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar mnuBarra;
     private javax.swing.JMenu mnuCadastro;
     private javax.swing.JMenuItem mnuCadastroCliente;
+    private javax.swing.JMenuItem mnuCadastroVeiculo;
     private javax.swing.JMenuItem mnuLiberarVaga;
     private javax.swing.JMenu mnuRemover;
     private javax.swing.JMenuItem mnuRemoverCliente;
     private javax.swing.JMenuItem mnuRemoverUsuario;
+    private javax.swing.JMenuItem mnuSair;
     private javax.swing.JMenuItem mnuSobre;
     private javax.swing.JMenuItem mnuUsuario;
     // End of variables declaration//GEN-END:variables
