@@ -22,14 +22,14 @@ public class Cliente extends Entidade {
     }
 
     /**
-     * @param id
-     * @param nome
-     * @param endereco
-     * @param email
-     * @param ddd
-     * @param fone
-     * @param cpf
-     * @param veiculo
+     * @param id Identificador único do cliente 
+     * @param nome nome do cliente
+     * @param endereco endereço do cliente, string
+     * @param email email do cliente
+     * @param ddd   ddd para contato
+     * @param fone  telefone para contato
+     * @param cpf   identificador único no bd
+     * @param veiculo   veíuclo do cliente, objeto
      */
     public Cliente(Long id, String nome, String endereco, String email,
             Long ddd, Long fone, Long cpf) {

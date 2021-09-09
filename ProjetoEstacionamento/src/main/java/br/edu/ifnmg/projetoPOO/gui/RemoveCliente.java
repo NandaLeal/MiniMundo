@@ -119,7 +119,7 @@ public class RemoveCliente extends javax.swing.JInternalFrame {
         clienteResultado = clienteDao.localizarPorId(cliente.getId());
 
         // Se encontrar um cliente com cpf informado, remove ele e seu veículo 
-        if (clienteResultado.getId() != null) {
+        if (clienteResultado != null && clienteResultado.getId() != null) {
 
             // exclui o cliente
             clienteDao.excluir(cliente);
