@@ -37,7 +37,6 @@ public class RemoveVaga extends javax.swing.JInternalFrame {
         btnCancelarVaga = new javax.swing.JButton();
         btnLiberarVaga = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        dateSaida = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Liberar Vaga");
@@ -78,11 +77,9 @@ public class RemoveVaga extends javax.swing.JInternalFrame {
                                 .addComponent(boxVaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btnCancelarVaga))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnLiberarVaga)
-                            .addComponent(dateSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnLiberarVaga))
                     .addComponent(jLabel1))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,12 +87,10 @@ public class RemoveVaga extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(boxVaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2))
-                    .addComponent(dateSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boxVaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelarVaga)
                     .addComponent(btnLiberarVaga))
@@ -117,24 +112,15 @@ public class RemoveVaga extends javax.swing.JInternalFrame {
         // Se a vaga já estiver sido liberada, mostra o aviso
         VagaDao vagaDao = new VagaDao();
         Vaga vagaRetorno = new Vaga();
-        Long horaEntrada;
-        Date dataSaida = dateSaida.getDate();
-        Long horaSaida;
         
-        vagaRetorno = vagaDao.localizarPorId(vaga.getId());
-        
+        vagaRetorno = vagaDao.localizarPorId(vaga.getId());        
         
         if (vagaRetorno == null) {
             System.out.println("A vaga " + vaga.getNumero() + " já está liberada!");
             boxVaga.requestFocus();
         } // Se tiver em uso, então vou liberar
         else {
-            
-            horaEntrada = vagaRetorno.getDataEntrada().getTime();
-            horaSaida = dataSaida.getTime();
-            
-            System.out.println(">> "+(horaEntrada - horaSaida));
-            
+                        
             vagaDao.excluir(vaga);
             System.out.println("Vaga LIBERADA com sucesso.");
             dispose();
@@ -184,7 +170,6 @@ public class RemoveVaga extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> boxVaga;
     private javax.swing.JButton btnCancelarVaga;
     private javax.swing.JButton btnLiberarVaga;
-    private com.toedter.calendar.JDateChooser dateSaida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

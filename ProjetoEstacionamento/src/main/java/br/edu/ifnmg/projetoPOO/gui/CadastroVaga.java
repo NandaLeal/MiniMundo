@@ -38,7 +38,6 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         btnCancelarVaga = new javax.swing.JButton();
         btnCadastrarVaga = new javax.swing.JButton();
-        dateChooser = new com.toedter.calendar.JDateChooser();
 
         try {
             fmtPlaca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUU-AAAA")));
@@ -98,17 +97,14 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(boxVaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(boxVaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnCancelarVaga)
                         .addGap(18, 18, 18)
                         .addComponent(btnCadastrarVaga)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,19 +115,14 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(fmtPlacaVaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boxVaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCancelarVaga)
-                            .addComponent(btnCadastrarVaga)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fmtPlacaVaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxVaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelarVaga)
+                    .addComponent(btnCadastrarVaga))
                 .addContainerGap())
         );
 
@@ -147,15 +138,9 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
         vaga.setPlaca(fmtPlacaVaga.getValue().toString().replaceAll("[-]", ""));
         vaga.setDescricao(txtDesc.getText());
         vaga.setNumero(Long.parseLong(boxVaga.getItemAt(boxVaga.getSelectedIndex())));
-        vaga.setDataEntrada(dateChooser.getDate());
-        
-        Date horaEntrada = new Date();
-        horaEntrada = vaga.getDataEntrada();
-        horaEntrada.getTime();
-        
-        System.out.println(horaEntrada);
-        
 
+        
+       
         // Se a vaga estiver liberada, vou cadastrar
         VagaDao vagaDao = new VagaDao();
         if (vagaDao.localizarPorId(vaga.getNumero()) == null) {
@@ -210,7 +195,6 @@ public class CadastroVaga extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> boxVaga;
     private javax.swing.JButton btnCadastrarVaga;
     private javax.swing.JButton btnCancelarVaga;
-    private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JFormattedTextField fmtPlaca;
     private javax.swing.JFormattedTextField fmtPlacaVaga;
     private javax.swing.JLabel jLabel1;

@@ -31,7 +31,7 @@ public class VagaDao extends AbstractDao<Vaga, Long> {
      */
     @Override
     public String getDeclaracaoInsert() {
-        return "INSERT INTO vaga (placa, descricao, numero, data_entrada) VALUES (?, ?, ?, ?);";
+        return "INSERT INTO vaga (placa, descricao, numero )VALUES (?, ?, ?);";
     }
 
     /**
@@ -81,12 +81,10 @@ public class VagaDao extends AbstractDao<Vaga, Long> {
                 pstmt.setString(1, vaga.getPlaca());
                 pstmt.setString(2, vaga.getDescricao());
                 pstmt.setLong(3, vaga.getNumero());
-//                pstmt.setDate(4, vaga.getDataEntrada());
             } else {
                 pstmt.setString(1, vaga.getPlaca());
                 pstmt.setString(2, vaga.getDescricao());
                 pstmt.setLong(3, vaga.getNumero());
-                pstmt.setDate(4, (Date) vaga.getDataEntrada());
                 pstmt.setLong(5, vaga.getId());
             }
         } catch (SQLException ex) {
@@ -105,7 +103,6 @@ public class VagaDao extends AbstractDao<Vaga, Long> {
             vaga.setPlaca(resultSet.getString("placa"));
             vaga.setDescricao(resultSet.getString("descricao"));
             vaga.setNumero(resultSet.getLong("numero"));
-            vaga.setDataEntrada(resultSet.getDate("data_entrada"));
         } catch (SQLException e) {
             e.printStackTrace();
         }

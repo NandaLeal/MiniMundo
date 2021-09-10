@@ -14,7 +14,6 @@ public class Vaga extends Entidade {
     private Long numero;
     private String placa;
     private String descricao;
-    private Date dataEntrada;
 
     public Vaga() {
 
@@ -32,15 +31,6 @@ public class Vaga extends Entidade {
         this.placa = placa;
         this.descricao = descricao;
     }
-
-    public Date getDataEntrada() {
-        return dataEntrada;
-    }
-
-    public void setDataEntrada(Date dataEntrada) {
-        this.dataEntrada = dataEntrada;
-    }
-    
     
     
 
