@@ -4,7 +4,7 @@ import br.edu.ifnmg.projetoPOO.dao.Entidade;
 
 /**
  *
- * @author Filipi
+ * @author Filip
  * @version 1.2
  */
 public class Cliente extends Entidade {

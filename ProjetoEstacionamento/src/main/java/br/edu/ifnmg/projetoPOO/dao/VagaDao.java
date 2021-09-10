@@ -8,6 +8,7 @@ package br.edu.ifnmg.projetoPOO.dao;
 import br.edu.ifnmg.projetoPOO.Cliente;
 import br.edu.ifnmg.projetoPOO.Usuario;
 import br.edu.ifnmg.projetoPOO.Vaga;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,7 +31,7 @@ public class VagaDao extends AbstractDao<Vaga, Long> {
      */
     @Override
     public String getDeclaracaoInsert() {
-        return "INSERT INTO vaga (placa, descricao, numero) VALUES (?, ?, ?);";
+        return "INSERT INTO vaga (placa, descricao, numero, data_entrada) VALUES (?, ?, ?, ?);";
     }
 
     /**
@@ -80,11 +81,13 @@ public class VagaDao extends AbstractDao<Vaga, Long> {
                 pstmt.setString(1, vaga.getPlaca());
                 pstmt.setString(2, vaga.getDescricao());
                 pstmt.setLong(3, vaga.getNumero());
+//                pstmt.setDate(4, vaga.getDataEntrada());
             } else {
                 pstmt.setString(1, vaga.getPlaca());
                 pstmt.setString(2, vaga.getDescricao());
                 pstmt.setLong(3, vaga.getNumero());
-                pstmt.setLong(4, vaga.getId());
+                pstmt.setDate(4, (Date) vaga.getDataEntrada());
+                pstmt.setLong(5, vaga.getId());
             }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -102,6 +105,7 @@ public class VagaDao extends AbstractDao<Vaga, Long> {
             vaga.setPlaca(resultSet.getString("placa"));
             vaga.setDescricao(resultSet.getString("descricao"));
             vaga.setNumero(resultSet.getLong("numero"));
+            vaga.setDataEntrada(resultSet.getDate("data_entrada"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
